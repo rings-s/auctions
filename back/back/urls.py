@@ -26,7 +26,7 @@ urlpatterns = [
     # JWT Authentication
 
     # API endpoints
-    # path('api/', include('base.urls')),
+    path('api/', include('base.urls')),
 
     path('api/accounts/', include('accounts.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

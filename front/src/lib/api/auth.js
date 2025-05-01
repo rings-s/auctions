@@ -5,6 +5,10 @@ import { goto } from '$app/navigation';
 
 const AUTH_URL = 'http://localhost:8000/api/accounts';
 
+
+
+
+
 export async function register(userData) {
   const response = await fetch(`${AUTH_URL}/register/`, {
     method: 'POST',

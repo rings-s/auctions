@@ -2,7 +2,7 @@
 import { API_BASE_URL } from '$lib/constants';
 import { refreshToken } from './auth';
 
-const PROPERTY_URL = 'http://localhost:8000/api/base/properties';
+const PROPERTY_URL = 'http://localhost:8000/api/properties';
 
 // Fetch properties with filtering, pagination, and search
 export async function fetchProperties(filters = {}) {

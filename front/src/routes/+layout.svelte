@@ -3,6 +3,7 @@
 	import '../app.css';
 	import { onMount } from 'svelte';
 	import { theme } from '$lib/stores/theme';
+
 	import { locale } from '$lib/i18n/i18n';
 	import { user } from '$lib/stores/user';
 	import { fetchUserProfile } from '$lib/api/auth';
@@ -39,13 +40,18 @@
 	  loading = false;
 	});
 	
-	// Apply theme class to document when theme changes
+	// Apply theme and direction classes to document when theme or locale changes
 	$: if (typeof document !== 'undefined') {
-	  document.documentElement.classList.remove('light', 'dark');
-	  document.documentElement.classList.add($theme);
+	  document.documentElement.classList.remove('light', 'dark', 'rtl', 'ltr');
+	  if ($locale === 'ar') {
+		document.documentElement.classList.add('rtl');
+	  } else {
+		document.documentElement.classList.add('ltr');
+	  }
+	  document.documentElement.classList.add($theme); // always add theme last
 	}
 	
-	// Apply RTL/LTR when locale changes
+	// Apply lang and dir attributes
 	$: if (typeof document !== 'undefined') {
 	  document.documentElement.lang = $locale;
 	  document.documentElement.dir = $locale === 'ar' ? 'rtl' : 'ltr';

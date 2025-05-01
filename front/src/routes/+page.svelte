@@ -52,7 +52,7 @@
               End: {auction.end_date?.slice(0, 10)}
             </div>
           </div>
-          <a class="mt-4 inline-block text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition-colors" href={"/auctions/" + auction.slug}>
+          <a class="mt-4 inline-block text-center bg-primary-600 hover:bg-primary-700 text-white font-semibold py-2 px-4 rounded transition-colors" href={"/auctions/" + auction.slug}>
             View Auction
           </a>
         </article>

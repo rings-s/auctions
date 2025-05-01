@@ -7,14 +7,7 @@ class IsOwnerOrAdmin(BasePermission):
     message = _('You must be the owner of this object or an admin.')
 
     def has_object_permission(self, request, view, obj):
-        if request.user.is_staff or request.user.is_superuser:
-            return True
-
-        if hasattr(obj, 'user'):
-            return obj.user == request.user
-        elif hasattr(obj, 'owner'):
-            return obj.owner == request.user
-        return obj == request.user
+        return obj == request.user or request.user.is_staff
 
 class IsAdminUser(BasePermission):
     """Allows access only to admin users"""
@@ -25,7 +18,7 @@ class IsAdminUser(BasePermission):
 
 class IsVerifiedUser(BasePermission):
     """Allows access only to email-verified users"""
-    message = _('You must verify your email address to perform this action.')
+    message = _('User account must be verified.')
 
     def has_permission(self, request, view):
-        return request.user and request.user.is_verified
+        return request.user.is_authenticated and getattr(request.user, 'is_verified', False)

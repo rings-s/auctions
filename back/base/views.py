@@ -5,8 +5,7 @@ from .models import Media, Property, Room, Auction, Bid
 from .serializers import MediaSerializer, PropertySerializer, RoomSerializer, AuctionSerializer, BidSerializer
 # Import custom permissions
 from accounts.permissions import IsVerifiedUser, IsOwnerOrAdmin
-from rest_framework.permissions import IsAuthenticated
-
+from rest_framework.permissions import AllowAny, IsAuthenticated  
 # MEDIA VIEWS
 class MediaListCreateAPIView(generics.ListCreateAPIView):
     queryset = Media.objects.all()
@@ -67,7 +66,7 @@ class RoomRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 class AuctionListCreateAPIView(generics.ListCreateAPIView):
     queryset = Auction.objects.all()
     serializer_class = AuctionSerializer
-    permission_classes = [IsVerifiedUser]
+    permission_classes = [AllowAny]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['auction_type', 'status', 'related_property']
     search_fields = ['title', 'slug', 'description']
