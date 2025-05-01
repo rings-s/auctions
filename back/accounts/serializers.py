@@ -25,17 +25,22 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         style={'input_type': 'password'},
     )
 
+    role = serializers.ChoiceField(choices=User.ROLE_CHOICES, default='user', required=False)
+
+
     class Meta:
         model = User
         fields = (
             'email', 'password', 'confirm_password',
-            'first_name', 'last_name', 'phone_number', 'date_of_birth',
+            'first_name', 'last_name', 'phone_number', 'date_of_birth', 'role',
         )
         extra_kwargs = {
             'first_name': {'required': True},
             'last_name': {'required': True},
             'phone_number': {'required': False},
             'date_of_birth': {'required': False},
+            'role': {'required': False},  # Default to 'user' if not provided
+
         }
 
     def validate(self, attrs):

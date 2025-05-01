@@ -477,3 +477,216 @@ INFO 2025-05-01 00:02:35,531 basehttp 49702 128209588836032 "GET /static/admin/j
 INFO 2025-05-01 00:02:35,610 basehttp 49702 128209588836032 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
 INFO 2025-05-01 00:02:35,614 basehttp 49702 128209605621440 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 304 0
 INFO 2025-05-01 00:02:35,614 basehttp 49702 128209597228736 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+INFO 2025-05-01 00:12:26,091 autoreload 49702 128209763686208 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/models.py changed, reloading.
+INFO 2025-05-01 00:12:27,265 autoreload 51080 133348004054848 Watching for file changes with StatReloader
+INFO 2025-05-01 00:12:28,907 autoreload 51080 133348004054848 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/models.py changed, reloading.
+INFO 2025-05-01 00:12:30,050 autoreload 51083 138462330582848 Watching for file changes with StatReloader
+INFO 2025-05-01 00:12:32,688 autoreload 51083 138462330582848 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/models.py changed, reloading.
+INFO 2025-05-01 00:12:33,499 autoreload 51089 127147132237632 Watching for file changes with StatReloader
+INFO 2025-05-01 00:12:37,986 autoreload 51089 127147132237632 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/models.py changed, reloading.
+INFO 2025-05-01 00:12:38,695 autoreload 51095 131787719223104 Watching for file changes with StatReloader
+INFO 2025-05-01 00:13:00,519 autoreload 51095 131787719223104 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/models.py changed, reloading.
+INFO 2025-05-01 00:13:01,485 autoreload 51120 129741644441408 Watching for file changes with StatReloader
+INFO 2025-05-01 00:13:03,267 autoreload 51120 129741644441408 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/models.py changed, reloading.
+INFO 2025-05-01 00:13:04,439 autoreload 51122 125805615109952 Watching for file changes with StatReloader
+INFO 2025-05-01 00:13:23,675 autoreload 51122 125805615109952 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/models.py changed, reloading.
+INFO 2025-05-01 00:13:24,618 autoreload 51150 123455218042688 Watching for file changes with StatReloader
+INFO 2025-05-01 00:13:28,064 autoreload 51150 123455218042688 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/models.py changed, reloading.
+INFO 2025-05-01 00:13:28,928 autoreload 51152 135928962836288 Watching for file changes with StatReloader
+INFO 2025-05-01 00:13:49,818 autoreload 51152 135928962836288 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/models.py changed, reloading.
+INFO 2025-05-01 00:13:50,853 autoreload 51172 133306658662208 Watching for file changes with StatReloader
+INFO 2025-05-01 00:13:53,353 autoreload 51172 133306658662208 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/models.py changed, reloading.
+INFO 2025-05-01 00:13:53,993 autoreload 51174 139185287800640 Watching for file changes with StatReloader
+INFO 2025-05-01 00:14:00,488 autoreload 51174 139185287800640 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/models.py changed, reloading.
+INFO 2025-05-01 00:14:01,495 autoreload 51178 123310556014400 Watching for file changes with StatReloader
+INFO 2025-05-01 00:14:04,586 autoreload 51178 123310556014400 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/models.py changed, reloading.
+INFO 2025-05-01 00:14:05,595 autoreload 51182 130225006630720 Watching for file changes with StatReloader
+INFO 2025-05-01 00:14:07,901 autoreload 51182 130225006630720 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/models.py changed, reloading.
+INFO 2025-05-01 00:14:08,584 autoreload 51184 126376978073408 Watching for file changes with StatReloader
+INFO 2025-05-01 00:15:50,175 autoreload 51184 126376978073408 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-01 00:15:50,908 autoreload 51320 132218284840768 Watching for file changes with StatReloader
+INFO 2025-05-01 00:15:58,496 autoreload 51320 132218284840768 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-01 00:15:59,397 autoreload 51322 128248195344192 Watching for file changes with StatReloader
+INFO 2025-05-01 00:16:01,020 autoreload 51322 128248195344192 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-01 00:16:01,762 autoreload 51324 134884123203392 Watching for file changes with StatReloader
+INFO 2025-05-01 00:16:12,372 autoreload 51324 134884123203392 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-01 00:16:13,158 autoreload 51326 133656440461120 Watching for file changes with StatReloader
+INFO 2025-05-01 00:16:31,967 autoreload 51326 133656440461120 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-01 00:16:32,753 autoreload 51356 125085854410560 Watching for file changes with StatReloader
+INFO 2025-05-01 00:16:36,252 autoreload 51356 125085854410560 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-01 00:16:37,199 autoreload 51362 128150032635712 Watching for file changes with StatReloader
+INFO 2025-05-01 00:17:12,490 autoreload 51362 128150032635712 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-01 00:17:13,101 autoreload 51387 134370507773760 Watching for file changes with StatReloader
+INFO 2025-05-01 00:17:17,464 autoreload 51387 134370507773760 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-01 00:17:18,031 autoreload 51389 137203231639360 Watching for file changes with StatReloader
+INFO 2025-05-01 00:17:49,012 autoreload 51389 137203231639360 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-01 00:17:49,742 autoreload 51430 132667511428928 Watching for file changes with StatReloader
+INFO 2025-05-01 00:17:53,416 autoreload 51430 132667511428928 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-01 00:17:54,213 autoreload 51432 140247298000704 Watching for file changes with StatReloader
+INFO 2025-05-01 00:18:44,835 autoreload 51432 140247298000704 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/serializers.py changed, reloading.
+INFO 2025-05-01 00:18:45,711 autoreload 51521 128611923945280 Watching for file changes with StatReloader
+INFO 2025-05-01 00:18:49,056 autoreload 51521 128611923945280 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/serializers.py changed, reloading.
+INFO 2025-05-01 00:18:49,795 autoreload 51546 139096634763072 Watching for file changes with StatReloader
+INFO 2025-05-01 00:19:00,493 autoreload 51546 139096634763072 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/serializers.py changed, reloading.
+INFO 2025-05-01 00:19:01,479 autoreload 51556 131762752141120 Watching for file changes with StatReloader
+INFO 2025-05-01 00:19:05,437 autoreload 51556 131762752141120 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/serializers.py changed, reloading.
+INFO 2025-05-01 00:19:06,372 autoreload 51562 126018206025536 Watching for file changes with StatReloader
+INFO 2025-05-01 00:29:21,555 autoreload 52130 133984562501440 Watching for file changes with StatReloader
+INFO 2025-05-01 00:29:33,271 autoreload 52184 132454881720128 Watching for file changes with StatReloader
+INFO 2025-05-01 00:29:46,503 autoreload 52189 123531987740480 Watching for file changes with StatReloader
+INFO 2025-05-01 00:30:09,442 autoreload 52225 138419027093312 Watching for file changes with StatReloader
+INFO 2025-05-01 00:30:31,011 autoreload 52265 125738257155904 Watching for file changes with StatReloader
+WARNING 2025-05-01 00:30:40,086 log 52265 125738177001152 Unauthorized: /api/auctions/
+WARNING 2025-05-01 00:30:40,087 basehttp 52265 125738177001152 "GET /api/auctions/? HTTP/1.1" 401 58
+INFO 2025-05-01 00:31:23,347 basehttp 52265 125738177001152 "OPTIONS /api/accounts/register/ HTTP/1.1" 200 0
+WARNING 2025-05-01 00:31:23,483 log 52265 125738177001152 Bad Request: /api/accounts/register/
+WARNING 2025-05-01 00:31:23,483 basehttp 52265 125738177001152 "POST /api/accounts/register/ HTTP/1.1" 400 155
+WARNING 2025-05-01 00:32:20,536 log 52265 125738177001152 Bad Request: /api/accounts/register/
+WARNING 2025-05-01 00:32:20,537 basehttp 52265 125738177001152 "POST /api/accounts/register/ HTTP/1.1" 400 198
+INFO 2025-05-01 00:35:11,821 autoreload 52265 125738257155904 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/serializers.py changed, reloading.
+INFO 2025-05-01 00:35:12,901 autoreload 52610 133877070812992 Watching for file changes with StatReloader
+INFO 2025-05-01 00:35:15,243 autoreload 52610 133877070812992 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/serializers.py changed, reloading.
+INFO 2025-05-01 00:35:16,068 autoreload 52773 124844503619392 Watching for file changes with StatReloader
+WARNING 2025-05-01 00:36:25,006 log 52773 124844357187264 Bad Request: /api/accounts/register/
+WARNING 2025-05-01 00:36:25,007 basehttp 52773 124844357187264 "POST /api/accounts/register/ HTTP/1.1" 400 155
+INFO 2025-05-01 00:40:09,000 autoreload 52773 124844503619392 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/serializers.py changed, reloading.
+INFO 2025-05-01 00:40:13,535 autoreload 54831 132293570414400 Watching for file changes with StatReloader
+INFO 2025-05-01 00:41:39,580 autoreload 54831 132293570414400 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/models.py changed, reloading.
+INFO 2025-05-01 00:41:40,561 autoreload 54921 127698181695296 Watching for file changes with StatReloader
+INFO 2025-05-01 00:42:11,451 autoreload 54955 131872661440320 Watching for file changes with StatReloader
+INFO 2025-05-01 00:42:56,784 autoreload 55255 134707095054144 Watching for file changes with StatReloader
+WARNING 2025-05-01 00:43:14,731 log 55255 134706947421888 Unauthorized: /api/auctions/
+WARNING 2025-05-01 00:43:14,733 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 401 58
+WARNING 2025-05-01 00:43:37,719 log 55255 134706947421888 Bad Request: /api/accounts/register/
+WARNING 2025-05-01 00:43:37,719 basehttp 55255 134706947421888 "POST /api/accounts/register/ HTTP/1.1" 400 155
+INFO 2025-05-01 00:43:59,682 serializers 55255 134706947421888 User 'rings9619@gmail.com' created successfully
+INFO 2025-05-01 00:44:05,910 utils 55255 134706947421888 Email sent: Verify Your Email Address to rings9619@gmail.com
+INFO 2025-05-01 00:44:05,911 views 55255 134706947421888 Verification email sent to rings9619@gmail.com
+INFO 2025-05-01 00:44:06,081 basehttp 55255 134706947421888 "POST /api/accounts/register/ HTTP/1.1" 201 138
+INFO 2025-05-01 00:44:32,325 basehttp 55255 134706947421888 "OPTIONS /api/accounts/verify-email/ HTTP/1.1" 200 0
+INFO 2025-05-01 00:44:33,066 views 55255 134706947421888 Email verification successful for user 2
+INFO 2025-05-01 00:44:33,072 basehttp 55255 134706947421888 "POST /api/accounts/verify-email/ HTTP/1.1" 200 1128
+INFO 2025-05-01 00:44:37,576 middleware 55255 134706947421888 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36...'
+INFO 2025-05-01 00:44:37,577 views 55255 134706947421888 Successful login for user: rings9619@gmail.com
+INFO 2025-05-01 00:44:37,581 basehttp 55255 134706947421888 "POST /api/accounts/login/ HTTP/1.1" 200 1088
+INFO 2025-05-01 00:44:41,073 basehttp 55255 134706947421888 "OPTIONS /api/auctions/? HTTP/1.1" 200 0
+INFO 2025-05-01 00:44:41,093 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-01 00:44:43,840 basehttp 55255 134706947421888 "OPTIONS /api/properties/? HTTP/1.1" 200 0
+INFO 2025-05-01 00:44:43,859 basehttp 55255 134706947421888 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-01 00:44:46,502 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-01 00:44:48,827 basehttp 55255 134706947421888 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-01 00:48:32,259 basehttp 55255 134706947421888 "OPTIONS /api/accounts/logout/ HTTP/1.1" 200 0
+WARNING 2025-05-01 00:48:32,263 log 55255 134706947421888 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-01 00:48:32,264 basehttp 55255 134706947421888 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-01 00:48:34,658 log 55255 134706947421888 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-01 00:48:34,659 basehttp 55255 134706947421888 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-01 00:48:34,842 log 55255 134706947421888 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-01 00:48:34,842 basehttp 55255 134706947421888 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-01 00:48:38,828 log 55255 134706947421888 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-01 00:48:38,829 basehttp 55255 134706947421888 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+INFO 2025-05-01 00:48:43,031 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-01 00:48:45,132 basehttp 55255 134706947421888 "OPTIONS /api/accounts/profile/ HTTP/1.1" 200 0
+INFO 2025-05-01 00:48:45,201 basehttp 55255 134706947421888 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-01 00:48:45,236 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 200 52
+WARNING 2025-05-01 00:48:46,402 log 55255 134706947421888 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-01 00:48:46,402 basehttp 55255 134706947421888 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-01 00:48:51,234 log 55255 134706947421888 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-01 00:48:51,234 basehttp 55255 134706947421888 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-01 00:49:43,067 log 55255 134706947421888 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-01 00:49:43,068 basehttp 55255 134706947421888 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-01 00:49:54,346 log 55255 134706947421888 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-01 00:49:54,347 basehttp 55255 134706947421888 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-01 00:51:56,843 log 55255 134706947421888 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-01 00:51:56,843 basehttp 55255 134706947421888 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-01 00:56:08,600 log 55255 134706947421888 Unauthorized: /api/auctions/
+WARNING 2025-05-01 00:56:08,601 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 401 58
+WARNING 2025-05-01 00:56:19,341 log 55255 134706947421888 Unauthorized: /api/auctions/
+WARNING 2025-05-01 00:56:19,342 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 401 58
+WARNING 2025-05-01 00:56:23,191 log 55255 134706947421888 Unauthorized: /api/auctions/
+WARNING 2025-05-01 00:56:23,192 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 401 58
+INFO 2025-05-01 00:56:27,545 middleware 55255 134706947421888 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36...'
+INFO 2025-05-01 00:56:27,545 views 55255 134706947421888 Successful login for user: rings9619@gmail.com
+INFO 2025-05-01 00:56:27,561 basehttp 55255 134706947421888 "POST /api/accounts/login/ HTTP/1.1" 200 1088
+INFO 2025-05-01 00:56:47,854 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-01 00:56:49,282 basehttp 55255 134706947421888 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-01 00:56:50,384 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 200 52
+WARNING 2025-05-01 00:56:53,349 log 55255 134706947421888 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-01 00:56:53,350 basehttp 55255 134706947421888 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-01 00:56:53,761 log 55255 134706947421888 Unauthorized: /api/auctions/
+WARNING 2025-05-01 00:56:53,762 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 401 58
+INFO 2025-05-01 00:56:59,677 middleware 55255 134706947421888 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36...'
+INFO 2025-05-01 00:56:59,678 views 55255 134706947421888 Successful login for user: rings9619@gmail.com
+INFO 2025-05-01 00:56:59,681 basehttp 55255 134706947421888 "POST /api/accounts/login/ HTTP/1.1" 200 1088
+WARNING 2025-05-01 00:57:23,100 log 55255 134706947421888 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-01 00:57:23,101 basehttp 55255 134706947421888 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-01 00:57:23,516 log 55255 134706947421888 Unauthorized: /api/auctions/
+WARNING 2025-05-01 00:57:23,517 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 401 58
+INFO 2025-05-01 00:57:27,745 middleware 55255 134706947421888 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36...'
+INFO 2025-05-01 00:57:27,745 views 55255 134706947421888 Successful login for user: rings9619@gmail.com
+INFO 2025-05-01 00:57:27,751 basehttp 55255 134706947421888 "POST /api/accounts/login/ HTTP/1.1" 200 1088
+INFO 2025-05-01 00:57:29,513 basehttp 55255 134706947421888 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-01 00:57:30,514 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-01 00:57:32,583 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-01 00:57:33,729 basehttp 55255 134706947421888 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-01 00:57:34,533 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-01 00:58:01,340 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-01 00:58:04,100 basehttp 55255 134706947421888 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-01 00:58:06,032 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-01 00:58:08,859 basehttp 55255 134706947421888 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-01 00:58:28,411 basehttp 55255 134706947421888 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-01 00:58:30,121 basehttp 55255 134706947421888 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-01 00:58:31,455 basehttp 55255 134706947421888 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-01 00:58:34,506 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 200 52
+WARNING 2025-05-01 00:58:54,001 log 55255 134706947421888 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-01 00:58:54,002 basehttp 55255 134706947421888 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-01 00:58:54,443 log 55255 134706947421888 Unauthorized: /api/auctions/
+WARNING 2025-05-01 00:58:54,444 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 401 58
+INFO 2025-05-01 00:59:03,642 middleware 55255 134706947421888 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36...'
+INFO 2025-05-01 00:59:03,643 views 55255 134706947421888 Successful login for user: rings9619@gmail.com
+INFO 2025-05-01 00:59:03,645 basehttp 55255 134706947421888 "POST /api/accounts/login/ HTTP/1.1" 200 1088
+INFO 2025-05-01 00:59:22,259 basehttp 55255 134706947421888 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-01 00:59:22,312 basehttp 55255 134706947421888 "OPTIONS /api/properties/slug/add/ HTTP/1.1" 200 0
+WARNING 2025-05-01 00:59:22,324 log 55255 134706947421888 Forbidden: /api/properties/slug/add/
+WARNING 2025-05-01 00:59:22,324 basehttp 55255 134706947421888 "GET /api/properties/slug/add/ HTTP/1.1" 403 62
+INFO 2025-05-01 01:01:57,395 basehttp 55255 134706947421888 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-01 01:01:57,424 basehttp 55255 134706947421888 "OPTIONS /api/auctions/slug/add/ HTTP/1.1" 200 0
+WARNING 2025-05-01 01:01:57,476 log 55255 134706947421888 Forbidden: /api/auctions/slug/add/
+WARNING 2025-05-01 01:01:57,477 basehttp 55255 134706947421888 "GET /api/auctions/slug/add/ HTTP/1.1" 403 62
+INFO 2025-05-01 01:02:03,000 basehttp 55255 134706947421888 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-01 23:26:51,015 autoreload 17707 129367070619456 Watching for file changes with StatReloader
+INFO 2025-05-01 23:39:15,685 basehttp 17707 129366991304384 "OPTIONS /api/accounts/profile/ HTTP/1.1" 200 0
+WARNING 2025-05-01 23:39:15,898 log 17707 129366991304384 Unauthorized: /api/accounts/profile/
+WARNING 2025-05-01 23:39:15,898 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 401 172
+INFO 2025-05-01 23:39:15,945 basehttp 17707 129366991304384 "OPTIONS /api/accounts/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-05-01 23:39:15,992 basehttp 17707 129366991304384 "POST /api/accounts/token/refresh/ HTTP/1.1" 200 269
+INFO 2025-05-01 23:39:16,292 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-01 23:39:16,392 basehttp 17707 129366991304384 "OPTIONS /api/auctions/? HTTP/1.1" 200 0
+INFO 2025-05-01 23:39:16,405 basehttp 17707 129366991304384 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-01 23:39:38,971 basehttp 17707 129366991304384 "OPTIONS /api/accounts/logout/ HTTP/1.1" 200 0
+WARNING 2025-05-01 23:39:38,975 log 17707 129366991304384 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-01 23:39:38,976 basehttp 17707 129366991304384 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-01 23:39:39,388 log 17707 129366991304384 Unauthorized: /api/auctions/
+WARNING 2025-05-01 23:39:39,389 basehttp 17707 129366991304384 "GET /api/auctions/? HTTP/1.1" 401 58
+INFO 2025-05-01 23:39:42,831 basehttp 17707 129366991304384 "OPTIONS /api/accounts/login/ HTTP/1.1" 200 0
+INFO 2025-05-01 23:39:43,644 middleware 17707 129366991304384 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36...'
+INFO 2025-05-01 23:39:43,645 views 17707 129366991304384 Successful login for user: rings9619@gmail.com
+INFO 2025-05-01 23:39:43,648 basehttp 17707 129366991304384 "POST /api/accounts/login/ HTTP/1.1" 200 1088
+INFO 2025-05-01 23:39:46,318 basehttp 17707 129366991304384 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-01 23:39:50,354 basehttp 17707 129366991304384 "OPTIONS /api/properties/? HTTP/1.1" 200 0
+INFO 2025-05-01 23:39:50,368 basehttp 17707 129366991304384 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-01 23:39:54,988 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-01 23:39:55,036 basehttp 17707 129366991304384 "OPTIONS /api/properties/slug/add/ HTTP/1.1" 200 0
+WARNING 2025-05-01 23:39:55,047 log 17707 129366991304384 Forbidden: /api/properties/slug/add/
+WARNING 2025-05-01 23:39:55,048 basehttp 17707 129366991304384 "GET /api/properties/slug/add/ HTTP/1.1" 403 62
+INFO 2025-05-01 23:40:27,501 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+WARNING 2025-05-01 23:40:27,657 log 17707 129366991304384 Forbidden: /api/properties/slug/add/
+WARNING 2025-05-01 23:40:27,657 basehttp 17707 129366991304384 "GET /api/properties/slug/add/ HTTP/1.1" 403 62
+INFO 2025-05-01 23:40:29,803 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+WARNING 2025-05-01 23:40:29,836 log 17707 129366991304384 Forbidden: /api/properties/slug/add/
+WARNING 2025-05-01 23:40:29,837 basehttp 17707 129366991304384 "GET /api/properties/slug/add/ HTTP/1.1" 403 62
+INFO 2025-05-01 23:40:42,968 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+WARNING 2025-05-01 23:40:43,024 log 17707 129366991304384 Forbidden: /api/properties/slug/add/
+WARNING 2025-05-01 23:40:43,025 basehttp 17707 129366991304384 "GET /api/properties/slug/add/ HTTP/1.1" 403 62
+INFO 2025-05-01 23:40:45,564 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+WARNING 2025-05-01 23:40:45,594 log 17707 129366991304384 Forbidden: /api/properties/slug/add/
+WARNING 2025-05-01 23:40:45,595 basehttp 17707 129366991304384 "GET /api/properties/slug/add/ HTTP/1.1" 403 62

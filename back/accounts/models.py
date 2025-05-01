@@ -56,6 +56,14 @@ class CustomUserManager(BaseUserManager):
 
 # --- Custom User Model ---
 class CustomUser(AbstractUser):
+
+    ROLE_CHOICES = [
+        ('owner', _('Property Owner')),
+        ('appraiser', _('Property Appraiser')),
+        ('data_entry', _('Data Entry Specialist')),
+        ('user', _('User')),
+    ]
+    
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, verbose_name=_('UUID'), db_index=True)
     username = None
     email = models.EmailField(_('Email'), unique=True, db_index=True)
@@ -76,10 +84,29 @@ class CustomUser(AbstractUser):
     reset_code_created = models.DateTimeField(null=True, blank=True)
     avatar = models.ImageField(upload_to=user_avatar_path, null=True, blank=True, verbose_name=_('Avatar'))
 
+    role = models.CharField(
+        max_length=20, 
+        choices=ROLE_CHOICES,
+        default='user',
+        verbose_name=_('User Role')
+    )
+
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
     objects = CustomUserManager()
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} ({self.email})"
+
+    class Meta:
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
+
+    # Add method to check role (this is a helper method)
+    def has_role(self, role_name):
+        return self.role == role_name or self.is_superuser
 
     def generate_verification_code(self, length=6):
         """Generate a random verification code"""

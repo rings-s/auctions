@@ -5,6 +5,7 @@ from .models import Media, Property, Room, Auction, Bid
 from .serializers import MediaSerializer, PropertySerializer, RoomSerializer, AuctionSerializer, BidSerializer
 # Import custom permissions
 from accounts.permissions import IsVerifiedUser, IsOwnerOrAdmin
+from base.permissions import IsAppraiser, IsDataEntry, IsPropertyOwner
 from rest_framework.permissions import AllowAny, IsAuthenticated  
 # MEDIA VIEWS
 class MediaListCreateAPIView(generics.ListCreateAPIView):
@@ -24,15 +25,35 @@ class MediaRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 class PropertyListCreateAPIView(generics.ListCreateAPIView):
     queryset = Property.objects.all()
     serializer_class = PropertySerializer
-    permission_classes = [IsVerifiedUser]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['property_type', 'status', 'city']
     search_fields = ['title', 'slug', 'deed_number', 'city']
+    
+    def get_permissions(self):
+        # Everyone can list properties
+        if self.request.method == 'GET':
+            return [IsAuthenticated()]
+        # Only appraisers, data entry, and superusers can create properties
+        return [IsAuthenticated(), (IsAppraiser() | IsDataEntry())]
+    
+    def perform_create(self, serializer):
+        # Set the owner to the current user
+        serializer.save(owner=self.request.user)
+
 
 class PropertyRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Property.objects.all()
     serializer_class = PropertySerializer
-    permission_classes = [IsVerifiedUser, IsOwnerOrAdmin]
+    
+    def get_permissions(self):
+        # Anyone can view property details
+        if self.request.method == 'GET':
+            return [IsAuthenticated()]
+        # Only owner, appraiser, data entry or superuser can update/delete
+        elif self.request.method in ['PUT', 'PATCH']:
+            return [IsAuthenticated(), (IsPropertyOwner() | IsAppraiser() | IsDataEntry())]
+        # Only owner or superuser can delete
+        return [IsAuthenticated(), IsPropertyOwner()]
 
 # Slug-based property detail view
 class PropertySlugDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -66,10 +87,17 @@ class RoomRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 class AuctionListCreateAPIView(generics.ListCreateAPIView):
     queryset = Auction.objects.all()
     serializer_class = AuctionSerializer
-    permission_classes = [AllowAny]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['auction_type', 'status', 'related_property']
     search_fields = ['title', 'slug', 'description']
+    
+    def get_permissions(self):
+        if self.request.method == 'GET':
+            # Anyone can view auctions
+            return [IsAuthenticated()]
+        # Only appraisers, property owners and superusers can create auctions
+        return [IsAuthenticated(), (IsAppraiser() | IsPropertyOwner())]
+
 
 class AuctionRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Auction.objects.all()
@@ -94,10 +122,22 @@ class AuctionSlugDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 class BidListCreateAPIView(generics.ListCreateAPIView):
     queryset = Bid.objects.all()
     serializer_class = BidSerializer
-    permission_classes = [IsVerifiedUser]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['auction', 'bidder', 'status']
     search_fields = ['auction__title', 'bidder__email']
+    
+    def get_permissions(self):
+        # Anyone can view bids
+        if self.request.method == 'GET':
+            return [IsAuthenticated()]
+        # Anyone can create bids (with validation in perform_create)
+        return [IsAuthenticated()]
+    
+    def perform_create(self, serializer):
+        # Set the bidder to the current user
+        serializer.save(bidder=self.request.user)
+
+
 
 class BidRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Bid.objects.all()
