@@ -8,24 +8,47 @@ const AUTH_URL = 'http://localhost:8000/api/accounts';
 
 
 
-
 export async function register(userData) {
-  const response = await fetch(`${AUTH_URL}/register/`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userData),
-  });
+  try {
+    const response = await fetch(`${AUTH_URL}/register/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
 
-  const data = await response.json();
+    const data = await response.json();
+    
+    // Debug line to see the exact error structure
+    console.log("Registration response:", data);
 
-  if (!response.ok) {
-    throw new Error(data.error?.message || 'Registration failed');
+    if (!response.ok) {
+      // Handle different error formats properly
+      if (data.error) {
+        if (typeof data.error === 'string') {
+          throw new Error(data.error);
+        } else if (typeof data.error.message === 'object') {
+          // If it's a validation error object with field-specific messages
+          const errorMessages = Object.entries(data.error.message)
+            .map(([field, messages]) => `${field}: ${Array.isArray(messages) ? messages.join(', ') : messages}`)
+            .join('; ');
+          throw new Error(errorMessages);
+        } else {
+          throw new Error(`${data.error.message || 'Registration failed'}`);
+        }
+      } else {
+        throw new Error('Registration failed with unknown error');
+      }
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Registration caught error:", error);
+    throw error;
   }
-
-  return data;
 }
+
 
 export async function login(email, password) {
   const response = await fetch(`${AUTH_URL}/login/`, {
