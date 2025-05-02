@@ -119,8 +119,7 @@ export async function fetchPropertyBySlug(slug) {
 }
 
 // Create a new property
-// src/lib/api/property.js - Update the createProperty function
-// src/lib/api/property.js - Fixed createProperty function
+// In front/src/lib/api/property.js
 export async function createProperty(propertyData) {
   try {
     const token = localStorage.getItem('accessToken');
@@ -128,9 +127,6 @@ export async function createProperty(propertyData) {
     if (!token) {
       throw new Error('Authentication required');
     }
-    
-    // Log the data being sent for debugging
-    console.log("Sending property data:", propertyData);
     
     const response = await fetch('http://localhost:8000/api/properties/', {
       method: 'POST',
@@ -141,39 +137,10 @@ export async function createProperty(propertyData) {
       body: JSON.stringify(propertyData)
     });
     
-    // Get response data
-    let data;
-    const contentType = response.headers.get("content-type");
+    const data = await response.json();
     
-    if (contentType && contentType.includes("application/json")) {
-      data = await response.json();
-    } else {
-      const text = await response.text();
-      console.error("Non-JSON response:", text);
-      throw new Error(`Server returned non-JSON response (${response.status})`);
-    }
-    
-    // Handle error responses
     if (!response.ok) {
-      console.error("Error response:", data);
-      
-      if (data.error) {
-        // Handle different error formats
-        if (typeof data.error === 'object') {
-          // Format field errors
-          const errorMessages = [];
-          for (const [field, message] of Object.entries(data.error)) {
-            errorMessages.push(`${field}: ${Array.isArray(message) ? message.join(', ') : message}`);
-          }
-          throw new Error(errorMessages.join('\n'));
-        } else {
-          throw new Error(data.error.message || data.error);
-        }
-      } else if (data.detail) {
-        throw new Error(data.detail);
-      } else {
-        throw new Error('Failed to create property');
-      }
+      throw new Error(data.error?.message || data.error || 'Failed to create property');
     }
     
     return data;
@@ -182,7 +149,6 @@ export async function createProperty(propertyData) {
     throw error;
   }
 }
-
 // Update a property
 export async function updateProperty(id, propertyData) {
   try {

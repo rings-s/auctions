@@ -63,6 +63,8 @@ class MediaRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 # ==================
 
 class PropertyListCreateAPIView(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticated]  # Use brackets, not parentheses
+
     queryset = Property.objects.all()
     serializer_class = PropertySerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
