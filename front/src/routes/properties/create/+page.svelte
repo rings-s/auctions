@@ -5,9 +5,39 @@
   import { t } from '$lib/i18n/i18n';
   import { user } from '$lib/stores/user';
   import { createProperty, uploadPropertyMedia } from '$lib/api/property';
-  import PropertyForm from '$lib/components/PropertyForm.svelte';
   
-  let property;
+  import TagSelector from '$lib/components/TagSelector.svelte';
+  import MediaUploader from '$lib/components/MediaUploader.svelte';
+  import RoomManager from '$lib/components/RoomManager.svelte';
+  import LocationPicker from '$lib/components/LocationPicker.svelte';
+  
+  // Create a default property object
+  let propertyData = {
+    title: '',
+    slug: '',
+    property_type: 'residential',
+    building_type: '',
+    status: 'available',
+    deed_number: '',
+    description: '',
+    size_sqm: '',
+    floors: '',
+    year_built: '',
+    address: '',
+    city: '',
+    state: '',
+    postal_code: '',
+    country: 'المملكة العربية السعودية',
+    latitude: null,
+    longitude: null,
+    market_value: '',
+    minimum_bid: '',
+    features: [],
+    amenities: [],
+    is_published: false,
+    is_featured: false
+  };
+  
   let rooms = [];
   let activeTab = 'basic';
   let step = 1;
@@ -18,6 +48,19 @@
   let uploadingMedia = false;
   let propertyId = null;
   let totalSteps = 5; // Total number of steps in the form
+  
+  // Features and amenities lists
+  let availableFeatures = [
+    'Balcony', 'Garden', 'Pool', 'Garage', 'Parking', 'Elevator', 
+    'Security System', 'Central AC', 'Fiber Internet', 'Smart Home', 
+    'Solar Panels', 'Fire Place', 'Storage Room'
+  ];
+  
+  let availableAmenities = [
+    'Gym', 'Sauna', 'Jacuzzi', 'Swimming Pool', 'Tennis Court', 
+    'Basketball Court', 'Children Playground', 'BBQ Area', 
+    'Walking Trails', 'Community Center', 'Mosque', 'Supermarket'
+  ];
 
   onMount(() => {
     // Check if user is logged in
@@ -81,53 +124,148 @@
         break;
     }
   }
+  
+  function handleFeaturesChange(event) {
+    propertyData.features = event.detail;
+  }
+  
+  function handleAmenitiesChange(event) {
+    propertyData.amenities = event.detail;
+  }
+  
+  function handleRoomsChange(event) {
+    rooms = event.detail;
+  }
+  
+  function handleMediaChange(event) {
+    mediaFiles = event.detail;
+  }
+  
+  function handleLocationChange(event) {
+    propertyData.latitude = event.detail.latitude;
+    propertyData.longitude = event.detail.longitude;
+  }
+  
+  function handleAddressChange(event) {
+    propertyData.address = event.detail.address;
+    propertyData.city = event.detail.city;
+    propertyData.state = event.detail.state;
+    propertyData.postal_code = event.detail.postalCode;
+    propertyData.country = event.detail.country;
+  }
+
+  function validateForm() {
+    error = '';
+    
+    // Basic validation
+    if (!propertyData.title) {
+      error = $t('property.titleRequired');
+      return false;
+    }
+    
+    if (!propertyData.deed_number) {
+      error = $t('property.deedNumberRequired');
+      return false;
+    }
+    
+    if (!propertyData.market_value) {
+      error = $t('property.marketValueRequired');
+      return false;
+    }
+    
+    return true;
+  }
+  
+  function prepareDataForSubmission() {
+    const preparedProperty = { ...propertyData };
+    
+    // Convert numeric fields to numbers
+    if (typeof preparedProperty.size_sqm === 'string' && preparedProperty.size_sqm) {
+      preparedProperty.size_sqm = parseFloat(preparedProperty.size_sqm) || 0;
+    }
+    
+    if (typeof preparedProperty.market_value === 'string' && preparedProperty.market_value) {
+      preparedProperty.market_value = parseFloat(preparedProperty.market_value) || 0;
+    }
+    
+    if (typeof preparedProperty.minimum_bid === 'string' && preparedProperty.minimum_bid) {
+      preparedProperty.minimum_bid = parseFloat(preparedProperty.minimum_bid) || null;
+    }
+    
+    if (typeof preparedProperty.floors === 'string' && preparedProperty.floors) {
+      preparedProperty.floors = parseInt(preparedProperty.floors) || null;
+    }
+    
+    if (typeof preparedProperty.year_built === 'string' && preparedProperty.year_built) {
+      preparedProperty.year_built = parseInt(preparedProperty.year_built) || null;
+    }
+    
+    // Prepare rooms data
+    const preparedRooms = rooms.map(room => {
+      const preparedRoom = { ...room };
+      
+      // Ensure numeric fields are numbers
+      if (typeof preparedRoom.area_sqm === 'string' && preparedRoom.area_sqm) {
+        preparedRoom.area_sqm = parseFloat(preparedRoom.area_sqm) || null;
+      }
+      
+      if (typeof preparedRoom.floor === 'string') {
+        preparedRoom.floor = parseInt(preparedRoom.floor) || 1;
+      }
+      
+      return preparedRoom;
+    });
+    
+    return { property: preparedProperty, rooms: preparedRooms };
+  }
 
   async function handleSubmit() {
     try {
+      // Prevent submitting the form multiple times
+      if (loading) {
+        return;
+      }
+      
       loading = true;
       error = '';
       success = '';
 
-      // Basic validation
-      if (!property.title) {
-        error = $t('property.titleRequired');
+      // Validate form
+      if (!validateForm()) {
+        loading = false;
         return;
       }
 
-      if (!property.deed_number) {
-        error = $t('property.deedNumberRequired');
-        return;
-      }
+      // Get prepared data
+      const { property: preparedProperty, rooms: preparedRooms } = prepareDataForSubmission();
 
-      if (!property.market_value) {
-        error = $t('property.marketValueRequired');
-        return;
-      }
-
-      // Get prepared data from the form component
-      const { property: preparedProperty, rooms: preparedRooms } = property.prepareDataForSubmission();
-
+      console.log("Submitting property data:", preparedProperty);
+      
       // Create property
       const response = await createProperty(preparedProperty);
       
       if (response && response.id) {
         propertyId = response.id;
         
-        // If we have rooms, create them
-        if (preparedRooms.length > 0) {
-          // Add rooms logic here (would need a separate API endpoint)
-          console.log('Creating rooms:', preparedRooms);
-        }
+        console.log("Property created with ID:", propertyId);
         
         // If we have media files, upload them
         if (mediaFiles.length > 0) {
           uploadingMedia = true;
           
-          for (const file of mediaFiles) {
-            await uploadPropertyMedia(propertyId, file);
+          try {
+            console.log("Uploading media files:", mediaFiles.length);
+            for (const file of mediaFiles) {
+              await uploadPropertyMedia(propertyId, file);
+            }
+            console.log("Media uploads complete");
+          } catch (uploadErr) {
+            console.error('Error uploading media:', uploadErr);
+            error = uploadErr.message || $t('property.mediaUploadFailed');
+            // Continue - we've created the property, so we should still navigate
+          } finally {
+            uploadingMedia = false;
           }
-          
-          uploadingMedia = false;
         }
         
         success = $t('property.createSuccess');
@@ -143,27 +281,6 @@
     } finally {
       loading = false;
     }
-  }
-
-  function handleFileInput(event) {
-    const files = event.target.files;
-    mediaFiles = Array.from(files);
-  }
-
-  function handleDrop(event) {
-    event.preventDefault();
-    const files = event.dataTransfer.files;
-    if (files) {
-      mediaFiles = [...mediaFiles, ...Array.from(files)];
-    }
-  }
-
-  function handleDragOver(event) {
-    event.preventDefault();
-  }
-
-  function removeFile(index) {
-    mediaFiles = mediaFiles.filter((_, i) => i !== index);
   }
 </script>
 
@@ -222,141 +339,8 @@
       </div>
     {/if}
 
-    <form on:submit|preventDefault={handleSubmit}>
-      <div class="space-y-8">
-        <!-- Property Information Form -->
-        <PropertyForm 
-          bind:this={property} 
-          {rooms} 
-          {activeTab} 
-          {error} 
-          {loading}
-          {step}
-          on:setTab={(e) => setTab(e.detail)}
-        />
-
-        <!-- Media Upload -->
-        <div class="bg-white dark:bg-gray-800 shadow overflow-hidden sm:rounded-lg">
-          <div class="px-4 py-5 sm:p-6">
-            <div>
-              <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">{$t('property.mediaUpload')}</h3>
-              <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{$t('property.mediaUploadDesc')}</p>
-            </div>
-
-            <div class="mt-4">
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                {$t('property.mediaFiles')}
-              </label>
-              <div 
-                class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 dark:border-gray-600 border-dashed rounded-md"
-                on:drop={handleDrop}
-                on:dragover={handleDragOver}
-              >
-                <div class="space-y-1 text-center">
-                  <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
-                    <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                  <div class="flex text-sm text-gray-600 dark:text-gray-400">
-                    <label for="media-upload" class="relative cursor-pointer bg-white dark:bg-gray-800 rounded-md font-medium text-primary-600 dark:text-primary-400 hover:text-primary-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500">
-                      <span>{$t('property.uploadFiles')}</span>
-                      <input 
-                        id="media-upload" 
-                        name="media-upload" 
-                        type="file" 
-                        accept="image/*" 
-                        multiple 
-                        class="sr-only" 
-                        on:change={handleFileInput}
-                      />
-                    </label>
-                    <p class="pl-1">{$t('property.dragDrop')}</p>
-                  </div>
-                  <p class="text-xs text-gray-500 dark:text-gray-400">
-                    {$t('property.fileTypes')}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {#if mediaFiles.length > 0}
-              <div class="mt-4">
-                <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{$t('property.selectedFiles')}</h4>
-                <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                  {#each mediaFiles as file, index}
-                    <li class="relative border border-gray-200 dark:border-gray-700 rounded-md overflow-hidden h-32">
-                      <img src={URL.createObjectURL(file)} alt={file.name} class="w-full h-full object-cover" />
-                      <button 
-                        type="button" 
-                        class="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1"
-                        on:click={() => removeFile(index)}
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
-                    </li>
-                  {/each}
-                </ul>
-              </div>
-            {/if}
-          </div>
-        </div>
-
-        <!-- Navigation Buttons -->
-        <div class="flex justify-between">
-          <div>
-            {#if step > 1}
-              <button
-                type="button"
-                on:click={prevStep}
-                class="inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-700 shadow-sm text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-              >
-                <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-                </svg>
-                {$t('property.previous')}
-              </button>
-            {/if}
-          </div>
-          
-          <div class="flex space-x-3">
-            <button
-              type="button"
-              on:click={() => goto('/properties')}
-              class="bg-white dark:bg-gray-800 py-2 px-4 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-            >
-              {$t('property.cancel')}
-            </button>
-            
-            {#if step < totalSteps}
-              <button
-                type="button"
-                on:click={nextStep}
-                class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-              >
-                {$t('property.next')}
-                <svg class="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-              </button>
-            {:else}
-              <button
-                type="submit"
-                disabled={loading || uploadingMedia}
-                class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {#if loading || uploadingMedia}
-                  <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                {/if}
-                {$t('property.create')}
-              </button>
-            {/if}
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
+    {#if error}
+      <div class="mb-8 rounded-md bg-red-50 dark:bg-red-900/30 p-4">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill

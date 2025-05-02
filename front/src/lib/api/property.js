@@ -118,6 +118,8 @@ export async function fetchPropertyBySlug(slug) {
 }
 
 // Create a new property
+// src/lib/api/property.js - Update the createProperty function
+
 export async function createProperty(propertyData) {
   try {
     const token = localStorage.getItem('accessToken');
@@ -126,7 +128,10 @@ export async function createProperty(propertyData) {
       throw new Error('Authentication required');
     }
     
-    const response = await fetch(`${PROPERTY_URL}/`, {
+    // Log the data being sent for debugging
+    console.log("Sending property data:", propertyData);
+    
+    const response = await fetch('http://localhost:8000/api/properties/', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -135,38 +140,27 @@ export async function createProperty(propertyData) {
       body: JSON.stringify(propertyData)
     });
     
-    if (response.status === 401) {
-      // Try to refresh token and retry
-      const newToken = await refreshToken();
-      const retryResponse = await fetch(`${PROPERTY_URL}/`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${newToken}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(propertyData)
-      });
-      
-      if (!retryResponse.ok) {
-        const errorData = await retryResponse.json();
-        throw new Error(errorData.error?.message || 'Failed to create property');
-      }
-      
-      return await retryResponse.json();
+    // First check if the response is JSON
+    const contentType = response.headers.get("content-type");
+    if (!contentType || !contentType.includes("application/json")) {
+      // Not JSON, likely an HTML error page
+      const text = await response.text();
+      console.error("Non-JSON response:", text);
+      throw new Error(`Server returned non-JSON response (${response.status})`);
     }
+    
+    const data = await response.json();
     
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error?.message || 'Failed to create property');
+      throw new Error(data.error?.message || data.detail || 'Failed to create property');
     }
     
-    return await response.json();
+    return data;
   } catch (error) {
     console.error('Error creating property:', error);
     throw error;
   }
 }
-
 // Update a property
 export async function updateProperty(id, propertyData) {
   try {
@@ -261,7 +255,8 @@ export async function deleteProperty(id) {
   }
 }
 
-// Upload property media
+
+
 export async function uploadPropertyMedia(propertyId, mediaFile, mediaType = 'image') {
   try {
     const token = localStorage.getItem('accessToken');
@@ -273,10 +268,11 @@ export async function uploadPropertyMedia(propertyId, mediaFile, mediaType = 'im
     const formData = new FormData();
     formData.append('file', mediaFile);
     formData.append('media_type', mediaType);
-    formData.append('content_type', 'property');
+    formData.append('content_type', 'base.property'); // Use the ContentType model path
     formData.append('object_id', propertyId);
     
-    const response = await fetch(`${API_BASE_URL}/media/`, {
+    // Use the correct API endpoint
+    const response = await fetch('http://localhost:8000/api/media/', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`
@@ -287,7 +283,7 @@ export async function uploadPropertyMedia(propertyId, mediaFile, mediaType = 'im
     if (response.status === 401) {
       // Try to refresh token and retry
       const newToken = await refreshToken();
-      const retryResponse = await fetch(`${API_BASE_URL}/media/`, {
+      const retryResponse = await fetch('http://localhost:8000/api/media/', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${newToken}`
@@ -296,14 +292,16 @@ export async function uploadPropertyMedia(propertyId, mediaFile, mediaType = 'im
       });
       
       if (!retryResponse.ok) {
-        throw new Error('Failed to upload media');
+        const errorData = await retryResponse.json();
+        throw new Error(errorData.error?.message || 'Failed to upload media');
       }
       
       return await retryResponse.json();
     }
     
     if (!response.ok) {
-      throw new Error('Failed to upload media');
+      const errorData = await response.json();
+      throw new Error(errorData.error?.message || 'Failed to upload media');
     }
     
     return await response.json();

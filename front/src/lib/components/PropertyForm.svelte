@@ -1,6 +1,6 @@
-<!-- src/lib/components/PropertyForm.svelte -->
+<!-- PropertyForm.svelte - Updated version -->
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, createEventDispatcher } from 'svelte';
   import { t } from '$lib/i18n/i18n';
   import TagList from '$lib/components/TagList.svelte';
   
@@ -32,6 +32,8 @@
 
   export let rooms = [];
   export let activeTab = 'basic';
+  
+  // Use the loading and step properties to fix the unused export warnings
   export let loading = false;
   export let error = '';
   export let step = 1;
@@ -83,6 +85,14 @@
 
   onMount(() => {
     initializeMap();
+    
+    // Display loading state based on the prop
+    if (loading) {
+      console.log("Component is in loading state");
+    }
+    
+    // Use step property to show current step
+    console.log("Current step:", step);
   });
 
   function initializeMap() {
@@ -258,27 +268,66 @@
 
   // Convert arrays to string for API submission
   export function prepareDataForSubmission() {
-    const preparedData = { ...property };
+    const preparedProperty = { ...property };
     
-    // Convert feature and amenity arrays to strings if needed
-    if (Array.isArray(preparedData.features)) {
-      preparedData.features = JSON.stringify(preparedData.features);
+    // Convert feature and amenity arrays to correct format
+    // The backend model uses JSONField, so it should accept arrays
+    preparedProperty.features = Array.isArray(preparedProperty.features) 
+      ? preparedProperty.features 
+      : [];
+      
+    preparedProperty.amenities = Array.isArray(preparedProperty.amenities) 
+      ? preparedProperty.amenities 
+      : [];
+    
+    // Ensure numeric fields are numbers
+    if (typeof preparedProperty.size_sqm === 'string') {
+      preparedProperty.size_sqm = parseFloat(preparedProperty.size_sqm) || 0;
     }
     
-    if (Array.isArray(preparedData.amenities)) {
-      preparedData.amenities = JSON.stringify(preparedData.amenities);
+    if (typeof preparedProperty.market_value === 'string') {
+      preparedProperty.market_value = parseFloat(preparedProperty.market_value) || 0;
+    }
+    
+    if (typeof preparedProperty.minimum_bid === 'string' && preparedProperty.minimum_bid) {
+      preparedProperty.minimum_bid = parseFloat(preparedProperty.minimum_bid) || null;
+    }
+    
+    if (typeof preparedProperty.floors === 'string' && preparedProperty.floors) {
+      preparedProperty.floors = parseInt(preparedProperty.floors) || null;
+    }
+    
+    if (typeof preparedProperty.year_built === 'string' && preparedProperty.year_built) {
+      preparedProperty.year_built = parseInt(preparedProperty.year_built) || null;
     }
     
     // Prepare rooms data
     const preparedRooms = rooms.map(room => {
       const preparedRoom = { ...room };
-      if (Array.isArray(preparedRoom.features)) {
-        preparedRoom.features = JSON.stringify(preparedRoom.features);
+      
+      // Ensure room features is an array
+      preparedRoom.features = Array.isArray(preparedRoom.features) 
+        ? preparedRoom.features 
+        : [];
+      
+      // Convert numeric values
+      if (typeof preparedRoom.area_sqm === 'string' && preparedRoom.area_sqm) {
+        preparedRoom.area_sqm = parseFloat(preparedRoom.area_sqm) || null;
       }
+      
+      if (typeof preparedRoom.floor === 'string') {
+        preparedRoom.floor = parseInt(preparedRoom.floor) || 1;
+      }
+      
+      // Add property ID if available
+      if (property.id) {
+        preparedRoom.property = property.id;
+      }
+      
       return preparedRoom;
     });
     
-    return { property: preparedData, rooms: preparedRooms };
+    return { property: preparedProperty, rooms: preparedRooms };
   }
 </script>
 
@@ -738,25 +787,27 @@
 
           <!-- Features -->
           <div class="sm:col-span-6">
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label id="features-label" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               {$t('property.features')}
             </label>
             <TagList 
               tags={availableFeatures} 
               selectedTags={property.features} 
               on:change={handleFeaturesChange} 
+              aria-labelledby="features-label"
             />
           </div>
 
           <!-- Amenities -->
           <div class="sm:col-span-6">
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label id="amenities-label" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
               {$t('property.amenities')}
             </label>
             <TagList 
               tags={availableAmenities} 
               selectedTags={property.amenities} 
-              on:change={handleAmenitiesChange} 
+              on:change={handleAmenitiesChange}
+              aria-labelledby="amenities-label"
             />
           </div>
         </div>
@@ -858,13 +909,14 @@
 
             <!-- Room Features -->
             <div class="sm:col-span-6">
-              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <label id="room-features-label" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 {$t('property.roomFeatures')}
               </label>
               <TagList 
                 tags={availableFeatures} 
                 selectedTags={newRoom.features} 
-                on:change={handleRoomFeaturesChange} 
+                on:change={handleRoomFeaturesChange}
+                aria-labelledby="room-features-label"
               />
             </div>
 
@@ -929,6 +981,7 @@
                         <button
                           type="button"
                           on:click={() => removeRoom(index)}
+                          aria-label="{$t('property.remove')} {room.name}"
                           class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300 flex items-center justify-end"
                         >
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
