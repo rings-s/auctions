@@ -128,7 +128,7 @@ export async function createProperty(data) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${getToken()}`
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
       },
       body: JSON.stringify(data)
     });
@@ -136,11 +136,9 @@ export async function createProperty(data) {
     const responseData = await response.json();
 
     if (!response.ok) {
-      // Handle specific error messages from the server
       if (responseData.deed_number) {
         throw new Error(`Deed number: ${responseData.deed_number[0]}`);
       }
-      // Handle other validation errors
       const errors = Object.entries(responseData)
         .map(([key, value]) => `${key}: ${value.join(', ')}`)
         .join('; ');
@@ -153,6 +151,8 @@ export async function createProperty(data) {
     throw error;
   }
 }
+
+
 // Update a property
 export async function updateProperty(id, propertyData) {
   try {
@@ -248,68 +248,30 @@ export async function deleteProperty(id) {
 }
 
 
-
-export async function uploadPropertyMedia(propertyId, mediaFile, mediaType = 'image') {
+export async function uploadPropertyMedia(propertyId, file) {
   try {
-    const token = localStorage.getItem('accessToken');
-    
-    if (!token) {
-      throw new Error('Authentication required');
-    }
-    
-    // Create FormData for file upload
     const formData = new FormData();
-    formData.append('file', mediaFile);
-    formData.append('media_type', mediaType);
-    formData.append('content_type', 'base.property'); 
-    formData.append('object_id', propertyId);
-    
-    // Log what we're uploading
-    console.log(`Uploading file for property ${propertyId}:`, {
-      fileName: mediaFile.name,
-      fileType: mediaFile.type,
-      fileSize: mediaFile.size,
-      mediaType: mediaType
-    });
-    
-    // Use the correct API endpoint
-    const response = await fetch('http://localhost:8000/api/media/', {
+    formData.append('file', file);
+    formData.append('property', propertyId);
+
+    const response = await fetch(`${MEDIA_URL}/`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${getToken()}`
       },
       body: formData
     });
-    
-    // Get response data
-    let data;
-    const contentType = response.headers.get("content-type");
-    
-    if (contentType && contentType.includes("application/json")) {
-      data = await response.json();
-    } else {
-      const text = await response.text();
-      console.error("Non-JSON response from media upload:", text);
-      throw new Error(`Server returned non-JSON response (${response.status})`);
-    }
-    
-    // Handle error responses
+
+    const data = await response.json();
+
     if (!response.ok) {
-      console.error("Error uploading media:", data);
-      
-      if (data.error) {
-        throw new Error(typeof data.error === 'object' ? JSON.stringify(data.error) : data.error.message || data.error);
-      } else if (data.detail) {
-        throw new Error(data.detail);
-      } else {
-        throw new Error('Failed to upload media');
-      }
+      throw new Error(data.message || 'Failed to upload media');
     }
-    
-    console.log("Media upload successful:", data);
+
     return data;
   } catch (error) {
-    console.error('Error uploading media:', error);
+    console.error('Media upload error:', error);
     throw error;
   }
 }
+
