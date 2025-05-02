@@ -35,7 +35,32 @@ class IsPropertyOwner(BasePermission):
             return obj.owner == request.user or request.user.is_superuser
         return False
 
+
+class IsAppraiserOrDataEntry(BasePermission):
+    """
+    Custom permission to allow access only to appraisers or data entry users.
+    """
+    message = 'You must be an appraiser or data entry specialist to perform this action.'
+
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and (
+            request.user.role in ['appraiser', 'data_entry'] or 
+            request.user.is_superuser
+        )
+
+class IsPropertyOwner(BasePermission):
+    """
+    Custom permission to allow access only to property owners.
+    """
+    message = 'You must be the owner of this property to perform this action.'
+
+    def has_object_permission(self, request, view, obj):
+        return obj.owner == request.user or request.user.is_superuser
+
+
+
 class IsObjectOwner(BasePermission):
+
     """Checks if the user is the owner of the specific object"""
     message = _('You must be the owner of this object to perform this action.')
     

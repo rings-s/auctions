@@ -2,7 +2,7 @@
 <script>
   import { onMount, createEventDispatcher } from 'svelte';
   import { t } from '$lib/i18n/i18n';
-  import TagList from '$lib/components/TagList.svelte';
+  import TagList from '$lib/components/TagSelector.svelte';
   
   export let property = {
     title: '',

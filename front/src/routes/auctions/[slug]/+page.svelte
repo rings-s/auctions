@@ -6,7 +6,7 @@
     import { user } from '$lib/stores/user';
     import { fetchAuctionBySlug, placeBid } from '$lib/api/auction';
     import { fetchPropertyById } from '$lib/api/property';
-    import TagList from '$lib/components/TagList.svelte';
+    import TagList from '$lib/components/TagSelector.svelte';
     import PropertyMap from '$lib/components/PropertyMap.svelte';
   
     let auction = null;

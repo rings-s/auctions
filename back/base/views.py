@@ -5,8 +5,12 @@ from .models import Media, Property, Room, Auction, Bid
 from .serializers import MediaSerializer, PropertySerializer, RoomSerializer, AuctionSerializer, BidSerializer
 # Import custom permissions
 from accounts.permissions import IsVerifiedUser, IsOwnerOrAdmin
-from base.permissions import IsAppraiser, IsDataEntry, IsPropertyOwner
+from base.permissions import IsAppraiser, IsDataEntry, IsPropertyOwner, IsAppraiserOrDataEntry
 from rest_framework.permissions import AllowAny, IsAuthenticated  
+
+
+
+
 # MEDIA VIEWS
 class MediaListCreateAPIView(generics.ListCreateAPIView):
     queryset = Media.objects.all()

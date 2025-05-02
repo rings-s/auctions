@@ -9,7 +9,7 @@
     
     import PropertyMap from '$lib/components/PropertyMap.svelte';
     import AuctionCard from '$lib/components/AuctionCard.svelte';
-    import TagList from '$lib/components/TagList.svelte';
+    import TagList from '$lib/components/TagSelector.svelte';
     
     let property = null;
     let relatedAuctions = [];

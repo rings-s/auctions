@@ -58,6 +58,7 @@ class UserProfileInline(admin.StackedInline):
     )
 
 
+
 @admin.register(CustomUser)
 class CustomUserAdmin(BaseUserAdmin):
     """
@@ -68,11 +69,11 @@ class CustomUserAdmin(BaseUserAdmin):
     inlines = (UserProfileInline,)
 
     list_display = (
-        'email', 'get_full_name', 'is_verified', 'is_active', 'is_staff',
+        'email', 'get_full_name', 'role', 'is_verified', 'is_active', 'is_staff',
         'date_joined', 'last_login'
     )
     list_filter = (
-        'is_active', 'is_verified', 'is_staff', 'is_superuser',
+        'role', 'is_active', 'is_verified', 'is_staff', 'is_superuser',
         'date_joined', 'last_login'
     )
     search_fields = ('email', 'first_name', 'last_name', 'phone_number', 'uuid')
@@ -82,6 +83,7 @@ class CustomUserAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         (_('Personal info'), {'fields': ('first_name', 'last_name', 'phone_number', 'date_of_birth', 'display_avatar', 'avatar')}),
+        (_('Role'), {'fields': ('role',)}),
         (_('Verification'), {'fields': ('is_verified', 'verification_code', 'verification_code_created')}),
         (_('Password Reset'), {'fields': ('reset_code', 'reset_code_created')}),
         (_('Permissions'), {
@@ -94,21 +96,25 @@ class CustomUserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'first_name', 'last_name', 'password1', 'password2'),
+            'fields': ('email', 'first_name', 'last_name', 'role', 'password1', 'password2'),
         }),
     )
-
-    actions = ['mark_verified', 'mark_unverified', 'reset_verification_code']
 
     def get_full_name(self, obj):
         return f"{obj.first_name} {obj.last_name}"
     get_full_name.short_description = _('Full Name')
 
     def display_avatar(self, obj):
+        """Display avatar preview in admin"""
         if obj.avatar:
-            return format_html('<img src="{}" width="100" height="100" style="border-radius: 50%;" />', obj.avatar.url)
-        return _('No avatar')
+            return format_html(
+                '<img src="{}" width="100" height="100" style="border-radius: 50%; object-fit: cover;"/>',
+                obj.avatar.url
+            )
+        return _('No avatar uploaded')
     display_avatar.short_description = _('Avatar Preview')
+
+    actions = ['mark_verified', 'mark_unverified', 'reset_verification_code']
 
     def mark_verified(self, request, queryset):
         updated = queryset.update(is_verified=True, verification_code=None, verification_code_created=None)
@@ -128,6 +134,8 @@ class CustomUserAdmin(BaseUserAdmin):
                 count += 1
         self.message_user(request, _(f"Generated new verification codes for {count} users."))
     reset_verification_code.short_description = _("Reset verification codes for unverified users")
+
+    
 
 
 # Register UserProfile separately for direct access if needed

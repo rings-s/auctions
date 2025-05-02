@@ -748,3 +748,441 @@ Traceback (most recent call last):
 TypeError: unsupported operand type(s) for |: 'IsAppraiser' and 'IsDataEntry'
 ERROR 2025-05-02 00:13:45,175 basehttp 17707 129366991304384 "POST /api/properties/ HTTP/1.1" 500 110322
 INFO 2025-05-02 00:22:54,428 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:02,751 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:05,575 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:07,440 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:09,054 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:09,678 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:10,409 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:11,829 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:13,443 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:30,577 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:33,571 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:36,530 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:37,532 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:38,588 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:39,541 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:40,630 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:30:42,295 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:32:38,417 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:34:06,688 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:34:10,881 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:34:12,858 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:35:09,565 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-02 00:35:11,592 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+WARNING 2025-05-02 00:35:12,443 log 17707 129366991304384 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-02 00:35:12,444 basehttp 17707 129366991304384 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-02 00:35:13,037 log 17707 129366991304384 Unauthorized: /api/auctions/
+WARNING 2025-05-02 00:35:13,040 basehttp 17707 129366991304384 "GET /api/auctions/? HTTP/1.1" 401 58
+WARNING 2025-05-02 00:38:42,248 log 17707 129366991304384 Unauthorized: /api/auctions/
+WARNING 2025-05-02 00:38:42,249 basehttp 17707 129366991304384 "GET /api/auctions/? HTTP/1.1" 401 58
+INFO 2025-05-02 00:38:48,630 middleware 17707 129366991304384 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36...'
+INFO 2025-05-02 00:38:48,652 views 17707 129366991304384 Successful login for user: rings9619@gmail.com
+INFO 2025-05-02 00:38:48,654 basehttp 17707 129366991304384 "POST /api/accounts/login/ HTTP/1.1" 200 1088
+INFO 2025-05-02 00:38:50,601 basehttp 17707 129366991304384 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-02 00:38:55,225 basehttp 17707 129366991304384 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+ERROR 2025-05-02 00:41:23,302 log 17707 129366991304384 Internal Server Error: /api/properties/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 337, in check_permissions
+    for permission in self.get_permissions():
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py", line 37, in get_permissions
+    return [IsAuthenticated(), (IsAppraiser() | IsDataEntry())]
+                                ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for |: 'IsAppraiser' and 'IsDataEntry'
+ERROR 2025-05-02 00:41:23,305 basehttp 17707 129366991304384 "POST /api/properties/ HTTP/1.1" 500 110322
+INFO 2025-05-02 00:41:46,419 basehttp 17707 129366981863104 "GET /admin/ HTTP/1.1" 200 11327
+WARNING 2025-05-02 00:41:47,182 log 17707 129366981863104 Not Found: /favicon.ico
+WARNING 2025-05-02 00:41:47,182 basehttp 17707 129366981863104 "GET /favicon.ico HTTP/1.1" 404 2848
+INFO 2025-05-02 00:41:49,480 basehttp 17707 129366981863104 "GET /admin/accounts/customuser/ HTTP/1.1" 200 18333
+INFO 2025-05-02 00:41:49,925 basehttp 17707 129366981863104 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-02 00:41:49,952 basehttp 17707 129366763763392 "GET /static/admin/img/icon-no.svg HTTP/1.1" 304 0
+INFO 2025-05-02 00:41:54,270 basehttp 17707 129366981863104 "GET /admin/accounts/customuser/2/change/ HTTP/1.1" 200 58892
+INFO 2025-05-02 00:41:54,306 basehttp 17707 129366981863104 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-02 00:41:54,911 basehttp 17707 129366746977984 "GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+INFO 2025-05-02 00:41:54,913 basehttp 17707 129366981863104 "GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+INFO 2025-05-02 00:41:54,913 basehttp 17707 129366738585280 "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15709
+INFO 2025-05-02 00:41:54,914 basehttp 17707 129366730192576 "GET /static/admin/js/inlines.js HTTP/1.1" 200 15628
+INFO 2025-05-02 00:41:54,915 basehttp 17707 129366755370688 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+INFO 2025-05-02 00:41:54,919 basehttp 17707 129366763763392 "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+INFO 2025-05-02 00:41:55,041 basehttp 17707 129366730192576 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-05-02 00:41:55,067 basehttp 17707 129366763763392 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-05-02 00:41:55,086 basehttp 17707 129366730192576 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+INFO 2025-05-02 00:41:55,278 basehttp 17707 129366730192576 "GET /static/admin/img/selector-icons.svg HTTP/1.1" 200 3291
+INFO 2025-05-02 00:41:55,299 basehttp 17707 129366730192576 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+INFO 2025-05-02 00:41:55,299 basehttp 17707 129366763763392 "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+INFO 2025-05-02 00:44:33,602 basehttp 17707 129366746977984 "GET /admin/accounts/customuser/ HTTP/1.1" 200 18333
+INFO 2025-05-02 00:45:20,276 basehttp 17707 129366746977984 "GET /admin/accounts/customuser/2/change/ HTTP/1.1" 200 58892
+INFO 2025-05-02 00:45:20,311 basehttp 17707 129366746977984 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-02 00:47:31,920 autoreload 17707 129367070619456 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/permissions.py changed, reloading.
+INFO 2025-05-02 00:47:38,675 autoreload 25680 136865590757184 Watching for file changes with StatReloader
+ERROR 2025-05-02 00:48:04,949 log 25680 136865441117888 Internal Server Error: /api/properties/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 337, in check_permissions
+    for permission in self.get_permissions():
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py", line 37, in get_permissions
+    return [IsAuthenticated(), (IsAppraiser() | IsDataEntry())]
+                                ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for |: 'IsAppraiser' and 'IsDataEntry'
+ERROR 2025-05-02 00:48:04,952 basehttp 25680 136865441117888 "POST /api/properties/ HTTP/1.1" 500 110322
+INFO 2025-05-02 00:48:34,584 autoreload 25680 136865590757184 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 00:48:35,606 autoreload 25951 138874907772736 Watching for file changes with StatReloader
+ERROR 2025-05-02 00:48:37,838 log 25951 138874828355264 Internal Server Error: /api/properties/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 337, in check_permissions
+    for permission in self.get_permissions():
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py", line 37, in get_permissions
+    return [IsAuthenticated(), (IsAppraiser() | IsDataEntry())]
+                                ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for |: 'IsAppraiser' and 'IsDataEntry'
+ERROR 2025-05-02 00:48:37,841 basehttp 25951 138874828355264 "POST /api/properties/ HTTP/1.1" 500 110322
+ERROR 2025-05-02 00:48:48,434 log 25951 138874828355264 Internal Server Error: /api/properties/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 337, in check_permissions
+    for permission in self.get_permissions():
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py", line 37, in get_permissions
+    return [IsAuthenticated(), (IsAppraiser() | IsDataEntry())]
+                                ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for |: 'IsAppraiser' and 'IsDataEntry'
+ERROR 2025-05-02 00:48:48,437 basehttp 25951 138874828355264 "POST /api/properties/ HTTP/1.1" 500 110322
+INFO 2025-05-02 00:49:19,192 autoreload 25951 138874907772736 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 00:49:20,059 autoreload 26456 124480972814144 Watching for file changes with StatReloader
+INFO 2025-05-02 00:49:21,695 autoreload 26456 124480972814144 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 00:49:22,221 autoreload 26481 124541662439232 Watching for file changes with StatReloader
+INFO 2025-05-02 00:49:26,840 autoreload 26481 124541662439232 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 00:49:27,995 autoreload 26488 137255056271168 Watching for file changes with StatReloader
+ERROR 2025-05-02 00:49:34,206 log 26488 137254976616128 Internal Server Error: /api/properties/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 338, in check_permissions
+    if not permission.has_permission(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'tuple' object has no attribute 'has_permission'
+ERROR 2025-05-02 00:49:34,210 basehttp 26488 137254976616128 "POST /api/properties/ HTTP/1.1" 500 106535
+INFO 2025-05-02 00:50:49,115 autoreload 26488 137255056271168 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 00:50:51,132 autoreload 26777 125140832622400 Watching for file changes with StatReloader
+WARNING 2025-05-02 00:50:54,510 log 26777 125140753970880 Forbidden: /api/properties/
+WARNING 2025-05-02 00:50:54,512 basehttp 26777 125140753970880 "POST /api/properties/ HTTP/1.1" 403 86
+INFO 2025-05-02 00:51:04,023 autoreload 26777 125140832622400 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 00:51:05,097 autoreload 26803 128426576938816 Watching for file changes with StatReloader
+INFO 2025-05-02 00:51:50,538 autoreload 26803 128426576938816 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 00:51:51,429 autoreload 26833 137677373380416 Watching for file changes with StatReloader
+INFO 2025-05-02 00:52:02,205 autoreload 26833 137677373380416 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 00:52:03,296 autoreload 26861 128401626003264 Watching for file changes with StatReloader
+WARNING 2025-05-02 00:52:08,087 log 26861 128401572624064 Forbidden: /api/properties/
+WARNING 2025-05-02 00:52:08,088 basehttp 26861 128401572624064 "POST /api/properties/ HTTP/1.1" 403 86
+WARNING 2025-05-02 00:52:16,683 log 26861 128401572624064 Forbidden: /api/properties/
+WARNING 2025-05-02 00:52:16,684 basehttp 26861 128401572624064 "POST /api/properties/ HTTP/1.1" 403 86
+INFO 2025-05-02 00:52:32,158 basehttp 26861 128401563182784 "GET /admin/accounts/customuser/ HTTP/1.1" 200 18333
+INFO 2025-05-02 00:52:32,492 basehttp 26861 128401563182784 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-02 00:52:36,254 basehttp 26861 128401563182784 "GET /admin/accounts/customuser/2/change/ HTTP/1.1" 200 58892
+INFO 2025-05-02 00:52:36,303 basehttp 26861 128401563182784 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-02 00:52:53,863 basehttp 26861 128401563182784 "POST /admin/accounts/customuser/2/change/ HTTP/1.1" 302 0
+INFO 2025-05-02 00:52:53,886 basehttp 26861 128401563182784 "GET /admin/accounts/customuser/ HTTP/1.1" 200 18565
+INFO 2025-05-02 00:52:53,967 basehttp 26861 128401563182784 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-05-02 00:52:57,266 log 26861 128401572624064 Forbidden: /api/properties/
+WARNING 2025-05-02 00:52:57,267 basehttp 26861 128401572624064 "POST /api/properties/ HTTP/1.1" 403 86
+WARNING 2025-05-02 00:52:59,645 log 26861 128401572624064 Forbidden: /api/properties/
+WARNING 2025-05-02 00:52:59,645 basehttp 26861 128401572624064 "POST /api/properties/ HTTP/1.1" 403 86
+WARNING 2025-05-02 00:52:59,911 log 26861 128401572624064 Forbidden: /api/properties/
+WARNING 2025-05-02 00:52:59,911 basehttp 26861 128401572624064 "POST /api/properties/ HTTP/1.1" 403 86
+WARNING 2025-05-02 00:53:00,161 log 26861 128401572624064 Forbidden: /api/properties/
+WARNING 2025-05-02 00:53:00,161 basehttp 26861 128401572624064 "POST /api/properties/ HTTP/1.1" 403 86
+WARNING 2025-05-02 00:53:11,146 log 26861 128401572624064 Forbidden: /api/properties/
+WARNING 2025-05-02 00:53:11,147 basehttp 26861 128401572624064 "POST /api/properties/ HTTP/1.1" 403 86
+WARNING 2025-05-02 00:53:14,850 log 26861 128401572624064 Forbidden: /api/properties/
+WARNING 2025-05-02 00:53:14,851 basehttp 26861 128401572624064 "POST /api/properties/ HTTP/1.1" 403 86
+INFO 2025-05-02 00:53:24,860 autoreload 26861 128401626003264 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 00:53:25,485 autoreload 26934 123212707309376 Watching for file changes with StatReloader
+INFO 2025-05-02 00:53:30,041 autoreload 26934 123212707309376 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 00:53:30,669 autoreload 26940 127130151442240 Watching for file changes with StatReloader
+INFO 2025-05-02 00:55:16,356 autoreload 26940 127130151442240 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/admin.py changed, reloading.
+INFO 2025-05-02 00:55:17,302 autoreload 27043 132726544463680 Watching for file changes with StatReloader
+INFO 2025-05-02 00:55:18,865 autoreload 27043 132726544463680 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/admin.py changed, reloading.
+INFO 2025-05-02 00:55:20,180 autoreload 27045 127557683947328 Watching for file changes with StatReloader
+INFO 2025-05-02 00:55:37,525 autoreload 27045 127557683947328 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/admin.py changed, reloading.
+INFO 2025-05-02 00:55:38,290 autoreload 27075 129294563260224 Watching for file changes with StatReloader
+INFO 2025-05-02 00:55:47,625 autoreload 27075 129294563260224 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/admin.py changed, reloading.
+INFO 2025-05-02 00:55:48,490 autoreload 27081 137552486958912 Watching for file changes with StatReloader
+INFO 2025-05-02 00:55:50,775 autoreload 27081 137552486958912 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/admin.py changed, reloading.
+INFO 2025-05-02 00:55:51,488 autoreload 27087 126952090789696 Watching for file changes with StatReloader
+INFO 2025-05-02 00:56:12,867 autoreload 27087 126952090789696 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/admin.py changed, reloading.
+INFO 2025-05-02 00:56:13,913 autoreload 27136 128185830926144 Watching for file changes with StatReloader
+INFO 2025-05-02 00:56:22,253 autoreload 27136 128185830926144 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/admin.py changed, reloading.
+INFO 2025-05-02 00:56:23,294 autoreload 27146 135381230544704 Watching for file changes with StatReloader
+INFO 2025-05-02 00:56:26,052 autoreload 27146 135381230544704 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/admin.py changed, reloading.
+INFO 2025-05-02 00:56:26,767 autoreload 27170 126407139436352 Watching for file changes with StatReloader
+INFO 2025-05-02 00:56:30,051 autoreload 27170 126407139436352 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/admin.py changed, reloading.
+INFO 2025-05-02 00:56:30,584 autoreload 27176 129090539644736 Watching for file changes with StatReloader
+INFO 2025-05-02 00:56:33,067 basehttp 27176 129090459793088 "GET /admin/accounts/customuser/ HTTP/1.1" 200 18333
+INFO 2025-05-02 00:56:33,147 basehttp 27176 129090459793088 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-02 00:56:36,455 autoreload 27176 129090539644736 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/admin.py changed, reloading.
+INFO 2025-05-02 00:56:37,454 autoreload 27190 138761571448640 Watching for file changes with StatReloader
+INFO 2025-05-02 00:57:35,361 autoreload 27190 138761571448640 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/admin.py changed, reloading.
+INFO 2025-05-02 00:57:36,040 autoreload 27241 123965199238976 Watching for file changes with StatReloader
+INFO 2025-05-02 00:57:39,455 autoreload 27241 123965199238976 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/admin.py changed, reloading.
+INFO 2025-05-02 00:57:40,200 autoreload 27247 132018193131328 Watching for file changes with StatReloader
+INFO 2025-05-02 00:58:34,691 autoreload 27247 132018193131328 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/admin.py changed, reloading.
+INFO 2025-05-02 00:58:35,649 autoreload 27324 123244196611904 Watching for file changes with StatReloader
+INFO 2025-05-02 00:58:38,336 autoreload 27324 123244196611904 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/admin.py changed, reloading.
+INFO 2025-05-02 00:58:39,213 autoreload 27326 139693004666688 Watching for file changes with StatReloader
+INFO 2025-05-02 00:58:43,371 basehttp 27326 139692925253312 "GET /admin/accounts/customuser/2/change/ HTTP/1.1" 200 59907
+INFO 2025-05-02 00:58:43,458 basehttp 27326 139692925253312 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-02 00:58:51,441 basehttp 27326 139692925253312 "POST /admin/accounts/customuser/2/change/ HTTP/1.1" 302 0
+INFO 2025-05-02 00:58:51,481 basehttp 27326 139692925253312 "GET /admin/accounts/customuser/ HTTP/1.1" 200 19249
+INFO 2025-05-02 00:58:51,576 basehttp 27326 139692925253312 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+ERROR 2025-05-02 00:58:54,922 log 27326 139692905322176 Internal Server Error: /api/properties/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 337, in check_permissions
+    for permission in self.get_permissions():
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py", line 37, in get_permissions
+    return [IsAuthenticated(), (IsAppraiser() | IsDataEntry())]
+                                ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for |: 'IsAppraiser' and 'IsDataEntry'
+ERROR 2025-05-02 00:58:54,924 basehttp 27326 139692905322176 "POST /api/properties/ HTTP/1.1" 500 110322
+INFO 2025-05-02 00:59:30,289 autoreload 27326 139693004666688 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 00:59:31,400 autoreload 27415 136340849903424 Watching for file changes with StatReloader
+INFO 2025-05-02 00:59:56,598 autoreload 27415 136340849903424 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 00:59:57,299 autoreload 27452 134511770732352 Watching for file changes with StatReloader
+INFO 2025-05-02 00:59:59,687 autoreload 27452 134511770732352 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 01:00:00,453 autoreload 27458 135542011115328 Watching for file changes with StatReloader
+WARNING 2025-05-02 01:00:04,653 log 27458 135541931636416 Bad Request: /api/properties/
+WARNING 2025-05-02 01:00:04,654 basehttp 27458 135541931636416 "POST /api/properties/ HTTP/1.1" 400 181
+INFO 2025-05-02 01:00:14,217 autoreload 27458 135542011115328 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 01:00:14,838 autoreload 27465 137842540308288 Watching for file changes with StatReloader
+WARNING 2025-05-02 01:00:17,937 log 27465 137842461243072 Bad Request: /api/properties/
+WARNING 2025-05-02 01:00:17,938 basehttp 27465 137842461243072 "POST /api/properties/ HTTP/1.1" 400 181
+WARNING 2025-05-02 01:00:23,713 log 27465 137842461243072 Bad Request: /api/properties/
+WARNING 2025-05-02 01:00:23,714 basehttp 27465 137842461243072 "POST /api/properties/ HTTP/1.1" 400 181
+INFO 2025-05-02 01:00:29,620 autoreload 27465 137842540308288 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 01:00:30,414 autoreload 27487 139035200706368 Watching for file changes with StatReloader
+INFO 2025-05-02 01:00:31,642 autoreload 27487 139035200706368 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 01:00:32,402 autoreload 27489 127813065848640 Watching for file changes with StatReloader
+ERROR 2025-05-02 01:00:36,697 log 27489 127812918834880 Internal Server Error: /api/properties/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 337, in check_permissions
+    for permission in self.get_permissions():
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py", line 37, in get_permissions
+    return [IsAuthenticated(), (IsAppraiser() | IsDataEntry())]
+                                ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for |: 'IsAppraiser' and 'IsDataEntry'
+ERROR 2025-05-02 01:00:36,700 basehttp 27489 127812918834880 "POST /api/properties/ HTTP/1.1" 500 110322
+INFO 2025-05-02 01:01:18,804 autoreload 27489 127813065848640 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/permissions.py changed, reloading.
+INFO 2025-05-02 01:01:19,646 autoreload 27522 130879685650240 Watching for file changes with StatReloader
+INFO 2025-05-02 01:01:22,344 autoreload 27522 130879685650240 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/permissions.py changed, reloading.
+INFO 2025-05-02 01:01:23,219 autoreload 27528 136544745187136 Watching for file changes with StatReloader
+INFO 2025-05-02 01:01:58,637 autoreload 27528 136544745187136 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 01:01:59,716 autoreload 27576 134714902599488 Watching for file changes with StatReloader
+INFO 2025-05-02 01:02:38,946 autoreload 27576 134714902599488 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 01:02:40,201 autoreload 27602 135306588497728 Watching for file changes with StatReloader
+INFO 2025-05-02 01:03:14,825 autoreload 27602 135306588497728 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 01:03:15,675 autoreload 27631 130788113377088 Watching for file changes with StatReloader
+WARNING 2025-05-02 01:03:17,345 log 27631 130788034082496 Bad Request: /api/properties/
+WARNING 2025-05-02 01:03:17,345 basehttp 27631 130788034082496 "POST /api/properties/ HTTP/1.1" 400 181
+INFO 2025-05-02 01:03:28,452 autoreload 27631 130788113377088 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 01:03:29,019 autoreload 27661 131288061286208 Watching for file changes with StatReloader
+INFO 2025-05-02 01:03:50,626 autoreload 27661 131288061286208 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 01:03:51,348 autoreload 27692 125461512378176 Watching for file changes with StatReloader
+INFO 2025-05-02 01:03:52,420 basehttp 27692 125461363422912 "GET /admin/accounts/customuser/2/change/ HTTP/1.1" 200 59907
+INFO 2025-05-02 01:03:52,490 basehttp 27692 125461363422912 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-02 01:04:02,644 basehttp 27692 125461363422912 "POST /admin/accounts/customuser/2/change/ HTTP/1.1" 302 0
+INFO 2025-05-02 01:04:02,685 basehttp 27692 125461363422912 "GET /admin/accounts/customuser/ HTTP/1.1" 200 19249
+INFO 2025-05-02 01:04:02,780 basehttp 27692 125461363422912 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+ERROR 2025-05-02 01:04:05,873 log 27692 125461346637504 Internal Server Error: /api/properties/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 337, in check_permissions
+    for permission in self.get_permissions():
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py", line 41, in get_permissions
+    return [IsAuthenticated(), (IsAppraiser() | IsDataEntry())]
+                                ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+TypeError: unsupported operand type(s) for |: 'IsAppraiser' and 'IsDataEntry'
+ERROR 2025-05-02 01:04:05,877 basehttp 27692 125461346637504 "POST /api/properties/ HTTP/1.1" 500 110322
