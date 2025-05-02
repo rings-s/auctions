@@ -1,9 +1,11 @@
 // src/lib/api/property.js
+// import { PUBLIC_API_URL } from '$env/static/public';
 import { API_BASE_URL } from '$lib/constants';
 import { refreshToken } from './auth';
 
 
-const PROPERTY_URL = 'http://localhost:8000/api/properties';
+const API_URL = `${API_BASE_URL}/properties`;
+
 
 // Fetch properties with filtering, pagination, and search
 export async function fetchProperties(filters = {}) {
@@ -119,45 +121,35 @@ export async function fetchPropertyBySlug(slug) {
 }
 
 // Create a new property
-// In front/src/lib/api/property.js
-export async function createProperty(propertyData) {
+
+export async function createProperty(data) {
   try {
-    const token = localStorage.getItem('accessToken');
-    
-    if (!token) {
-      throw new Error('Authentication required');
-    }
-
-    console.log('Sending property data:', propertyData);
-
-    const response = await fetch('http://localhost:8000/api/properties/', {
+    const response = await fetch(`${API_URL}/properties/`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${getToken()}`
       },
-      body: JSON.stringify(propertyData)
+      body: JSON.stringify(data)
     });
 
-    const data = await response.json();
+    const responseData = await response.json();
 
     if (!response.ok) {
-      console.error('Server error response:', data);
-      
-      // Format validation errors from Django
-      if (typeof data === 'object' && data !== null) {
-        const errors = Object.entries(data)
-          .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
-          .join('; ');
-        throw new Error(errors || 'Failed to create property');
+      // Handle specific error messages from the server
+      if (responseData.deed_number) {
+        throw new Error(`Deed number: ${responseData.deed_number[0]}`);
       }
-      
-      throw new Error(data.error || 'Failed to create property');
+      // Handle other validation errors
+      const errors = Object.entries(responseData)
+        .map(([key, value]) => `${key}: ${value.join(', ')}`)
+        .join('; ');
+      throw new Error(errors);
     }
 
-    return data;
+    return { data: responseData };
   } catch (error) {
-    console.error('Error creating property:', error);
+    console.error('Server error response:', error);
     throw error;
   }
 }

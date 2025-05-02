@@ -36,7 +36,36 @@ if (browser) {
 // Translation dictionaries
 const translations = {
   en: {
+    validation: {
+      titleRequired: 'Title is required',
+      propertyTypeRequired: 'Property type is required',
+      deedNumberRequired: 'Deed number is required',
+      descriptionRequired: 'Description is required',
+      sizeRequired: 'Size is required',
+      addressRequired: 'Street address is required',
+      cityRequired: 'City is required',
+      stateRequired: 'State/Region is required',
+      marketValueRequired: 'Market value is required',
+      invalidDeedNumberFormat: 'Invalid deed number format',
+      invalidSizeFormat: 'Invalid size format',
+      invalidMarketValueFormat: 'Invalid market value format',
+      invalidMinimumBidFormat: 'Invalid minimum bid format',
+      invalidLatitudeFormat: 'Invalid latitude format',
+      invalidLongitudeFormat: 'Invalid longitude format',
+      titleTooLong: 'Title cannot exceed 255 characters',
+      addressTooLong: 'Address cannot exceed 255 characters',
+      cityTooLong: 'City cannot exceed 100 characters',
+      stateTooLong: 'State/Region cannot exceed 100 characters',
+      postalCodeTooLong: 'Postal code cannot exceed 20 characters',
+      countryTooLong: 'Country cannot exceed 100 characters',
+      invalidSizeRange: 'Size must be greater than 0',
+      invalidMarketValueRange: 'Market value must be greater than 0',
+      invalidMinimumBidRange: 'Minimum bid must be greater than 0'
+    },
+    
     // Navigation
+
+
     nav: {
       home: 'Home',
       properties: 'Properties',
@@ -807,3 +836,41 @@ export const t = derived(
     return value;
   }
 );
+
+
+
+
+/*
+
+{
+  "validation": {
+    "titleRequired": "Title is required",
+    "propertyTypeRequired": "Property type is required",
+    "deedNumberRequired": "Deed number is required",
+    "descriptionRequired": "Description is required",
+    "sizeRequired": "Size is required",
+    "addressRequired": "Street address is required",
+    "cityRequired": "City is required",
+    "stateRequired": "State/Region is required",
+    "marketValueRequired": "Market value is required",
+    "invalidDeedNumberFormat": "Invalid deed number format",
+    "invalidSizeFormat": "Invalid size format",
+    "invalidMarketValueFormat": "Invalid market value format",
+    "invalidMinimumBidFormat": "Invalid minimum bid format",
+    "invalidLatitudeFormat": "Invalid latitude format",
+    "invalidLongitudeFormat": "Invalid longitude format",
+    "titleTooLong": "Title cannot exceed 255 characters",
+    "addressTooLong": "Address cannot exceed 255 characters",
+    "cityTooLong": "City cannot exceed 100 characters",
+    "stateTooLong": "State/Region cannot exceed 100 characters",
+    "postalCodeTooLong": "Postal code cannot exceed 20 characters",
+    "countryTooLong": "Country cannot exceed 100 characters",
+    "invalidSizeRange": "Size must be greater than 0",
+    "invalidMarketValueRange": "Market value must be greater than 0",
+    "invalidMinimumBidRange": "Minimum bid must be greater than 0"
+  }
+}
+
+
+
+  */

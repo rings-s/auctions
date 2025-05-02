@@ -194,84 +194,119 @@
     propertyData.country = event.detail.country;
   }
 
+  function isValidDeedNumber(deedNumber) {
+    // Add your deed number format validation logic here
+    // For example: must be alphanumeric and at least 5 characters
+    return /^[A-Za-z0-9]{5,}$/.test(deedNumber);
+  }
+
   function validateForm() {
     error = '';
-    let isValid = true;
     let errorMessages = [];
 
-    // Required fields based on model with more specific messages
+    // Required fields validation
     const requiredFields = [
-    { field: 'title', message: 'Title is required' },
-    { field: 'property_type', message: 'Property type is required' },
-    { field: 'deed_number', message: 'Deed number is required' },
-    { field: 'description', message: 'Description is required' },
-    { field: 'size_sqm', message: 'Size is required' },
-    { field: 'address', message: 'Street address is required' }, // Added address validation
-    { field: 'city', message: 'City is required' },             // Added city validation
-    { field: 'state', message: 'State/Region is required' },    // Added state validation
-    { field: 'market_value', message: 'Market value is required' }
+      { field: 'title', message: $t('validation.titleRequired') },
+      { field: 'property_type', message: $t('validation.propertyTypeRequired') },
+      { field: 'deed_number', message: $t('validation.deedNumberRequired') },
+      { field: 'description', message: $t('validation.descriptionRequired') },
+      { field: 'size_sqm', message: $t('validation.sizeRequired'), isNumeric: true },
+      { field: 'address', message: $t('validation.addressRequired') },
+      { field: 'city', message: $t('validation.cityRequired') },
+      { field: 'state', message: $t('validation.stateRequired') },
+      { field: 'market_value', message: $t('validation.marketValueRequired'), isNumeric: true }
     ];
 
-  // Check each required field
-    for (const { field, message } of requiredFields) {
-      if (!propertyData[field] || propertyData[field].trim() === '') {
-        errorMessages.push(message);
-        isValid = false;
+    // Validate required fields
+    for (const { field, message, isNumeric } of requiredFields) {
+      const value = propertyData[field];
+      
+      if (isNumeric) {
+        if (value === null || value === undefined || value === '' || isNaN(parseFloat(value))) {
+          errorMessages.push(message);
+        }
+      } else {
+        if (!value || (typeof value === 'string' && value.trim() === '')) {
+          errorMessages.push(message);
+        }
       }
     }
 
-  // If there are any validation errors, combine them into a single message
-    if (!isValid) {
-      error = `Please fix the following errors: ${errorMessages.join(', ')}`;
-      return false;
+    // Validate deed number format
+    if (propertyData.deed_number && !isValidDeedNumber(propertyData.deed_number)) {
+      errorMessages.push($t('validation.invalidDeedNumberFormat'));
     }
 
-  // Validate decimal fields
+    // Decimal fields validation
     const decimalFields = [
-      { field: 'size_sqm', digits: 10, decimals: 2, message: 'Invalid size format' },
-      { field: 'market_value', digits: 14, decimals: 2, message: 'Invalid market value format' },
-      { field: 'minimum_bid', digits: 14, decimals: 2, message: 'Invalid minimum bid format', optional: true },
-      { field: 'latitude', digits: 9, decimals: 6, message: 'Invalid latitude format', optional: true },
-      { field: 'longitude', digits: 9, decimals: 6, message: 'Invalid longitude format', optional: true }
+      { field: 'size_sqm', digits: 10, decimals: 2, message: $t('validation.invalidSizeFormat') },
+      { field: 'market_value', digits: 14, decimals: 2, message: $t('validation.invalidMarketValueFormat') },
+      { field: 'minimum_bid', digits: 14, decimals: 2, message: $t('validation.invalidMinimumBidFormat'), optional: true },
+      { field: 'latitude', digits: 9, decimals: 6, message: $t('validation.invalidLatitudeFormat'), optional: true },
+      { field: 'longitude', digits: 9, decimals: 6, message: $t('validation.invalidLongitudeFormat'), optional: true }
     ];
 
     for (const { field, digits, decimals, message, optional } of decimalFields) {
-      if (propertyData[field] || !optional) {
-        const value = parseFloat(propertyData[field]);
-        if (isNaN(value)) {
-            error = message;
-          return false;
-        }
+      const value = propertyData[field];
       
-      // Check decimal places and total digits
-        const numStr = value.toString();
-        const [intPart, decPart = ''] = numStr.split('.');
-        if (intPart.length + decPart.length > digits || decPart.length > decimals) {
-          error = message;
-          return false;
+      if (value || !optional) {
+        const numValue = parseFloat(value);
+        
+        if (!optional && isNaN(numValue)) {
+          errorMessages.push(message);
+          continue;
+        }
+
+        if (!isNaN(numValue)) {
+          const numStr = numValue.toString();
+          const [intPart, decPart = ''] = numStr.split('.');
+          
+          if (intPart.length + decPart.length > digits || decPart.length > decimals) {
+            errorMessages.push(message);
+          }
         }
       }
     }
 
-  // Validate address fields length
-  const maxLengths = {
-    address: 255,
-    city: 100,
-    state: 100,
-    postal_code: 20,
-    country: 100
-  };
+    // Length validation for text fields
+    const maxLengths = {
+      title: { max: 255, message: $t('validation.titleTooLong') },
+      address: { max: 255, message: $t('validation.addressTooLong') },
+      city: { max: 100, message: $t('validation.cityTooLong') },
+      state: { max: 100, message: $t('validation.stateTooLong') },
+      postal_code: { max: 20, message: $t('validation.postalCodeTooLong') },
+      country: { max: 100, message: $t('validation.countryTooLong') }
+    };
 
-  for (const [field, maxLength] of Object.entries(maxLengths)) {
-    if (propertyData[field] && propertyData[field].length > maxLength) {
-      error = `${field} cannot exceed ${maxLength} characters`;
+    for (const [field, { max, message }] of Object.entries(maxLengths)) {
+      const value = propertyData[field];
+      if (value && typeof value === 'string' && value.length > max) {
+        errorMessages.push(message);
+      }
+    }
+
+    // Range validation for numeric fields
+    if (propertyData.size_sqm && parseFloat(propertyData.size_sqm) <= 0) {
+      errorMessages.push($t('validation.invalidSizeRange'));
+    }
+
+    if (propertyData.market_value && parseFloat(propertyData.market_value) <= 0) {
+      errorMessages.push($t('validation.invalidMarketValueRange'));
+    }
+
+    if (propertyData.minimum_bid && parseFloat(propertyData.minimum_bid) <= 0) {
+      errorMessages.push($t('validation.invalidMinimumBidRange'));
+    }
+
+    // If there are any validation errors, combine them into a formatted message
+    if (errorMessages.length > 0) {
+      error = errorMessages.join('\n');
       return false;
     }
-  }
 
-  return true;
-}
-  
+    return true;
+  }
+    
   function prepareDataForSubmission() {
     const preparedData = {
       ...propertyData,
@@ -478,18 +513,44 @@
                 <label for="deed_number" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   {$t('property.deedNumber')} *
                 </label>
-                <div class="mt-1">
+                <div class="mt-1 relative">
                   <input
                     type="text"
                     id="deed_number"
                     bind:value={propertyData.deed_number}
                     required
-                    class="shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-800 dark:text-white"
+                    class={`shadow-sm focus:ring-primary-500 focus:border-primary-500 block w-full sm:text-sm border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-800 dark:text-white pr-10 
+                      ${propertyData.deed_number && !isValidDeedNumber(propertyData.deed_number) 
+                        ? 'border-red-300 text-red-900 placeholder-red-300 focus:ring-red-500 focus:border-red-500' 
+                        : ''}`}
+                    placeholder={$t('property.deedNumberPlaceholder')}
+                    aria-invalid={propertyData.deed_number && !isValidDeedNumber(propertyData.deed_number)}
+                    aria-describedby="deed_number-description deed_number-error"
                   />
+                  {#if propertyData.deed_number && !isValidDeedNumber(propertyData.deed_number)}
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                      <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                  {/if}
                 </div>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                  {$t('property.deedNumberHelp')}
-                </p>
+                {#if propertyData.deed_number && !isValidDeedNumber(propertyData.deed_number)}
+                  <p class="mt-2 text-sm text-red-600 dark:text-red-400" id="deed_number-error">
+                    {$t('validation.invalidDeedNumberFormat')}
+                  </p>
+                {:else}
+                  <div class="mt-2 space-y-1">
+                    <p class="text-sm text-gray-500 dark:text-gray-400" id="deed_number-description">
+                      {$t('property.deedNumberHelp')}
+                    </p>
+                    <ul class="text-xs text-gray-500 dark:text-gray-400 list-disc list-inside">
+                      <li>{$t('validation.deedNumberRule1')}</li>
+                      <li>{$t('validation.deedNumberRule2')}</li>
+                      <li>{$t('validation.deedNumberRule3')}</li>
+                    </ul>
+                  </div>
+                {/if}
               </div>
 
               <div class="sm:col-span-3">
