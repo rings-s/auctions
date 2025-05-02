@@ -37,7 +37,7 @@ class EmailRateLimitExceeded(Exception):
 def create_response(
     data: Optional[Dict[str, Any]] = None,
     message: Optional[str] = None,
-    error: Optional[str] = None,
+    error: Optional[Union[str, Dict[str, Any]]] = None,
     error_code: Optional[str] = None,
     status_code: int = status.HTTP_200_OK
 ) -> Response:
@@ -49,9 +49,13 @@ def create_response(
     if message:
         response_data["message"] = message
     if error:
-        response_data["error"] = {"message": error}
-        if error_code:
-            response_data["error"]["code"] = error_code
+        if isinstance(error, dict) and any(isinstance(v, list) for v in error.values()):
+            # It's a validation error dictionary
+            response_data["error"] = error
+        else:
+            response_data["error"] = {"message": error}
+            if error_code:
+                response_data["error"]["code"] = error_code
 
     return Response(response_data, status=status_code)
 

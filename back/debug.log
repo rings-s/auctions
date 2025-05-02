@@ -1328,3 +1328,408 @@ Traceback (most recent call last):
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: IsAuthenticated.has_permission() missing 1 required positional argument: 'view'
 ERROR 2025-05-02 01:18:05,887 basehttp 28736 136269212415680 "POST /api/properties/ HTTP/1.1" 500 106717
+INFO 2025-05-02 15:22:42,932 autoreload 9709 125717845841728 Watching for file changes with StatReloader
+INFO 2025-05-02 15:23:15,068 basehttp 9709 125717766469312 "OPTIONS /api/accounts/profile/ HTTP/1.1" 200 0
+WARNING 2025-05-02 15:23:15,426 log 9709 125717766469312 Unauthorized: /api/accounts/profile/
+WARNING 2025-05-02 15:23:15,426 basehttp 9709 125717766469312 "GET /api/accounts/profile/ HTTP/1.1" 401 172
+INFO 2025-05-02 15:23:15,433 basehttp 9709 125717766469312 "OPTIONS /api/accounts/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-05-02 15:23:15,493 basehttp 9709 125717766469312 "POST /api/accounts/token/refresh/ HTTP/1.1" 200 269
+INFO 2025-05-02 15:23:15,561 basehttp 9709 125717766469312 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-02 15:23:15,701 basehttp 9709 125717766469312 "OPTIONS /api/auctions/? HTTP/1.1" 200 0
+ERROR 2025-05-02 15:23:16,041 log 9709 125717766469312 Internal Server Error: /api/auctions/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 338, in check_permissions
+    if not permission.has_permission(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: IsAuthenticated.has_permission() missing 1 required positional argument: 'view'
+ERROR 2025-05-02 15:23:16,043 basehttp 9709 125717766469312 "GET /api/auctions/? HTTP/1.1" 500 106651
+INFO 2025-05-02 15:23:19,034 basehttp 9709 125717766469312 "OPTIONS /api/properties/? HTTP/1.1" 200 0
+ERROR 2025-05-02 15:23:19,160 log 9709 125717766469312 Internal Server Error: /api/properties/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 338, in check_permissions
+    if not permission.has_permission(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: IsAuthenticated.has_permission() missing 1 required positional argument: 'view'
+ERROR 2025-05-02 15:23:19,162 basehttp 9709 125717766469312 "GET /api/properties/? HTTP/1.1" 500 106695
+INFO 2025-05-02 15:23:23,023 basehttp 9709 125717766469312 "OPTIONS /api/accounts/logout/ HTTP/1.1" 200 0
+WARNING 2025-05-02 15:23:23,029 log 9709 125717766469312 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-02 15:23:23,030 basehttp 9709 125717766469312 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+ERROR 2025-05-02 15:23:23,526 log 9709 125717766469312 Internal Server Error: /api/auctions/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 338, in check_permissions
+    if not permission.has_permission(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: IsAuthenticated.has_permission() missing 1 required positional argument: 'view'
+ERROR 2025-05-02 15:23:23,528 basehttp 9709 125717766469312 "GET /api/auctions/? HTTP/1.1" 500 106482
+INFO 2025-05-02 15:23:27,660 basehttp 9709 125717766469312 "OPTIONS /api/accounts/login/ HTTP/1.1" 200 0
+INFO 2025-05-02 15:23:28,566 middleware 9709 125717766469312 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36...'
+INFO 2025-05-02 15:23:28,567 views 9709 125717766469312 Successful login for user: rings9619@gmail.com
+INFO 2025-05-02 15:23:28,570 basehttp 9709 125717766469312 "POST /api/accounts/login/ HTTP/1.1" 200 1087
+ERROR 2025-05-02 15:23:31,173 log 9709 125717766469312 Internal Server Error: /api/properties/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 338, in check_permissions
+    if not permission.has_permission(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: IsAuthenticated.has_permission() missing 1 required positional argument: 'view'
+ERROR 2025-05-02 15:23:31,175 basehttp 9709 125717766469312 "GET /api/properties/? HTTP/1.1" 500 106695
+INFO 2025-05-02 15:23:52,063 basehttp 9709 125717766469312 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-02 15:23:52,112 basehttp 9709 125717766469312 "OPTIONS /api/properties/slug/add/ HTTP/1.1" 200 0
+ERROR 2025-05-02 15:23:52,171 log 9709 125717766469312 Internal Server Error: /api/properties/slug/add/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 338, in check_permissions
+    if not permission.has_permission(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: IsAuthenticated.has_permission() missing 1 required positional argument: 'view'
+ERROR 2025-05-02 15:23:52,173 basehttp 9709 125717766469312 "GET /api/properties/slug/add/ HTTP/1.1" 500 107079
+INFO 2025-05-02 15:26:49,775 autoreload 9709 125717845841728 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 15:26:50,594 autoreload 10062 138668667295552 Watching for file changes with StatReloader
+INFO 2025-05-02 15:27:11,937 basehttp 10062 138668517881536 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+WARNING 2025-05-02 15:27:11,973 log 10062 138668517881536 Not Found: /api/properties/slug/add/
+WARNING 2025-05-02 15:27:11,974 basehttp 10062 138668517881536 "GET /api/properties/slug/add/ HTTP/1.1" 404 49
+INFO 2025-05-02 15:30:58,716 autoreload 10062 138668667295552 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/urls.py changed, reloading.
+INFO 2025-05-02 15:30:59,413 autoreload 10315 134637884327744 Watching for file changes with StatReloader
+INFO 2025-05-02 15:31:01,804 autoreload 10315 134637884327744 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/urls.py changed, reloading.
+INFO 2025-05-02 15:31:02,570 autoreload 10322 132090599716672 Watching for file changes with StatReloader
+INFO 2025-05-02 15:31:13,172 autoreload 10322 132090599716672 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 15:31:13,753 autoreload 10347 139440905963328 Watching for file changes with StatReloader
+INFO 2025-05-02 15:31:19,005 basehttp 10347 139440826611392 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+ERROR 2025-05-02 15:31:19,126 log 10347 139440826611392 Internal Server Error: /api/properties/slug/add/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 338, in check_permissions
+    if not permission.has_permission(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: IsAuthenticated.has_permission() missing 1 required positional argument: 'view'
+ERROR 2025-05-02 15:31:19,128 basehttp 10347 139440826611392 "GET /api/properties/slug/add/ HTTP/1.1" 500 107111
+INFO 2025-05-02 15:34:17,348 autoreload 10347 139440905963328 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 15:34:17,950 autoreload 10507 136121548752704 Watching for file changes with StatReloader
+INFO 2025-05-02 15:34:23,908 basehttp 10507 136121495320256 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+WARNING 2025-05-02 15:34:23,970 log 10507 136121495320256 Not Found: /api/properties/slug/add/
+WARNING 2025-05-02 15:34:23,971 basehttp 10507 136121495320256 "GET /api/properties/slug/add/ HTTP/1.1" 404 49
+INFO 2025-05-02 15:34:31,003 basehttp 10507 136121495320256 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-02 15:34:31,097 basehttp 10507 136121495320256 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-02 15:34:38,189 basehttp 10507 136121495320256 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+WARNING 2025-05-02 15:34:38,255 log 10507 136121495320256 Not Found: /api/properties/slug/add/
+WARNING 2025-05-02 15:34:38,255 basehttp 10507 136121495320256 "GET /api/properties/slug/add/ HTTP/1.1" 404 49
+INFO 2025-05-02 15:35:58,952 autoreload 10507 136121548752704 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 15:35:59,941 autoreload 10632 124979675563840 Watching for file changes with StatReloader
+INFO 2025-05-02 15:36:01,532 autoreload 10632 124979675563840 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 15:36:02,140 autoreload 10634 123200753973056 Watching for file changes with StatReloader
+INFO 2025-05-02 15:36:18,929 autoreload 10634 123200753973056 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/urls.py changed, reloading.
+INFO 2025-05-02 15:36:19,620 autoreload 10667 128973680420672 Watching for file changes with StatReloader
+INFO 2025-05-02 15:37:00,958 autoreload 10667 128973680420672 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 15:37:01,691 autoreload 10699 127005826565952 Watching for file changes with StatReloader
+INFO 2025-05-02 15:37:07,285 autoreload 10699 127005826565952 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 15:37:07,942 autoreload 10707 129492318586688 Watching for file changes with StatReloader
+INFO 2025-05-02 15:37:12,653 basehttp 10707 129492239513280 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+WARNING 2025-05-02 15:37:12,703 log 10707 129492239513280 Not Found: /api/properties/slug/add/
+WARNING 2025-05-02 15:37:12,704 basehttp 10707 129492239513280 "GET /api/properties/slug/add/ HTTP/1.1" 404 49
+INFO 2025-05-02 15:37:18,309 basehttp 10707 129492239513280 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-02 15:37:18,381 basehttp 10707 129492239513280 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-02 15:37:21,752 basehttp 10707 129492239513280 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+WARNING 2025-05-02 15:37:21,816 log 10707 129492239513280 Not Found: /api/properties/slug/add/
+WARNING 2025-05-02 15:37:21,817 basehttp 10707 129492239513280 "GET /api/properties/slug/add/ HTTP/1.1" 404 49
+INFO 2025-05-02 15:38:17,863 autoreload 10707 129492318586688 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 15:38:18,761 autoreload 10790 123860897277760 Watching for file changes with StatReloader
+INFO 2025-05-02 15:39:04,945 autoreload 10790 123860897277760 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 15:39:05,785 autoreload 10822 131759654668096 Watching for file changes with StatReloader
+INFO 2025-05-02 16:37:49,256 autoreload 11371 126268710303552 Watching for file changes with StatReloader
+INFO 2025-05-02 16:38:13,890 autoreload 11371 126268710303552 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/urls.py changed, reloading.
+INFO 2025-05-02 16:38:14,616 autoreload 11438 128734447679296 Watching for file changes with StatReloader
+INFO 2025-05-02 16:38:16,060 autoreload 11438 128734447679296 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/urls.py changed, reloading.
+INFO 2025-05-02 16:38:16,755 autoreload 11440 123962916824896 Watching for file changes with StatReloader
+INFO 2025-05-02 16:39:13,841 autoreload 12109 127167378155328 Watching for file changes with StatReloader
+INFO 2025-05-02 16:39:46,459 autoreload 12699 127409947731776 Watching for file changes with StatReloader
+INFO 2025-05-02 16:39:57,454 basehttp 12699 127409797985984 "OPTIONS /api/accounts/profile/ HTTP/1.1" 200 0
+WARNING 2025-05-02 16:39:57,561 log 12699 127409797985984 Unauthorized: /api/accounts/profile/
+WARNING 2025-05-02 16:39:57,562 basehttp 12699 127409797985984 "GET /api/accounts/profile/ HTTP/1.1" 401 172
+INFO 2025-05-02 16:39:57,621 basehttp 12699 127409797985984 "OPTIONS /api/accounts/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-05-02 16:39:57,666 basehttp 12699 127409797985984 "POST /api/accounts/token/refresh/ HTTP/1.1" 200 269
+INFO 2025-05-02 16:39:57,728 basehttp 12699 127409797985984 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-02 16:39:57,879 basehttp 12699 127409797985984 "OPTIONS /api/auctions/? HTTP/1.1" 200 0
+ERROR 2025-05-02 16:39:58,120 log 12699 127409797985984 Internal Server Error: /api/auctions/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 338, in check_permissions
+    if not permission.has_permission(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: IsAuthenticated.has_permission() missing 1 required positional argument: 'view'
+ERROR 2025-05-02 16:39:58,124 basehttp 12699 127409797985984 "GET /api/auctions/? HTTP/1.1" 500 106642
+INFO 2025-05-02 16:40:00,495 basehttp 12699 127409797985984 "OPTIONS /api/accounts/logout/ HTTP/1.1" 200 0
+WARNING 2025-05-02 16:40:00,500 log 12699 127409797985984 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-02 16:40:00,500 basehttp 12699 127409797985984 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+ERROR 2025-05-02 16:40:00,930 log 12699 127409797985984 Internal Server Error: /api/auctions/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 338, in check_permissions
+    if not permission.has_permission(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: IsAuthenticated.has_permission() missing 1 required positional argument: 'view'
+ERROR 2025-05-02 16:40:00,932 basehttp 12699 127409797985984 "GET /api/auctions/? HTTP/1.1" 500 106473
+INFO 2025-05-02 16:40:03,587 basehttp 12699 127409797985984 "OPTIONS /api/accounts/login/ HTTP/1.1" 200 0
+INFO 2025-05-02 16:40:04,389 middleware 12699 127409797985984 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36...'
+INFO 2025-05-02 16:40:04,390 views 12699 127409797985984 Successful login for user: rings9619@gmail.com
+INFO 2025-05-02 16:40:04,392 basehttp 12699 127409797985984 "POST /api/accounts/login/ HTTP/1.1" 200 1087
+INFO 2025-05-02 16:40:06,483 basehttp 12699 127409797985984 "OPTIONS /api/properties/? HTTP/1.1" 200 0
+ERROR 2025-05-02 16:40:06,686 log 12699 127409797985984 Internal Server Error: /api/properties/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 338, in check_permissions
+    if not permission.has_permission(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: IsAuthenticated.has_permission() missing 1 required positional argument: 'view'
+ERROR 2025-05-02 16:40:06,688 basehttp 12699 127409797985984 "GET /api/properties/? HTTP/1.1" 500 106686
+INFO 2025-05-02 16:41:13,000 autoreload 12699 127409947731776 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 16:41:17,938 autoreload 12850 126183014905664 Watching for file changes with StatReloader
+INFO 2025-05-02 16:41:20,999 autoreload 12850 126183014905664 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 16:41:21,635 autoreload 12863 138176658433856 Watching for file changes with StatReloader
+INFO 2025-05-02 16:41:26,118 basehttp 12863 138176579499712 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-02 16:41:26,166 basehttp 12863 138176579499712 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-02 16:41:33,242 basehttp 12863 138176579499712 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-02 16:43:42,277 basehttp 12863 138176579499712 "OPTIONS /api/properties/ HTTP/1.1" 200 0
+WARNING 2025-05-02 16:43:42,293 log 12863 138176579499712 Bad Request: /api/properties/
+WARNING 2025-05-02 16:43:42,293 basehttp 12863 138176579499712 "POST /api/properties/ HTTP/1.1" 400 138
+INFO 2025-05-02 16:44:36,992 autoreload 12863 138176658433856 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 16:44:38,060 autoreload 13146 135268751718208 Watching for file changes with StatReloader
+WARNING 2025-05-02 16:44:42,662 log 13146 135268671682240 Bad Request: /api/properties/
+WARNING 2025-05-02 16:44:42,663 basehttp 13146 135268671682240 "POST /api/properties/ HTTP/1.1" 400 138
+INFO 2025-05-02 16:45:19,637 autoreload 13146 135268751718208 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 16:45:20,604 autoreload 13211 139177614145344 Watching for file changes with StatReloader
+INFO 2025-05-02 16:45:22,433 autoreload 13211 139177614145344 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 16:45:23,307 autoreload 13217 130324315981632 Watching for file changes with StatReloader
+INFO 2025-05-02 16:45:32,029 autoreload 13217 130324315981632 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 16:45:32,995 autoreload 13223 139194097882944 Watching for file changes with StatReloader
+INFO 2025-05-02 16:47:27,375 autoreload 13223 139194097882944 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/serializers.py changed, reloading.
+INFO 2025-05-02 16:47:28,445 autoreload 13351 130465936758592 Watching for file changes with StatReloader
+INFO 2025-05-02 16:47:31,963 autoreload 13351 130465936758592 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/serializers.py changed, reloading.
+INFO 2025-05-02 16:47:32,899 autoreload 13357 136853200140096 Watching for file changes with StatReloader
+INFO 2025-05-02 16:48:29,570 autoreload 13357 136853200140096 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/utils.py changed, reloading.
+INFO 2025-05-02 16:48:30,600 autoreload 13409 124067420329792 Watching for file changes with StatReloader
+INFO 2025-05-02 16:48:32,145 autoreload 13409 124067420329792 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/utils.py changed, reloading.
+INFO 2025-05-02 16:48:33,092 autoreload 13411 128206929655616 Watching for file changes with StatReloader
+INFO 2025-05-02 16:48:34,545 autoreload 13411 128206929655616 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/accounts/utils.py changed, reloading.
+INFO 2025-05-02 16:48:35,460 autoreload 13417 140181603206976 Watching for file changes with StatReloader
+WARNING 2025-05-02 16:52:51,819 log 13417 140181523920576 Bad Request: /api/properties/
+WARNING 2025-05-02 16:52:51,820 basehttp 13417 140181523920576 "POST /api/properties/ HTTP/1.1" 400 138
+INFO 2025-05-02 16:54:42,792 autoreload 13417 140181603206976 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/serializers.py changed, reloading.
+INFO 2025-05-02 16:54:43,667 autoreload 14197 138407284762432 Watching for file changes with StatReloader
+WARNING 2025-05-02 16:54:50,203 log 14197 138407133050560 Bad Request: /api/properties/
+WARNING 2025-05-02 16:54:50,204 basehttp 14197 138407133050560 "POST /api/properties/ HTTP/1.1" 400 138
+INFO 2025-05-02 16:55:01,583 autoreload 14197 138407284762432 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/serializers.py changed, reloading.
+INFO 2025-05-02 16:55:02,468 autoreload 14212 126403232384832 Watching for file changes with StatReloader
+INFO 2025-05-02 16:55:05,025 autoreload 14212 126403232384832 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/serializers.py changed, reloading.
+INFO 2025-05-02 16:55:05,828 autoreload 14218 138931113469760 Watching for file changes with StatReloader
+INFO 2025-05-02 16:55:24,689 autoreload 14218 138931113469760 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 16:55:25,698 autoreload 14248 128756596021056 Watching for file changes with StatReloader
+INFO 2025-05-02 16:55:33,225 autoreload 14248 128756596021056 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py changed, reloading.
+INFO 2025-05-02 16:55:33,930 autoreload 14254 126327830148928 Watching for file changes with StatReloader
+INFO 2025-05-02 16:56:56,726 basehttp 14254 126327776605888 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+WARNING 2025-05-02 16:58:06,361 log 14254 126327776605888 Bad Request: /api/properties/
+WARNING 2025-05-02 16:58:06,362 basehttp 14254 126327776605888 "POST /api/properties/ HTTP/1.1" 400 138
+INFO 2025-05-02 16:58:15,497 basehttp 14254 126327776605888 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-02 16:59:48,466 basehttp 14254 126327776605888 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-02 17:00:12,083 basehttp 14254 126327776605888 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-02 17:49:16,193 autoreload 6503 131819409008448 Watching for file changes with StatReloader

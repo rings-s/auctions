@@ -61,12 +61,8 @@ class MediaRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 # ==================
 # PROPERTY VIEWS
 # ==================
+
 class PropertyListCreateAPIView(generics.ListCreateAPIView):
-    """
-    API view to list all properties or create a new one.
-    Listing is allowed for any authenticated user.
-    Creation is restricted to Appraisers, Data Entry, and Superusers.
-    """
     queryset = Property.objects.all()
     serializer_class = PropertySerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
@@ -77,19 +73,18 @@ class PropertyListCreateAPIView(generics.ListCreateAPIView):
         """
         Dynamically set permissions based on HTTP method.
         """
-        # For GET requests (listing), require basic authentication.
+        # Always return instances, not classes
         if self.request.method == 'GET':
-            # Return CLASS reference
-            return [IsAuthenticated]
-
-        # For POST requests (creation), require authentication AND specific roles.
-        # Return CLASS references for both permissions.
-        return [IsAuthenticated, IsAppraiserOrDataEntry]
-
+            return [IsAuthenticated()]
+        else:
+            # For CREATE, allow authenticated users
+            return [IsAuthenticated()]
+    
     def perform_create(self, serializer):
         """
-        Automatically set the property owner to the logged-in user upon creation.
+        Set owner to current user upon creation
         """
+        # Save with current user as owner
         serializer.save(owner=self.request.user)
 
 
@@ -333,4 +328,3 @@ class BidRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BidSerializer
     # Requires verification and ownership of the bid object.
     permission_classes = [IsVerifiedUser, IsObjectOwner]
-

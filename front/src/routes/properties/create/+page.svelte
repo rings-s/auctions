@@ -92,8 +92,12 @@
   onMount(() => {
     if (!$user) {
       goto('/login?redirect=/properties/create');
+    } else if ($user.role !== 'owner' && $user.role !== 'appraiser' && $user.role !== 'data_entry' && !$user.is_staff) {
+      // User doesn't have the right role, show a message and redirect
+      alert('You do not have permission to create properties. Required role: owner, appraiser, or data entry specialist.');
+      goto('/properties');
     }
-  });
+  }); 
 
   function nextStep() {
     if (step < totalSteps) {
@@ -181,26 +185,30 @@
   }
   
   function prepareDataForSubmission() {
+    // Create a copy of the propertyData object
     const preparedProperty = { ...propertyData };
     
-    // Convert numeric fields
-    const numericFields = ['size_sqm', 'market_value', 'minimum_bid', 'floors', 'year_built'];
-    numericFields.forEach(field => {
-      if (typeof preparedProperty[field] === 'string' && preparedProperty[field]) {
-        preparedProperty[field] = field.includes('size') || field.includes('value') || field.includes('bid') 
-          ? parseFloat(preparedProperty[field]) 
-          : parseInt(preparedProperty[field]);
+    // Handle numeric fields properly
+    ['size_sqm', 'market_value', 'minimum_bid'].forEach(field => {
+      if (preparedProperty[field]) {
+        preparedProperty[field] = parseFloat(preparedProperty[field]);
       }
     });
     
-    // Prepare rooms
-    const preparedRooms = rooms.map(room => ({
-      ...room,
-      area_sqm: room.area_sqm ? parseFloat(room.area_sqm) : null,
-      floor: parseInt(room.floor) || 1
-    }));
+    ['floors', 'year_built'].forEach(field => {
+      if (preparedProperty[field]) {
+        preparedProperty[field] = parseInt(preparedProperty[field], 10);
+      }
+    });
     
-    return { property: preparedProperty, rooms: preparedRooms };
+    // Make sure booleans are properly formatted
+    preparedProperty.is_published = Boolean(preparedProperty.is_published);
+    preparedProperty.is_featured = Boolean(preparedProperty.is_featured);
+    
+    // Log the prepared data for debugging
+    console.log('Prepared property data:', preparedProperty);
+    
+    return { property: preparedProperty, rooms: rooms };
   }
 
   async function handleSubmit() {
@@ -210,23 +218,33 @@
       loading = true;
       error = '';
       success = '';
-
+      
+      // Validate form
       if (!validateForm()) {
         loading = false;
         return;
       }
-
+      
+      // Prepare data
       const { property: preparedProperty } = prepareDataForSubmission();
       
+      // Create property
+      console.log('Submitting property data:', preparedProperty);
       const response = await createProperty(preparedProperty);
+      console.log('API response:', response);
       
+      // Handle successful creation
       if (response && response.id) {
         propertyId = response.id;
         
+        // Upload media files if any
         if (mediaFiles.length > 0) {
           uploadingMedia = true;
           try {
-            await Promise.all(mediaFiles.map(file => uploadPropertyMedia(propertyId, file)));
+            // Upload files one by one to avoid server overload
+            for (let i = 0; i < mediaFiles.length; i++) {
+              await uploadPropertyMedia(propertyId, mediaFiles[i]);
+            }
           } catch (uploadErr) {
             console.error('Error uploading media:', uploadErr);
             error = uploadErr.message || $t('property.mediaUploadFailed');
@@ -235,11 +253,16 @@
           }
         }
         
+        // Set success message and redirect
         success = $t('property.createSuccess');
         setTimeout(() => goto(`/properties/${response.slug}`), 2000);
+      } else {
+        throw new Error('Invalid response from server');
       }
     } catch (err) {
       console.error('Error creating property:', err);
+      
+      // Set error message
       error = err.message || $t('property.createFailed');
     } finally {
       loading = false;

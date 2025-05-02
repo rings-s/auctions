@@ -1,6 +1,6 @@
-# back/base/permissions.py (Consolidated & Refined)
+# back/base/permissions.py (Fixed version)
 
-from rest_framework.permissions import BasePermission, SAFE_METHODS, IsAuthenticated
+from rest_framework.permissions import BasePermission, SAFE_METHODS
 from django.utils.translation import gettext_lazy as _
 
 # --- Core Status/Role Permissions ---
@@ -8,12 +8,11 @@ from django.utils.translation import gettext_lazy as _
 class IsVerifiedUser(BasePermission):
     """
     Allows access only to authenticated and email-verified users.
-    (Copied from accounts.permissions)
     """
     message = _('User account must be verified.')
 
     def has_permission(self, request, view):
-        # Ensure user is authenticated before checking verification status
+        # Check authentication first to avoid attribute errors
         return bool(
             request.user and
             request.user.is_authenticated and
@@ -23,7 +22,6 @@ class IsVerifiedUser(BasePermission):
 class IsAdminUser(BasePermission):
     """
     Allows access only to admin users (is_staff).
-    (Copied from accounts.permissions)
     Use this for view-level access specific to staff.
     """
     message = _('You must be an administrator (staff) to perform this action.')
@@ -36,22 +34,24 @@ class IsAppraiser(BasePermission):
     message = _('You must be an appraiser to perform this action.')
 
     def has_permission(self, request, view):
-        return bool(
-            request.user and
-            request.user.is_authenticated and
-            (request.user.role == 'appraiser' or request.user.is_superuser)
-        )
+        # Check authentication first to avoid attribute errors
+        if not request.user or not request.user.is_authenticated:
+            return False
+        
+        # Then check role or superuser status
+        return request.user.role == 'appraiser' or request.user.is_superuser
 
 class IsDataEntry(BasePermission):
     """Allows access only to data entry specialists or superusers."""
     message = _('You must be a data entry specialist to perform this action.')
 
     def has_permission(self, request, view):
-        return bool(
-            request.user and
-            request.user.is_authenticated and
-            (request.user.role == 'data_entry' or request.user.is_superuser)
-        )
+        # Check authentication first to avoid attribute errors
+        if not request.user or not request.user.is_authenticated:
+            return False
+        
+        # Then check role or superuser status
+        return request.user.role == 'data_entry' or request.user.is_superuser
 
 # --- Object Ownership / Specific Relation Permissions ---
 
@@ -66,6 +66,10 @@ class IsObjectOwner(BasePermission):
         return request.user and request.user.is_authenticated
 
     def has_object_permission(self, request, view, obj):
+        # If user isn't authenticated, deny permission
+        if not request.user or not request.user.is_authenticated:
+            return False
+            
         # Superusers always have permission.
         if request.user.is_superuser:
             return True
@@ -96,6 +100,10 @@ class IsPropertyOwner(BasePermission):
         return request.user and request.user.is_authenticated
 
     def has_object_permission(self, request, view, obj):
+        # If user isn't authenticated, deny permission
+        if not request.user or not request.user.is_authenticated:
+            return False
+            
         # Superusers always have permission.
         if request.user.is_superuser:
             return True
@@ -109,7 +117,6 @@ class IsSelfOrStaff(BasePermission):
     """
     Specific check: Allows access if the object *is* the user OR the user is staff.
     Useful for UserProfile views where obj is a User instance.
-    (Refined from accounts.IsOwnerOrAdmin)
     """
     message = _('You must be the relevant user or an admin (staff) to perform this action.')
 
@@ -118,6 +125,10 @@ class IsSelfOrStaff(BasePermission):
         return request.user and request.user.is_authenticated
 
     def has_object_permission(self, request, view, obj):
+        # If user isn't authenticated, deny permission
+        if not request.user or not request.user.is_authenticated:
+            return False
+            
         # Grant permission if the user is staff or if the object is the user themselves.
         return request.user.is_staff or obj == request.user
 
@@ -128,10 +139,14 @@ class IsAppraiserOrDataEntry(BasePermission):
     message = _('You must be an appraiser or data entry specialist to perform this action.')
 
     def has_permission(self, request, view):
-        return bool(
-            request.user and
-            request.user.is_authenticated and
-            (request.user.role in ['appraiser', 'data_entry'] or request.user.is_superuser)
+        # Check authentication first to avoid attribute errors
+        if not request.user or not request.user.is_authenticated:
+            return False
+            
+        # Then check roles or superuser status
+        return (
+            request.user.role in ['appraiser', 'data_entry'] or 
+            request.user.is_superuser
         )
 
 
@@ -147,6 +162,10 @@ class IsPropertyOwnerOrAppraiserOrDataEntry(BasePermission):
         return request.user and request.user.is_authenticated
 
     def has_object_permission(self, request, view, obj):
+        # If user isn't authenticated, deny permission
+        if not request.user or not request.user.is_authenticated:
+            return False
+            
         # Grant access if superuser or has a relevant role.
         if request.user.is_superuser or request.user.role in ['appraiser', 'data_entry']:
             return True
@@ -157,26 +176,40 @@ class IsPropertyOwnerOrAppraiserOrDataEntry(BasePermission):
 
 class IsPropertyOwnerOrAppraiser(BasePermission):
     """
-    Allows access if the user has the 'appraiser' role or potentially owns the related property.
-    Used for *attempting* to create Auctions. Actual property ownership check for creation
-    must happen in the view's perform_create or serializer based on request data.
+    Allows access if the user has the 'appraiser' role or has the 'owner' role.
+    Used for creating Auctions.
     """
-    message = _('You must be an appraiser or potentially the property owner to perform this action.')
+    message = _('You must be an appraiser or property owner to perform this action.')
 
     def has_permission(self, request, view):
-        if not (request.user and request.user.is_authenticated):
+        if not request.user or not request.user.is_authenticated:
             return False
 
         # Superusers and Appraisers can always attempt creation.
         if request.user.is_superuser or request.user.role == 'appraiser':
             return True
 
-        # Allow users with the 'owner' role to attempt (validation needed in view/serializer).
-        # Alternatively, remove this check if only Appraisers/Superusers can create auctions.
+        # Allow users with the 'owner' role to attempt
         if request.user.role == 'owner':
-            return True # Requires further validation in perform_create
+            return True
 
         return False
         
-    # No has_object_permission needed here as it's for ListCreate view access.
-    # Object permissions for Auction *detail* views would use IsObjectOwner or similar.
+    def has_object_permission(self, request, view, obj):
+        """
+        Object-level permission check for auction objects.
+        Allows access if user is superuser, appraiser, or owns the related property.
+        """
+        # If user isn't authenticated, deny permission
+        if not request.user or not request.user.is_authenticated:
+            return False
+            
+        # Superusers and appraisers always have permission
+        if request.user.is_superuser or request.user.role == 'appraiser':
+            return True
+            
+        # For property owners, check if they own the related property
+        if hasattr(obj, 'related_property') and obj.related_property:
+            return obj.related_property.owner == request.user
+            
+        return False

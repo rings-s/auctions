@@ -2,6 +2,7 @@
 import { API_BASE_URL } from '$lib/constants';
 import { refreshToken } from './auth';
 
+
 const PROPERTY_URL = 'http://localhost:8000/api/properties';
 
 // Fetch properties with filtering, pagination, and search
@@ -119,7 +120,7 @@ export async function fetchPropertyBySlug(slug) {
 
 // Create a new property
 // src/lib/api/property.js - Update the createProperty function
-
+// src/lib/api/property.js - Fixed createProperty function
 export async function createProperty(propertyData) {
   try {
     const token = localStorage.getItem('accessToken');
@@ -140,19 +141,39 @@ export async function createProperty(propertyData) {
       body: JSON.stringify(propertyData)
     });
     
-    // First check if the response is JSON
+    // Get response data
+    let data;
     const contentType = response.headers.get("content-type");
-    if (!contentType || !contentType.includes("application/json")) {
-      // Not JSON, likely an HTML error page
+    
+    if (contentType && contentType.includes("application/json")) {
+      data = await response.json();
+    } else {
       const text = await response.text();
       console.error("Non-JSON response:", text);
       throw new Error(`Server returned non-JSON response (${response.status})`);
     }
     
-    const data = await response.json();
-    
+    // Handle error responses
     if (!response.ok) {
-      throw new Error(data.error?.message || data.detail || 'Failed to create property');
+      console.error("Error response:", data);
+      
+      if (data.error) {
+        // Handle different error formats
+        if (typeof data.error === 'object') {
+          // Format field errors
+          const errorMessages = [];
+          for (const [field, message] of Object.entries(data.error)) {
+            errorMessages.push(`${field}: ${Array.isArray(message) ? message.join(', ') : message}`);
+          }
+          throw new Error(errorMessages.join('\n'));
+        } else {
+          throw new Error(data.error.message || data.error);
+        }
+      } else if (data.detail) {
+        throw new Error(data.detail);
+      } else {
+        throw new Error('Failed to create property');
+      }
     }
     
     return data;
@@ -161,6 +182,7 @@ export async function createProperty(propertyData) {
     throw error;
   }
 }
+
 // Update a property
 export async function updateProperty(id, propertyData) {
   try {
@@ -265,11 +287,20 @@ export async function uploadPropertyMedia(propertyId, mediaFile, mediaType = 'im
       throw new Error('Authentication required');
     }
     
+    // Create FormData for file upload
     const formData = new FormData();
     formData.append('file', mediaFile);
     formData.append('media_type', mediaType);
-    formData.append('content_type', 'base.property'); // Use the ContentType model path
+    formData.append('content_type', 'base.property'); 
     formData.append('object_id', propertyId);
+    
+    // Log what we're uploading
+    console.log(`Uploading file for property ${propertyId}:`, {
+      fileName: mediaFile.name,
+      fileType: mediaFile.type,
+      fileSize: mediaFile.size,
+      mediaType: mediaType
+    });
     
     // Use the correct API endpoint
     const response = await fetch('http://localhost:8000/api/media/', {
@@ -280,31 +311,33 @@ export async function uploadPropertyMedia(propertyId, mediaFile, mediaType = 'im
       body: formData
     });
     
-    if (response.status === 401) {
-      // Try to refresh token and retry
-      const newToken = await refreshToken();
-      const retryResponse = await fetch('http://localhost:8000/api/media/', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${newToken}`
-        },
-        body: formData
-      });
-      
-      if (!retryResponse.ok) {
-        const errorData = await retryResponse.json();
-        throw new Error(errorData.error?.message || 'Failed to upload media');
-      }
-      
-      return await retryResponse.json();
+    // Get response data
+    let data;
+    const contentType = response.headers.get("content-type");
+    
+    if (contentType && contentType.includes("application/json")) {
+      data = await response.json();
+    } else {
+      const text = await response.text();
+      console.error("Non-JSON response from media upload:", text);
+      throw new Error(`Server returned non-JSON response (${response.status})`);
     }
     
+    // Handle error responses
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error?.message || 'Failed to upload media');
+      console.error("Error uploading media:", data);
+      
+      if (data.error) {
+        throw new Error(typeof data.error === 'object' ? JSON.stringify(data.error) : data.error.message || data.error);
+      } else if (data.detail) {
+        throw new Error(data.detail);
+      } else {
+        throw new Error('Failed to upload media');
+      }
     }
     
-    return await response.json();
+    console.log("Media upload successful:", data);
+    return data;
   } catch (error) {
     console.error('Error uploading media:', error);
     throw error;
