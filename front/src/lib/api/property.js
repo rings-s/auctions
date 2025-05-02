@@ -127,22 +127,34 @@ export async function createProperty(propertyData) {
     if (!token) {
       throw new Error('Authentication required');
     }
-    
+
+    console.log('Sending property data:', propertyData);
+
     const response = await fetch('http://localhost:8000/api/properties/', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(propertyData)
     });
-    
+
     const data = await response.json();
-    
+
     if (!response.ok) {
-      throw new Error(data.error?.message || data.error || 'Failed to create property');
+      console.error('Server error response:', data);
+      
+      // Format validation errors from Django
+      if (typeof data === 'object' && data !== null) {
+        const errors = Object.entries(data)
+          .map(([field, messages]) => `${field}: ${messages.join(', ')}`)
+          .join('; ');
+        throw new Error(errors || 'Failed to create property');
+      }
+      
+      throw new Error(data.error || 'Failed to create property');
     }
-    
+
     return data;
   } catch (error) {
     console.error('Error creating property:', error);

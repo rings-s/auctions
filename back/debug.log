@@ -2129,3 +2129,49 @@ INFO 2025-05-02 20:29:12,852 basehttp 15294 134154613159616 "GET /api/accounts/p
 INFO 2025-05-02 20:30:31,503 basehttp 15294 134154613159616 "GET /api/accounts/profile/ HTTP/1.1" 200 594
 INFO 2025-05-02 20:33:53,852 basehttp 15294 134154613159616 "GET /api/accounts/profile/ HTTP/1.1" 200 594
 INFO 2025-05-02 20:33:56,539 basehttp 15294 134154613159616 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-02 21:52:18,267 basehttp 15294 134154613159616 "OPTIONS /api/properties/? HTTP/1.1" 200 0
+WARNING 2025-05-02 21:52:18,276 log 15294 134154613159616 Unauthorized: /api/properties/
+WARNING 2025-05-02 21:52:18,277 basehttp 15294 134154613159616 "GET /api/properties/? HTTP/1.1" 401 172
+INFO 2025-05-02 21:52:18,325 basehttp 15294 134154613159616 "OPTIONS /api/accounts/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-05-02 21:52:18,370 basehttp 15294 134154613159616 "POST /api/accounts/token/refresh/ HTTP/1.1" 200 269
+INFO 2025-05-02 21:52:18,424 basehttp 15294 134154613159616 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-02 21:53:26,526 basehttp 15294 134154613159616 "OPTIONS /api/auctions/? HTTP/1.1" 200 0
+ERROR 2025-05-02 21:53:26,625 log 15294 134154613159616 Internal Server Error: /api/auctions/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 421, in initial
+    self.check_permissions(request)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 338, in check_permissions
+    if not permission.has_permission(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: IsAuthenticated.has_permission() missing 1 required positional argument: 'view'
+ERROR 2025-05-02 21:53:26,628 basehttp 15294 134154613159616 "GET /api/auctions/? HTTP/1.1" 500 106651
+INFO 2025-05-02 21:53:37,560 basehttp 15294 134154613159616 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-02 21:54:04,150 basehttp 15294 134154613159616 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-02 21:55:32,234 basehttp 15294 134154613159616 "OPTIONS /api/properties/ HTTP/1.1" 200 0
+WARNING 2025-05-02 21:55:32,247 log 15294 134154613159616 Bad Request: /api/properties/
+WARNING 2025-05-02 21:55:32,247 basehttp 15294 134154613159616 "POST /api/properties/ HTTP/1.1" 400 181
+WARNING 2025-05-02 22:01:51,853 log 15294 134154613159616 Bad Request: /api/properties/
+WARNING 2025-05-02 22:01:51,854 basehttp 15294 134154613159616 "POST /api/properties/ HTTP/1.1" 400 224
+INFO 2025-05-02 22:06:55,301 basehttp 15294 134154613159616 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-02 22:20:28,907 basehttp 15294 134154613159616 "GET /api/accounts/profile/ HTTP/1.1" 200 594
