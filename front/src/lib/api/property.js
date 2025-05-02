@@ -3,8 +3,8 @@
 import { API_BASE_URL } from '$lib/constants';
 import { refreshToken } from './auth';
 
-
-const API_URL = `${API_BASE_URL}/properties`;
+// Define the PROPERTY_URL variable using API_BASE_URL
+const PROPERTY_URL = `${API_BASE_URL}/properties`;
 
 
 // Fetch properties with filtering, pagination, and search
@@ -124,7 +124,7 @@ export async function fetchPropertyBySlug(slug) {
 
 export async function createProperty(data) {
   try {
-    const response = await fetch(`${API_URL}/properties/`, {
+    const response = await fetch(`${PROPERTY_URL}/properties/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

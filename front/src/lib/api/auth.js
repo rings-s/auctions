@@ -3,8 +3,8 @@ import { API_BASE_URL } from '$lib/constants';
 import { user } from '$lib/stores/user';
 import { goto } from '$app/navigation';
 
-const AUTH_URL = 'http://localhost:8000/api/accounts';
 
+const AUTH_URL = `${API_BASE_URL}/accounts`;
 
 
 

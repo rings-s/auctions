@@ -2,8 +2,8 @@
 import { API_BASE_URL } from '$lib/constants';
 import { refreshToken } from './auth';
 
-const AUCTION_URL = 'http://localhost:8000/api/auctions';
-const BID_URL = 'http://localhost:8000/api/bids';
+const AUCTION_URL = `${API_BASE_URL}/auctions`;
+const BID_URL = `${API_BASE_URL}/bids`;
 
 // Fetch auctions with filtering, pagination, and search
 export async function fetchAuctions(filters = {}) {
