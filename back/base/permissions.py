@@ -6,19 +6,15 @@ from django.utils.translation import gettext_lazy as _
 # --- Core Status/Role Permissions ---
 
 class IsVerifiedUser(BasePermission):
-    """
-    Allows access only to authenticated and email-verified users.
-    """
     message = _('User account must be verified.')
-
+    
     def has_permission(self, request, view):
-        # Check authentication first to avoid attribute errors
-        return bool(
-            request.user and
-            request.user.is_authenticated and
-            getattr(request.user, 'is_verified', False)
-        )
+        if not request.user or not request.user.is_authenticated:
+            return False
+        return hasattr(request.user, 'is_verified') and request.user.is_verified
 
+    
+    
 class IsAdminUser(BasePermission):
     """
     Allows access only to admin users (is_staff).
