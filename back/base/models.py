@@ -136,6 +136,7 @@ class Location(BaseModel):
         indexes = [
             models.Index(fields=['city', 'state']),
         ]
+        
 
     def __str__(self):
         return f"{self.city}, {self.state}, {self.country}"
@@ -200,7 +201,8 @@ class Property(BaseModel):
             models.Index(fields=['deed_number']),
             models.Index(fields=['status']),
             models.Index(fields=['market_value']),
-            models.Index(fields=['property_type', 'city']),
+            models.Index(fields=['property_type']),
+            models.Index(fields=['location']),  # Add index for the location foreign key instead
         ]
 
     def __str__(self):

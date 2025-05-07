@@ -2313,3 +2313,141 @@ INFO 2025-05-02 23:35:33,468 basehttp 29449 130495482427072 "GET /api/properties
 INFO 2025-05-02 23:35:46,574 basehttp 29449 130495482427072 "GET /api/accounts/profile/ HTTP/1.1" 200 594
 INFO 2025-05-02 23:35:46,688 basehttp 29449 130495482427072 "GET /api/properties/? HTTP/1.1" 200 52
 INFO 2025-05-02 23:35:54,000 basehttp 29449 130495482427072 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-07 16:16:51,680 autoreload 7323 139321535977280 Watching for file changes with StatReloader
+INFO 2025-05-07 16:27:02,355 autoreload 9143 132329805141824 Watching for file changes with StatReloader
+INFO 2025-05-07 16:27:34,789 basehttp 9143 132329723918016 "OPTIONS /api/accounts/profile/ HTTP/1.1" 200 0
+WARNING 2025-05-07 16:27:35,003 log 9143 132329723918016 Unauthorized: /api/accounts/profile/
+WARNING 2025-05-07 16:27:35,004 basehttp 9143 132329723918016 "GET /api/accounts/profile/ HTTP/1.1" 401 172
+INFO 2025-05-07 16:27:35,053 basehttp 9143 132329723918016 "OPTIONS /api/accounts/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-05-07 16:27:35,102 basehttp 9143 132329723918016 "POST /api/accounts/token/refresh/ HTTP/1.1" 200 269
+WARNING 2025-05-07 16:27:35,157 log 9143 132329723918016 Unauthorized: /api/accounts/profile/
+WARNING 2025-05-07 16:27:35,157 basehttp 9143 132329723918016 "GET /api/accounts/profile/ HTTP/1.1" 401 51
+WARNING 2025-05-07 16:27:35,541 log 9143 132329723918016 Unauthorized: /api/auctions/
+WARNING 2025-05-07 16:27:35,542 basehttp 9143 132329723918016 "GET /api/auctions/? HTTP/1.1" 401 58
+INFO 2025-05-07 16:27:54,103 basehttp 9143 132329723918016 "OPTIONS /api/accounts/login/ HTTP/1.1" 200 0
+WARNING 2025-05-07 16:27:54,114 log 9143 132329723918016 Unauthorized: /api/accounts/login/
+WARNING 2025-05-07 16:27:54,115 basehttp 9143 132329723918016 "POST /api/accounts/login/ HTTP/1.1" 401 89
+INFO 2025-05-07 16:28:52,461 basehttp 9143 132329723918016 "OPTIONS /api/accounts/register/ HTTP/1.1" 200 0
+INFO 2025-05-07 16:28:53,513 serializers 9143 132329723918016 User 'rings9619@gmail.com' created successfully
+INFO 2025-05-07 16:28:57,248 utils 9143 132329723918016 Email sent: Verify Your Email Address to rings9619@gmail.com
+INFO 2025-05-07 16:28:57,248 views 9143 132329723918016 Verification email sent to rings9619@gmail.com
+INFO 2025-05-07 16:28:57,347 basehttp 9143 132329723918016 "POST /api/accounts/register/ HTTP/1.1" 201 138
+INFO 2025-05-07 16:29:30,022 basehttp 9143 132329723918016 "OPTIONS /api/accounts/verify-email/ HTTP/1.1" 200 0
+INFO 2025-05-07 16:29:30,280 views 9143 132329723918016 Email verification successful for user 1
+INFO 2025-05-07 16:29:30,286 basehttp 9143 132329723918016 "POST /api/accounts/verify-email/ HTTP/1.1" 200 1128
+INFO 2025-05-07 16:29:33,365 middleware 9143 132329723918016 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36...'
+INFO 2025-05-07 16:29:33,366 views 9143 132329723918016 Successful login for user: rings9619@gmail.com
+INFO 2025-05-07 16:29:33,371 basehttp 9143 132329723918016 "POST /api/accounts/login/ HTTP/1.1" 200 1088
+INFO 2025-05-07 16:29:36,208 basehttp 9143 132329723918016 "OPTIONS /api/properties/? HTTP/1.1" 200 0
+INFO 2025-05-07 16:29:36,285 basehttp 9143 132329723918016 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-07 16:29:43,855 basehttp 9143 132329723918016 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-07 16:29:59,442 basehttp 9143 132329723918016 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-07 16:30:05,632 basehttp 9143 132329723918016 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-07 16:30:20,080 basehttp 9143 132329723918016 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-07 16:31:01,965 autoreload 9474 130237872715584 Watching for file changes with StatReloader
+INFO 2025-05-07 16:31:48,040 autoreload 9780 136756983072576 Watching for file changes with StatReloader
+WARNING 2025-05-07 16:31:51,128 log 9780 136756901967552 Not Found: /
+WARNING 2025-05-07 16:31:51,128 basehttp 9780 136756901967552 "GET / HTTP/1.1" 404 2797
+WARNING 2025-05-07 16:31:51,385 log 9780 136756901967552 Not Found: /favicon.ico
+WARNING 2025-05-07 16:31:51,385 basehttp 9780 136756901967552 "GET /favicon.ico HTTP/1.1" 404 2848
+INFO 2025-05-07 16:31:54,111 basehttp 9780 136756901967552 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-05-07 16:31:54,441 basehttp 9780 136756901967552 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4181
+INFO 2025-05-07 16:31:54,692 basehttp 9780 136756875740864 "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+INFO 2025-05-07 16:31:54,695 basehttp 9780 136756893574848 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+INFO 2025-05-07 16:31:54,692 basehttp 9780 136756884133568 "GET /static/admin/css/base.css HTTP/1.1" 304 0
+INFO 2025-05-07 16:31:54,694 basehttp 9780 136756901967552 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:31:54,708 basehttp 9780 136756901967552 "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+INFO 2025-05-07 16:31:54,729 basehttp 9780 136756884133568 "GET /static/admin/css/login.css HTTP/1.1" 304 0
+INFO 2025-05-07 16:31:54,894 basehttp 9780 136756884133568 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:31:58,401 basehttp 9780 136756884133568 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-05-07 16:31:58,434 basehttp 9780 136756884133568 "GET /admin/ HTTP/1.1" 200 13775
+INFO 2025-05-07 16:31:58,573 basehttp 9780 136756884133568 "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+INFO 2025-05-07 16:31:58,615 basehttp 9780 136756884133568 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+INFO 2025-05-07 16:31:58,710 basehttp 9780 136756884133568 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:05,874 basehttp 9780 136756884133568 "GET /admin/accounts/customuser/ HTTP/1.1" 200 21240
+INFO 2025-05-07 16:32:06,086 basehttp 9780 136756893574848 "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:06,105 basehttp 9780 136756893574848 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:06,127 basehttp 9780 136756884133568 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-07 16:32:06,135 basehttp 9780 136756875740864 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:06,143 basehttp 9780 136756901967552 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:06,175 basehttp 9780 136756884133568 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:06,215 basehttp 9780 136756901967552 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:06,215 basehttp 9780 136756893574848 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:06,258 basehttp 9780 136756893574848 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:06,271 basehttp 9780 136756893574848 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:06,320 basehttp 9780 136756893574848 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:06,330 basehttp 9780 136756901967552 "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:06,430 basehttp 9780 136756893574848 "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:06,441 basehttp 9780 136756893574848 "GET /static/admin/img/icon-no.svg HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:06,472 basehttp 9780 136756901967552 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:06,481 basehttp 9780 136756901967552 "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:06,481 basehttp 9780 136756884133568 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:15,921 basehttp 9780 136756901967552 "GET /admin/accounts/customuser/1/change/ HTTP/1.1" 200 63839
+INFO 2025-05-07 16:32:15,961 basehttp 9780 136756901967552 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-07 16:32:16,078 basehttp 9780 136756893574848 "GET /static/admin/css/forms.css HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:16,136 basehttp 9780 136756893574848 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:16,189 basehttp 9780 136756901967552 "GET /static/admin/js/calendar.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:16,324 basehttp 9780 136756901967552 "GET /static/admin/css/widgets.css HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:16,324 basehttp 9780 136756893574848 "GET /static/admin/js/inlines.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:16,633 basehttp 9780 136756893574848 "GET /static/admin/js/SelectBox.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:16,754 basehttp 9780 136756893574848 "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:16,758 basehttp 9780 136756893574848 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:17,133 basehttp 9780 136756893574848 "GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:17,150 basehttp 9780 136756893574848 "GET /static/admin/img/selector-icons.svg HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:17,191 basehttp 9780 136756901967552 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:17,210 basehttp 9780 136756901967552 "GET /static/admin/img/icon-clock.svg HTTP/1.1" 304 0
+INFO 2025-05-07 16:32:24,038 basehttp 9780 136756901967552 "POST /admin/accounts/customuser/1/change/ HTTP/1.1" 302 0
+INFO 2025-05-07 16:32:24,065 basehttp 9780 136756901967552 "GET /admin/accounts/customuser/ HTTP/1.1" 200 21476
+INFO 2025-05-07 16:32:24,140 basehttp 9780 136756901967552 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-07 16:32:37,008 basehttp 9780 136756523431616 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-07 16:32:37,061 basehttp 9780 136756523431616 "OPTIONS /api/auctions/? HTTP/1.1" 200 0
+INFO 2025-05-07 16:32:37,083 basehttp 9780 136756523431616 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-07 16:32:41,337 basehttp 9780 136756523431616 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-07 16:32:42,580 basehttp 9780 136756523431616 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-07 16:32:42,690 basehttp 9780 136756523431616 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-07 16:32:47,137 basehttp 9780 136756523431616 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-07 16:32:48,870 basehttp 9780 136756523431616 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-07 16:32:50,692 basehttp 9780 136756523431616 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-07 16:32:50,742 basehttp 9780 136756523431616 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-07 16:32:53,545 basehttp 9780 136756523431616 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-07 16:32:53,738 basehttp 9780 136756523431616 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-07 16:32:57,164 basehttp 9780 136756523431616 "OPTIONS /api/accounts/logout/ HTTP/1.1" 200 0
+WARNING 2025-05-07 16:32:57,169 log 9780 136756523431616 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-07 16:32:57,170 basehttp 9780 136756523431616 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-07 16:32:57,541 log 9780 136756523431616 Unauthorized: /api/auctions/
+WARNING 2025-05-07 16:32:57,544 basehttp 9780 136756523431616 "GET /api/auctions/? HTTP/1.1" 401 58
+INFO 2025-05-07 16:33:02,515 middleware 9780 136756523431616 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36...'
+INFO 2025-05-07 16:33:02,516 views 9780 136756523431616 Successful login for user: rings9619@gmail.com
+INFO 2025-05-07 16:33:02,522 basehttp 9780 136756523431616 "POST /api/accounts/login/ HTTP/1.1" 200 1088
+INFO 2025-05-07 16:33:07,208 basehttp 9780 136756523431616 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-07 16:33:08,322 basehttp 9780 136756523431616 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-07 16:33:08,512 basehttp 9780 136756523431616 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-07 16:33:12,996 basehttp 9780 136756523431616 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-07 16:33:13,104 basehttp 9780 136756523431616 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-07 16:33:19,268 basehttp 9780 136756523431616 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-07 16:33:19,389 basehttp 9780 136756523431616 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-07 16:45:29,188 basehttp 9780 136756523431616 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-07 16:45:29,306 basehttp 9780 136756523431616 "GET /api/properties/? HTTP/1.1" 200 52
+INFO 2025-05-07 16:45:35,911 basehttp 9780 136756901967552 "GET /admin/accounts/customuser/1/change/ HTTP/1.1" 200 63839
+INFO 2025-05-07 16:45:35,947 basehttp 9780 136756901967552 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-07 16:45:48,310 basehttp 9780 136756523431616 "POST /admin/accounts/customuser/1/change/ HTTP/1.1" 302 0
+INFO 2025-05-07 16:45:48,340 basehttp 9780 136756523431616 "GET /admin/accounts/customuser/ HTTP/1.1" 200 21476
+INFO 2025-05-07 16:45:48,418 basehttp 9780 136756523431616 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-07 16:45:51,409 basehttp 9780 136756893574848 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-07 16:45:51,460 basehttp 9780 136756893574848 "GET /api/properties/? HTTP/1.1" 200 52
+WARNING 2025-05-07 16:45:53,930 log 9780 136756893574848 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-07 16:45:53,931 basehttp 9780 136756893574848 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-07 16:45:54,263 log 9780 136756893574848 Unauthorized: /api/auctions/
+WARNING 2025-05-07 16:45:54,263 basehttp 9780 136756893574848 "GET /api/auctions/? HTTP/1.1" 401 58
+INFO 2025-05-07 16:45:57,936 middleware 9780 136756893574848 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36...'
+INFO 2025-05-07 16:45:57,937 views 9780 136756893574848 Successful login for user: rings9619@gmail.com
+INFO 2025-05-07 16:45:57,940 basehttp 9780 136756893574848 "POST /api/accounts/login/ HTTP/1.1" 200 1087
+WARNING 2025-05-07 16:46:06,406 log 9780 136756893574848 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-07 16:46:06,406 basehttp 9780 136756893574848 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+INFO 2025-05-07 16:46:10,687 middleware 9780 136756893574848 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36...'
+INFO 2025-05-07 16:46:10,687 views 9780 136756893574848 Successful login for user: rings9619@gmail.com
+INFO 2025-05-07 16:46:10,691 basehttp 9780 136756893574848 "POST /api/accounts/login/ HTTP/1.1" 200 1087
+INFO 2025-05-07 16:46:15,950 basehttp 9780 136756893574848 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-07 16:48:12,821 basehttp 9780 136756893574848 "OPTIONS /api/properties/ HTTP/1.1" 200 0
+WARNING 2025-05-07 16:48:12,834 log 9780 136756893574848 Bad Request: /api/properties/
+WARNING 2025-05-07 16:48:12,835 basehttp 9780 136756893574848 "POST /api/properties/ HTTP/1.1" 400 67

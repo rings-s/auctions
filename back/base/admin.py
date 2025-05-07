@@ -39,13 +39,14 @@ class LocationAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at')
 
 # Media Admin
+# Media Admin
 @admin.register(Media)
 class MediaAdmin(admin.ModelAdmin):
-    list_display = ('name', 'media_type', 'file_size_display', 'is_primary', 'uploaded_at')
-    list_filter = ('media_type', 'is_primary', 'uploaded_at')
+    list_display = ('name', 'media_type', 'file_size_display', 'is_primary', 'created_at')  # Changed uploaded_at to created_at
+    list_filter = ('media_type', 'is_primary', 'created_at')  # Changed uploaded_at to created_at
     search_fields = ('name', 'content_type')
-    readonly_fields = ('file_size', 'mime_type', 'width', 'height', 'uploaded_at')
-    ordering = ('-uploaded_at',)
+    readonly_fields = ('file_size', 'mime_type', 'width', 'height', 'created_at')  # Changed uploaded_at to created_at
+    ordering = ('-created_at',)  # Changed uploaded_at to created_at
 
     def file_size_display(self, obj):
         """Convert file size to human readable format"""
@@ -57,7 +58,6 @@ class MediaAdmin(admin.ModelAdmin):
             obj.file_size /= 1024
         return f"{obj.file_size:.1f} TB"
     file_size_display.short_description = _('File Size')
-
 # Room Admin
 class RoomInline(admin.TabularInline):
     model = Room

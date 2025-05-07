@@ -19,6 +19,7 @@
   let container;
   let isExpanded = false;
   let hoveredTag = null;
+  let searchInputId = `tag-search-${Math.random().toString(36).slice(2)}`;
   
   $: filteredTags = searchQuery 
     ? tags.filter(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
@@ -80,13 +81,15 @@
   class="tag-selector space-y-2" 
   bind:this={container}
   class:is-expanded={isExpanded}
+  role="region"
+  aria-label={title || 'Tag selector'}
 >
   {#if title}
     <div class="flex justify-between items-center">
-      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+      <label for={searchInputId} class="block text-sm font-medium text-gray-700 dark:text-gray-300">
         {title}
         {#if hasSelectedTags}
-          <span class="ml-2 text-xs text-gray-500 dark:text-gray-400">
+          <span class="ml-2 text-xs text-gray-500 dark:text-gray-400" aria-live="polite">
             ({selectedTags.length} selected)
           </span>
         {/if}
@@ -97,6 +100,7 @@
           type="button"
           on:click={clearSelection}
           class="text-xs text-gray-500 hover:text-danger-500 dark:text-gray-400 dark:hover:text-danger-400 transition-colors duration-200"
+          aria-label="Clear all selected tags"
         >
           Clear all
         </button>
@@ -108,16 +112,23 @@
     <div class="relative">
       <input
         type="text"
+        id={searchInputId}
         bind:value={searchQuery}
         {placeholder}
         class="w-full px-3 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-2 focus:ring-primary-500 focus:border-primary-500 dark:focus:border-primary-500 text-sm"
         on:focus={() => isExpanded = true}
+        aria-label={placeholder}
+        role="combobox"
+        aria-expanded={isExpanded}
+        aria-controls="tag-list"
+        aria-autocomplete="list"
       />
       {#if searchQuery}
         <button
           type="button"
           class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
           on:click={() => searchQuery = ''}
+          aria-label="Clear search"
         >
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -128,17 +139,15 @@
   {/if}
 
   <div 
+    id="tag-list"
     class="flex flex-wrap gap-2 {searchable ? 'max-h-[' + maxHeight + '] overflow-y-auto' : ''}"
     class:p-2={searchable}
+    role="listbox"
+    aria-multiselectable="true"
+    aria-label="Available tags"
   >
     {#each filteredTags as tag (tag)}
-      <button
-        type="button"
-        on:click={() => toggleTag(tag)}
-        on:keydown={(e) => handleKeydown(e, tag)}
-        disabled={readonly}
-        on:mouseenter={() => hoveredTag = tag}
-        on:mouseleave={() => hoveredTag = null}
+      <div
         class={`
           group relative flex items-center transition-all duration-200 
           ${sizeClasses[size]} 
@@ -149,32 +158,50 @@
           ${readonly ? 'cursor-default opacity-75' : 'cursor-pointer'}
           ${hoveredTag === tag ? 'scale-105' : ''}
         `}
-        aria-pressed={selectedTags.includes(tag)}
       >
-        <span class="flex items-center gap-1.5">
+        <button
+          type="button"
+          on:click={() => toggleTag(tag)}
+          on:keydown={(e) => handleKeydown(e, tag)}
+          disabled={readonly}
+          on:mouseenter={() => hoveredTag = tag}
+          on:mouseleave={() => hoveredTag = null}
+          role="option"
+          aria-selected={selectedTags.includes(tag)}
+          class="flex items-center gap-1.5 w-full h-full"
+        >
           {#if selectedTags.includes(tag)}
-            <svg class="w-4 h-4 text-primary-600 dark:text-primary-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <svg 
+              class="w-4 h-4 text-primary-600 dark:text-primary-400" 
+              xmlns="http://www.w3.org/2000/svg" 
+              viewBox="0 0 20 20" 
+              fill="currentColor"
+              aria-hidden="true"
+            >
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
             </svg>
           {/if}
           {tag}
-        </span>
-
-        {#if !readonly && selectedTags.includes(tag)}
-          <span 
-            class="ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-            transition:slide
-          >
-            <svg class="w-4 h-4 text-gray-400 hover:text-danger-500 dark:text-gray-500 dark:hover:text-danger-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </span>
-        {/if}
-      </button>
+          
+          {#if !readonly && selectedTags.includes(tag)}
+            <span 
+              class="ml-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+              aria-label={`Remove ${tag} tag`}
+            >
+              <svg class="w-4 h-4 text-gray-400 hover:text-danger-500 dark:text-gray-500 dark:hover:text-danger-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </span>
+          {/if}
+        </button>
+      </div>
     {/each}
 
     {#if filteredTags.length === 0}
-      <div class="w-full text-center py-4 text-sm text-gray-500 dark:text-gray-400">
+      <div 
+        class="w-full text-center py-4 text-sm text-gray-500 dark:text-gray-400"
+        role="status"
+      >
         No tags found
       </div>
     {/if}

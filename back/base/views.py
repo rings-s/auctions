@@ -23,7 +23,7 @@ from .permissions import (
     IsAdminUser
 )
 
-# Type Model Views
+# Type Views
 class PropertyTypeListCreateView(generics.ListCreateAPIView):
     queryset = PropertyType.objects.all()
     serializer_class = PropertyTypeSerializer
@@ -48,6 +48,31 @@ class BuildingTypeDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = BuildingTypeSerializer
     permission_classes = [IsVerifiedUser, IsAdminUser]
 
+class RoomTypeListCreateView(generics.ListCreateAPIView):
+    queryset = RoomType.objects.all()
+    serializer_class = RoomTypeSerializer
+    permission_classes = [IsVerifiedUser]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'code']
+
+class RoomTypeDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = RoomType.objects.all()
+    serializer_class = RoomTypeSerializer
+    permission_classes = [IsVerifiedUser, IsAdminUser]
+
+class AuctionTypeListCreateView(generics.ListCreateAPIView):
+    queryset = AuctionType.objects.all()
+    serializer_class = AuctionTypeSerializer
+    permission_classes = [IsVerifiedUser]
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['name', 'code']
+
+class AuctionTypeDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = AuctionType.objects.all()
+    serializer_class = AuctionTypeSerializer
+    permission_classes = [IsVerifiedUser, IsAdminUser]
+
+# Location Views
 class LocationListCreateView(generics.ListCreateAPIView):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
@@ -103,13 +128,6 @@ class PropertyDetailView(generics.RetrieveUpdateDestroyAPIView):
             'owner', 'property_type', 'building_type', 'location'
         ).prefetch_related('rooms', 'media')
 
-    def get_permissions(self):
-        if self.request.method in ['PUT', 'PATCH']:
-            self.permission_classes = [IsAuthenticated, IsPropertyOwnerOrAppraiserOrDataEntry]
-        elif self.request.method == 'DELETE':
-            self.permission_classes = [IsAuthenticated, IsPropertyOwner]
-        return super().get_permissions()
-
 class PropertySlugDetailView(PropertyDetailView):
     lookup_field = 'slug'
 
@@ -126,17 +144,6 @@ class RoomListCreateView(generics.ListCreateAPIView):
             'property', 'room_type'
         ).prefetch_related('media')
 
-    def perform_create(self, serializer):
-        property_obj = serializer.validated_data.get('property')
-        user = self.request.user
-        
-        if not (user.is_superuser or 
-                user.role in ['appraiser', 'data_entry'] or 
-                (property_obj and property_obj.owner == user)):
-            raise ValidationError(_("Insufficient permissions"))
-            
-        serializer.save()
-
 class RoomDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Room.objects.select_related('property', 'room_type').prefetch_related('media')
     serializer_class = RoomSerializer
@@ -152,22 +159,10 @@ class AuctionListCreateView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         return Auction.objects.select_related(
-            'auction_type', 'related_property',
-            'related_property__owner', 'related_property__property_type'
-        ).prefetch_related(
-            'bids', 'media'
-        ).filter(is_published=True).order_by('-start_date')
-
-    def perform_create(self, serializer):
-        related_property = serializer.validated_data.get('related_property')
-        user = self.request.user
-        
-        if not (user.is_superuser or 
-                user.role == 'appraiser' or 
-                (related_property and related_property.owner == user)):
-            raise ValidationError(_("Insufficient permissions"))
-            
-        serializer.save()
+            'auction_type', 'related_property'
+        ).prefetch_related('bids', 'media').filter(
+            is_published=True
+        ).order_by('-start_date')
 
 class AuctionDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AuctionSerializer
@@ -175,8 +170,7 @@ class AuctionDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Auction.objects.select_related(
-            'auction_type', 'related_property',
-            'related_property__owner', 'related_property__property_type'
+            'auction_type', 'related_property'
         ).prefetch_related('bids', 'media')
 
 class AuctionSlugDetailView(AuctionDetailView):
@@ -191,37 +185,12 @@ class BidListCreateView(generics.ListCreateAPIView):
     search_fields = ['auction__title']
 
     def get_queryset(self):
-        return Bid.objects.select_related(
-            'auction', 'bidder', 'auction__related_property'
-        )
-
-    def perform_create(self, serializer):
-        auction = serializer.validated_data.get('auction')
-        if not auction:
-            raise ValidationError(_("Auction is required"))
-
-        if auction.status != 'live':
-            raise ValidationError(_("Auction is not live"))
-
-        if auction.end_date <= timezone.now():
-            raise ValidationError(_("Auction has ended"))
-
-        if auction.related_property.owner == self.request.user:
-            raise ValidationError(_("Cannot bid on own property"))
-
-        bid_amount = serializer.validated_data.get('bid_amount')
-        current_bid = auction.current_bid or auction.starting_bid
-        if bid_amount <= current_bid + auction.minimum_increment:
-            raise ValidationError(_("Bid too low"))
-
-        serializer.save(bidder=self.request.user)
+        return Bid.objects.select_related('auction', 'bidder')
 
 class BidDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Bid.objects.select_related('auction', 'bidder')
     serializer_class = BidSerializer
     permission_classes = [IsVerifiedUser, IsObjectOwner]
-
-
 
 
 '''

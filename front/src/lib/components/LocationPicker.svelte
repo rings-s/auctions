@@ -506,8 +506,12 @@
         class="bg-gray-100 dark:bg-gray-800 rounded-md overflow-hidden"
         style="height: {height};"
       >
-        <div bind:this={mapElement} class="w-full h-full" />
-      </div>
+        <div 
+          bind:this={mapElement} 
+          class="w-full h-full" 
+          aria-label={$t('location.mapContainer')}
+      ></div>
+    </div>
       
       <!-- Coordinates -->
       <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
