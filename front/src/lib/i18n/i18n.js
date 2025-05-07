@@ -873,4 +873,14 @@ export const t = derived(
 
 
 
+ dropZoneLabel: 'Drop zone for file upload',
+    selectedFilesList: 'Selected files',
+    uploading: 'Uploading...',
+    invalidType: 'Invalid file type',
+    fileTooLarge: 'File too large (max {size}MB)',
+    tooManyFiles: 'Too many files (max {max})',
+    removeFile: 'Remove file {name}'
+
+
+
   */
