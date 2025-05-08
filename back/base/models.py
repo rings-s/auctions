@@ -10,6 +10,7 @@ from django.core.cache import cache
 import uuid
 import os
 import random
+from django.utils.translation import gettext_lazy as _
 
 # -------------------------------------------------------------------------
 # Base Model

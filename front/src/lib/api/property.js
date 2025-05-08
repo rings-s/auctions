@@ -196,41 +196,60 @@ export async function fetchPropertyBySlug(slug) {
 /**
  * Create a new property
  */
+// src/lib/api/property.js
+
+// In the createProperty function:
 export async function createProperty(propertyData) {
   try {
     const token = localStorage.getItem('accessToken');
     if (!token) throw new Error('Authentication required');
 
-    const formattedData = formatPropertyData(propertyData);
+    let response = await fetch(`${ENDPOINTS.PROPERTIES}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(propertyData)
+    });
 
-    let response = await fetch(
-      ENDPOINTS.PROPERTIES,
-      {
-        method: 'POST',
-        headers: getHeaders(token),
-        credentials: 'include',
-        body: JSON.stringify(formattedData)
+    // Handle non-JSON responses
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      if (response.status === 500) {
+        throw new Error('Server error occurred. Please try again.');
       }
-    );
-
-    if (response.status === 401) {
-      const newToken = await refreshToken();
-      response = await fetch(
-        ENDPOINTS.PROPERTIES,
-        {
-          method: 'POST',
-          headers: getHeaders(newToken),
-          credentials: 'include',
-          body: JSON.stringify(formattedData)
-        }
-      );
+      const text = await response.text();
+      throw new Error(`Server error: ${text}`);
     }
+
+    const data = await response.json();
 
     if (!response.ok) {
-      throw await handleApiError(response);
+      if (response.status === 401) {
+        // Try token refresh
+        const newToken = await refreshToken();
+        response = await fetch(`${ENDPOINTS.PROPERTIES}`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${newToken}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(propertyData)
+        });
+
+        if (!response.ok) {
+          throw new Error(data.error?.message || data.detail || 'Failed to create property');
+        }
+      } else {
+        throw new Error(data.error?.message || data.detail || 'Failed to create property');
+      }
     }
 
-    return await response.json();
+    return {
+      data: data,
+      status: response.status
+    };
 
   } catch (error) {
     console.error('Error creating property:', error);

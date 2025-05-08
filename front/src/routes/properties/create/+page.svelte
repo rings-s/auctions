@@ -230,8 +230,41 @@
         return;
       }
 
+      // Format data for submission
+      const formattedData = {
+        ...propertyData,
+        // Ensure property_type is included and formatted correctly
+        property_type: propertyData.property_type || 'residential', // Default value
+        
+        // Format numeric fields
+        size_sqm: parseFloat(propertyData.size_sqm),
+        market_value: parseFloat(propertyData.market_value),
+        minimum_bid: propertyData.minimum_bid ? parseFloat(propertyData.minimum_bid) : null,
+        floors: propertyData.floors ? parseInt(propertyData.floors) : null,
+        year_built: propertyData.year_built ? parseInt(propertyData.year_built) : null,
+        
+        // Format location data
+        location: {
+          city: propertyData.city,
+          state: propertyData.state,
+          country: propertyData.country,
+          postal_code: propertyData.postal_code,
+          latitude: propertyData.latitude ? parseFloat(propertyData.latitude) : null,
+          longitude: propertyData.longitude ? parseFloat(propertyData.longitude) : null
+        },
+        
+        // Ensure arrays are properly formatted
+        features: Array.isArray(propertyData.features) ? propertyData.features : [],
+        amenities: Array.isArray(propertyData.amenities) ? propertyData.amenities : [],
+        rooms: Array.isArray(propertyData.rooms) ? propertyData.rooms.map(room => ({
+          ...room,
+          area_sqm: parseFloat(room.area_sqm) || 0,
+          floor: parseInt(room.floor) || 1
+        })) : []
+      };
+
       // Create property
-      const response = await createProperty(propertyData);
+      const response = await createProperty(formattedData);
 
       if (response?.data) {
         const propertyId = response.data.id;
@@ -257,6 +290,8 @@
 
         success = 'Property created successfully';
         setTimeout(() => goto(`/properties/${response.data.slug}`), 2000);
+      } else {
+        throw new Error('Invalid response from server');
       }
     } catch (err) {
       console.error('Error creating property:', err);

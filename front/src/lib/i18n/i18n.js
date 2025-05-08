@@ -63,6 +63,17 @@ const translations = {
       invalidMinimumBidRange: 'Minimum bid must be greater than 0'
     },
     
+    // File Upload
+    fileUpload: {
+      dropZoneLabel: 'Drop zone for file upload',
+      selectedFilesList: 'Selected files',
+      uploading: 'Uploading...',
+      invalidType: 'Invalid file type',
+      fileTooLarge: 'File too large (max {size}MB)',
+      tooManyFiles: 'Too many files (max {max})',
+      removeFile: 'Remove file {name}'
+    },
+    
     // Navigation
 
 
@@ -440,6 +451,44 @@ const translations = {
   },
   
   ar: {
+    validation: {
+      titleRequired: 'العنوان مطلوب',
+      propertyTypeRequired: 'نوع العقار مطلوب',
+      deedNumberRequired: 'رقم الصك مطلوب',
+      descriptionRequired: 'الوصف مطلوب',
+      sizeRequired: 'الحجم مطلوب',
+      addressRequired: 'عنوان الشارع مطلوب',
+      cityRequired: 'المدينة مطلوبة',
+      stateRequired: 'المنطقة/المحافظة مطلوبة',
+      marketValueRequired: 'القيمة السوقية مطلوبة',
+      invalidDeedNumberFormat: 'تنسيق رقم الصك غير صالح',
+      invalidSizeFormat: 'تنسيق الحجم غير صالح',
+      invalidMarketValueFormat: 'تنسيق القيمة السوقية غير صالح',
+      invalidMinimumBidFormat: 'تنسيق الحد الأدنى للمزايدة غير صالح',
+      invalidLatitudeFormat: 'تنسيق خط العرض غير صالح',
+      invalidLongitudeFormat: 'تنسيق خط الطول غير صالح',
+      titleTooLong: 'لا يمكن أن يتجاوز العنوان 255 حرفًا',
+      addressTooLong: 'لا يمكن أن يتجاوز العنوان 255 حرفًا',
+      cityTooLong: 'لا يمكن أن تتجاوز المدينة 100 حرف',
+      stateTooLong: 'لا يمكن أن تتجاوز المنطقة/المحافظة 100 حرف',
+      postalCodeTooLong: 'لا يمكن أن يتجاوز الرمز البريدي 20 حرفًا',
+      countryTooLong: 'لا يمكن أن تتجاوز الدولة 100 حرف',
+      invalidSizeRange: 'يجب أن يكون الحجم أكبر من 0',
+      invalidMarketValueRange: 'يجب أن تكون القيمة السوقية أكبر من 0',
+      invalidMinimumBidRange: 'يجب أن يكون الحد الأدنى للمزايدة أكبر من 0'
+    },
+    
+    // File Upload
+    fileUpload: {
+      dropZoneLabel: 'منطقة إسقاط لتحميل الملف',
+      selectedFilesList: 'الملفات المحددة',
+      uploading: 'جاري التحميل...',
+      invalidType: 'نوع ملف غير صالح',
+      fileTooLarge: 'الملف كبير جدًا (الحد الأقصى {size} ميجابايت)',
+      tooManyFiles: 'عدد كبير جدًا من الملفات (الحد الأقصى {max})',
+      removeFile: 'إزالة الملف {name}'
+    },
+    
     // Navigation
     nav: {
       home: 'الرئيسية',
@@ -836,7 +885,6 @@ export const t = derived(
     return value;
   }
 );
-
 
 
 

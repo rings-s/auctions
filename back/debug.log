@@ -2720,3 +2720,333 @@ Traceback (most recent call last):
     raise self.RelatedObjectDoesNotExist(
 base.models.Property.property_type.RelatedObjectDoesNotExist: Property has no property_type.. Did you mean: 'property_type_id'?
 ERROR 2025-05-07 17:20:56,510 basehttp 9780 136756523431616 "POST /api/properties/ HTTP/1.1" 500 169871
+INFO 2025-05-08 22:01:13,593 autoreload 9200 140011636864832 Watching for file changes with StatReloader
+INFO 2025-05-08 22:12:05,505 basehttp 9200 140011556042432 "OPTIONS /api/accounts/profile/ HTTP/1.1" 200 0
+WARNING 2025-05-08 22:12:06,009 log 9200 140011556042432 Unauthorized: /api/accounts/profile/
+WARNING 2025-05-08 22:12:06,009 basehttp 9200 140011556042432 "GET /api/accounts/profile/ HTTP/1.1" 401 172
+INFO 2025-05-08 22:12:06,058 basehttp 9200 140011556042432 "OPTIONS /api/accounts/token/refresh/ HTTP/1.1" 200 0
+INFO 2025-05-08 22:12:06,106 basehttp 9200 140011556042432 "POST /api/accounts/token/refresh/ HTTP/1.1" 200 269
+INFO 2025-05-08 22:12:06,239 basehttp 9200 140011556042432 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-08 22:12:06,576 basehttp 9200 140011556042432 "OPTIONS /api/auctions/? HTTP/1.1" 200 0
+INFO 2025-05-08 22:12:06,604 basehttp 9200 140011556042432 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-08 22:12:10,702 basehttp 9200 140011556042432 "OPTIONS /api/properties/?page=1&ordering=-created_at HTTP/1.1" 200 0
+INFO 2025-05-08 22:12:10,723 basehttp 9200 140011546601152 "GET /api/properties/?page=1&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-05-08 22:12:20,844 basehttp 9200 140011556042432 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-08 22:14:27,191 basehttp 9200 140011556042432 "OPTIONS /api/properties/ HTTP/1.1" 200 0
+WARNING 2025-05-08 22:14:27,207 log 9200 140011546601152 Bad Request: /api/properties/
+WARNING 2025-05-08 22:14:27,208 basehttp 9200 140011546601152 "POST /api/properties/ HTTP/1.1" 400 67
+INFO 2025-05-08 22:14:55,178 basehttp 9200 140011556042432 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+ERROR 2025-05-08 22:16:14,422 log 9200 140011546601152 Internal Server Error: /api/properties/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py", line 119, in perform_create
+    serializer.save(owner=self.request.user)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/models.py", line 216, in save
+    prefix = self.property_type.code
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/fields/related_descriptors.py", line 268, in __get__
+    raise self.RelatedObjectDoesNotExist(
+base.models.Property.property_type.RelatedObjectDoesNotExist: Property has no property_type.. Did you mean: 'property_type_id'?
+ERROR 2025-05-08 22:16:14,443 basehttp 9200 140011546601152 "POST /api/properties/ HTTP/1.1" 500 169742
+INFO 2025-05-08 22:23:21,837 basehttp 9200 140011546601152 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-08 22:23:25,412 basehttp 9200 140011556042432 "GET /admin/ HTTP/1.1" 200 14570
+WARNING 2025-05-08 22:23:26,342 log 9200 140011556042432 Not Found: /favicon.ico
+WARNING 2025-05-08 22:23:26,343 basehttp 9200 140011556042432 "GET /favicon.ico HTTP/1.1" 404 2848
+ERROR 2025-05-08 22:23:31,208 log 9200 140011556042432 Internal Server Error: /admin/base/property/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: base_propertytype
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/options.py", line 719, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/sites.py", line 246, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/options.py", line 2024, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/options.py", line 867, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/views/main.py", line 145, in __init__
+    self.queryset = self.get_queryset(request)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/views/main.py", line 545, in get_queryset
+    ) = self.get_filters(request)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/views/main.py", line 216, in get_filters
+    spec = field_list_filter_class(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/filters.py", line 217, in create
+    return list_filter_class(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/filters.py", line 232, in __init__
+    self.lookup_choices = self.field_choices(field, request, model_admin)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/filters.py", line 273, in field_choices
+    return field.get_choices(include_blank=False, ordering=ordering)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/fields/__init__.py", line 1083, in get_choices
+    (choice_func(x), str(x)) for x in qs
+                                      ^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/query.py", line 384, in __iter__
+    self._fetch_all()
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/query.py", line 1935, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1622, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: base_propertytype
+ERROR 2025-05-08 22:23:31,214 basehttp 9200 140011556042432 "GET /admin/base/property/ HTTP/1.1" 500 226890
+INFO 2025-05-08 22:23:37,720 basehttp 9200 140011556042432 "GET /admin/ HTTP/1.1" 200 14570
+ERROR 2025-05-08 22:23:43,255 log 9200 140011556042432 Internal Server Error: /admin/base/property/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: base_propertytype
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/options.py", line 719, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/sites.py", line 246, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/options.py", line 2024, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/options.py", line 867, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/views/main.py", line 145, in __init__
+    self.queryset = self.get_queryset(request)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/views/main.py", line 545, in get_queryset
+    ) = self.get_filters(request)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/views/main.py", line 216, in get_filters
+    spec = field_list_filter_class(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/filters.py", line 217, in create
+    return list_filter_class(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/filters.py", line 232, in __init__
+    self.lookup_choices = self.field_choices(field, request, model_admin)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/contrib/admin/filters.py", line 273, in field_choices
+    return field.get_choices(include_blank=False, ordering=ordering)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/fields/__init__.py", line 1083, in get_choices
+    (choice_func(x), str(x)) for x in qs
+                                      ^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/query.py", line 384, in __iter__
+    self._fetch_all()
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/query.py", line 1935, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1622, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/backends/sqlite3/base.py", line 360, in execute
+    return super().execute(query, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: base_propertytype
+ERROR 2025-05-08 22:23:43,259 basehttp 9200 140011556042432 "GET /admin/base/property/ HTTP/1.1" 500 226890
+INFO 2025-05-08 23:00:01,356 autoreload 18448 138030203549504 Watching for file changes with StatReloader
+INFO 2025-05-08 23:00:38,146 autoreload 18903 137107298314048 Watching for file changes with StatReloader
+INFO 2025-05-08 23:00:45,902 basehttp 18903 137107244840640 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-05-08 23:00:46,055 basehttp 18903 137107244840640 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4181
+INFO 2025-05-08 23:01:30,324 autoreload 18977 123278503745344 Watching for file changes with StatReloader
+INFO 2025-05-08 23:01:57,089 autoreload 19278 126096801470272 Watching for file changes with StatReloader
+INFO 2025-05-08 23:02:01,167 basehttp 19278 126096678844096 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-05-08 23:02:01,206 basehttp 19278 126096678844096 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4181
+INFO 2025-05-08 23:02:04,144 basehttp 19278 126096678844096 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-05-08 23:02:04,176 basehttp 19278 126096678844096 "GET /admin/ HTTP/1.1" 200 13775
+INFO 2025-05-08 23:02:09,707 basehttp 19278 126096678844096 "GET /admin/base/property/ HTTP/1.1" 200 15254
+INFO 2025-05-08 23:02:10,063 basehttp 19278 126096678844096 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:02:14,730 basehttp 19278 126096678844096 "GET /admin/base/propertytype/ HTTP/1.1" 200 13519
+INFO 2025-05-08 23:02:14,760 basehttp 19278 126096678844096 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:02:16,181 basehttp 19278 126096678844096 "GET /admin/base/roomtype/ HTTP/1.1" 200 13499
+INFO 2025-05-08 23:02:16,214 basehttp 19278 126096678844096 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:02:17,021 basehttp 19278 126096678844096 "GET /admin/base/buildingtype/ HTTP/1.1" 200 13515
+INFO 2025-05-08 23:02:17,055 basehttp 19278 126096678844096 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:02:17,768 basehttp 19278 126096678844096 "GET /admin/base/auctiontype/ HTTP/1.1" 200 13517
+INFO 2025-05-08 23:02:17,800 basehttp 19278 126096678844096 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:02:20,543 basehttp 19278 126096678844096 "GET /admin/base/property/ HTTP/1.1" 200 15254
+INFO 2025-05-08 23:02:20,579 basehttp 19278 126096678844096 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:02:21,373 basehttp 19278 126096678844096 "GET /admin/base/room/ HTTP/1.1" 200 14676
+INFO 2025-05-08 23:02:21,407 basehttp 19278 126096678844096 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:02:23,004 basehttp 19278 126096678844096 "GET /admin/base/auction/ HTTP/1.1" 200 15876
+INFO 2025-05-08 23:02:23,043 basehttp 19278 126096678844096 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:02:24,368 basehttp 19278 126096678844096 "GET /admin/base/bid/ HTTP/1.1" 200 15564
+INFO 2025-05-08 23:02:24,402 basehttp 19278 126096678844096 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:02:25,891 basehttp 19278 126096678844096 "GET /admin/base/location/ HTTP/1.1" 200 14432
+INFO 2025-05-08 23:02:25,927 basehttp 19278 126096678844096 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:02:27,470 basehttp 19278 126096678844096 "GET /admin/base/media/ HTTP/1.1" 200 15446
+INFO 2025-05-08 23:02:27,508 basehttp 19278 126096678844096 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:02:58,892 basehttp 19278 126096659961536 "GET /api/accounts/profile/ HTTP/1.1" 200 567
+INFO 2025-05-08 23:02:58,951 basehttp 19278 126096659961536 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-08 23:03:01,781 basehttp 19278 126096659961536 "OPTIONS /api/accounts/logout/ HTTP/1.1" 200 0
+WARNING 2025-05-08 23:03:01,791 log 19278 126096659961536 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-08 23:03:01,792 basehttp 19278 126096659961536 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-08 23:03:02,277 log 19278 126096659961536 Unauthorized: /api/auctions/
+WARNING 2025-05-08 23:03:02,278 basehttp 19278 126096659961536 "GET /api/auctions/? HTTP/1.1" 401 58
+INFO 2025-05-08 23:03:27,446 basehttp 19278 126096659961536 "OPTIONS /api/accounts/register/ HTTP/1.1" 200 0
+WARNING 2025-05-08 23:03:27,532 log 19278 126096659961536 Bad Request: /api/accounts/register/
+WARNING 2025-05-08 23:03:27,533 basehttp 19278 126096659961536 "POST /api/accounts/register/ HTTP/1.1" 400 117
+WARNING 2025-05-08 23:03:28,911 log 19278 126096659961536 Bad Request: /api/accounts/register/
+WARNING 2025-05-08 23:03:28,912 basehttp 19278 126096659961536 "POST /api/accounts/register/ HTTP/1.1" 400 117
+INFO 2025-05-08 23:03:37,755 basehttp 19278 126096659961536 "OPTIONS /api/accounts/login/ HTTP/1.1" 200 0
+WARNING 2025-05-08 23:03:37,765 log 19278 126096659961536 Unauthorized: /api/accounts/login/
+WARNING 2025-05-08 23:03:37,766 basehttp 19278 126096659961536 "POST /api/accounts/login/ HTTP/1.1" 401 89
+WARNING 2025-05-08 23:03:54,780 log 19278 126096659961536 Unauthorized: /api/accounts/login/
+WARNING 2025-05-08 23:03:54,781 basehttp 19278 126096659961536 "POST /api/accounts/login/ HTTP/1.1" 401 89
+INFO 2025-05-08 23:04:01,274 basehttp 19278 126096678844096 "GET /admin/ HTTP/1.1" 200 13775
+INFO 2025-05-08 23:04:04,191 basehttp 19278 126096678844096 "GET /admin/accounts/customuser/ HTTP/1.1" 200 20479
+INFO 2025-05-08 23:04:04,245 basehttp 19278 126096678844096 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-05-08 23:04:29,733 log 19278 126096659961536 Bad Request: /api/accounts/register/
+WARNING 2025-05-08 23:04:29,734 basehttp 19278 126096659961536 "POST /api/accounts/register/ HTTP/1.1" 400 117
+WARNING 2025-05-08 23:05:02,006 log 19278 126096659961536 Bad Request: /api/accounts/register/
+WARNING 2025-05-08 23:05:02,008 basehttp 19278 126096659961536 "POST /api/accounts/register/ HTTP/1.1" 400 117
