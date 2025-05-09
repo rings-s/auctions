@@ -26,16 +26,72 @@
   let locationSuccess = '';
   let locationMode = 'manual';
   
+  let initAttempts = 0;
+  let observer;
+  
   onMount(() => {
-    loadMapScript();
+    // Use a longer delay for initial load
+    setTimeout(() => {
+      // First try to load the script
+      loadMapScript();
+      
+      // Set up a mutation observer to watch for visibility changes
+      setupVisibilityObserver();
+      
+      // Also set up an interval to keep trying initialization
+      const initInterval = setInterval(() => {
+        if (map) {
+          clearInterval(initInterval);
+          return;
+        }
+        
+        if (initAttempts > 20) { // Give up after ~10 seconds
+          clearInterval(initInterval);
+          console.error('Gave up trying to initialize map after multiple attempts');
+          return;
+        }
+        
+        console.log('Attempting map initialization again...');
+        initAttempts++;
+        loadMapScript();
+      }, 500);
+    }, 1000);
+    
     return () => {
       if (map) {
         map.remove();
       }
+      if (observer) {
+        observer.disconnect();
+      }
     };
   });
   
+  function setupVisibilityObserver() {
+    // Create a visibility observer to detect when the map container becomes visible
+    if (typeof MutationObserver !== 'undefined') {
+      observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          if (mutation.type === 'attributes' && 
+              (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
+            console.log('Map container attributes changed, checking visibility...');
+            checkAndInitializeMap();
+          }
+        }
+      });
+      
+      // Start observing the document body for DOM changes
+      observer.observe(document.body, { 
+        attributes: true, 
+        childList: true, 
+        subtree: true 
+      });
+    }
+  }
+  
   function loadMapScript() {
+    console.log('Loading map scripts...');
+    // Add CSS if not already present
     if (!document.getElementById('leaflet-css')) {
       const cssLink = document.createElement('link');
       cssLink.id = 'leaflet-css';
@@ -44,22 +100,125 @@
       document.head.appendChild(cssLink);
     }
     
+    // Add script if not already loaded
     if (!window.L) {
+      console.log('Leaflet not loaded, loading script...');
       const script = document.createElement('script');
+      script.id = 'leaflet-js';
       script.src = 'https://unpkg.com/leaflet@1.9.3/dist/leaflet.js';
-      script.onload = initializeMap;
+      script.onload = () => {
+        console.log('Leaflet script loaded successfully');
+        // Add a longer delay to ensure DOM is ready
+        setTimeout(checkAndInitializeMap, 500);
+      };
       document.head.appendChild(script);
     } else {
-      initializeMap();
+      console.log('Leaflet already loaded');
+      // If already loaded, still use a delay
+      setTimeout(checkAndInitializeMap, 300);
     }
   }
   
+  function checkAndInitializeMap() {
+    console.log('Checking if map element is ready...');
+    if (!mapElement) {
+      console.error('Map element not available yet, retrying in 500ms...');
+      return false;
+    }
+    
+    if (!window.L) {
+      console.error('Leaflet library not available yet, retrying in 500ms...');
+      return false;
+    }
+    
+    // Check if the map element has dimensions
+    const rect = mapElement.getBoundingClientRect();
+    console.log('Map element dimensions:', rect.width, 'x', rect.height);
+    
+    if (rect.width === 0 || rect.height === 0) {
+      console.error('Map element has zero dimensions, forcing dimensions...');
+      // Force dimensions
+      forceMapDimensions();
+      return false;
+    }
+    
+    // Check if the element is visible
+    const style = window.getComputedStyle(mapElement);
+    if (style.display === 'none' || style.visibility === 'hidden' || !isElementInViewport(mapElement)) {
+      console.error('Map element is not visible, retrying later...');
+      return false;
+    }
+    
+    // If we already have a map, don't initialize again
+    if (map) {
+      console.log('Map already initialized, refreshing size...');
+      map.invalidateSize();
+      return true;
+    }
+    
+    console.log('Map element and Leaflet available, initializing map...');
+    initializeMap();
+    return true;
+  }
+  
+  function forceMapDimensions() {
+    if (!mapElement) return;
+    
+    // Force dimensions on the map element
+    mapElement.style.width = '100%';
+    mapElement.style.height = '400px';
+    mapElement.style.minHeight = '400px';
+    mapElement.style.display = 'block';
+    mapElement.style.position = 'relative';
+    mapElement.style.visibility = 'visible';
+    
+    // Force dimensions on parent containers too
+    let parent = mapElement.parentElement;
+    while (parent) {
+      const style = window.getComputedStyle(parent);
+      if (style.display === 'none' || style.height === '0px') {
+        parent.style.display = 'block';
+        parent.style.minHeight = '400px';
+        parent.style.height = 'auto';
+      }
+      parent = parent.parentElement;
+    }
+  }
+  
+  function isElementInViewport(el) {
+    if (!el) return false;
+    
+    const rect = el.getBoundingClientRect();
+    return (
+      rect.top >= 0 &&
+      rect.left >= 0 &&
+      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+  
   function initializeMap() {
-    if (!window.L || !mapElement) return;
+    if (!window.L || !mapElement) {
+      console.error('Cannot initialize map: Leaflet or map element not available');
+      return;
+    }
     
     try {
+      // If map already exists, just refresh it
+      if (map) {
+        console.log('Map already exists, refreshing size');
+        map.invalidateSize();
+        return;
+      }
+      
+      console.log('Initializing map with element:', mapElement);
       const defaultLat = latitude || 24.7136;
       const defaultLng = longitude || 46.6753;
+      
+      // Make sure the map container is visible and has dimensions
+      mapElement.style.width = '100%';
+      mapElement.style.height = '100%';
+      mapElement.style.minHeight = '400px';
       
       map = window.L.map(mapElement, {
         center: [defaultLat, defaultLng],
@@ -72,6 +231,14 @@
       window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
+      
+      // Add a delay and then invalidate size to handle any rendering issues
+      setTimeout(() => {
+        if (map) {
+          console.log('Invalidating map size after delay');
+          map.invalidateSize();
+        }
+      }, 1000);
       
       marker = window.L.marker([defaultLat, defaultLng], {
         draggable: !readonly
@@ -93,10 +260,20 @@
         addSearchControl();
       }
       
-      // Force map to update its size
+      // Force map to update its size with a longer delay
       setTimeout(() => {
-        map.invalidateSize();
-      }, 100);
+        if (map) {
+          console.log('Invalidating map size');
+          map.invalidateSize(true);
+        }
+      }, 500);
+      
+      // Add another size update when tab becomes visible
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible' && map) {
+          setTimeout(() => map.invalidateSize(true), 300);
+        }
+      });
     } catch (error) {
       console.error('Error initializing map:', error);
       locationError = $t('location.mapInitFailed');
@@ -504,14 +681,17 @@
       <!-- Map -->
       <div
         class="bg-gray-100 dark:bg-gray-800 rounded-md overflow-hidden"
-        style="height: {height};"
+        style="height: {height}; min-height: 400px; display: block;"
       >
+        <!-- Map container with explicit ID for easier debugging -->
         <div 
           bind:this={mapElement} 
+          id="leaflet-map-container"
           class="w-full h-full" 
+          style="min-height: 400px; height: 400px; position: relative; display: block; visibility: visible;"
           aria-label={$t('location.mapContainer')}
-      ></div>
-    </div>
+        ></div>
+      </div>
       
       <!-- Coordinates -->
       <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">

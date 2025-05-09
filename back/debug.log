@@ -3050,3 +3050,351 @@ WARNING 2025-05-08 23:04:29,733 log 19278 126096659961536 Bad Request: /api/acco
 WARNING 2025-05-08 23:04:29,734 basehttp 19278 126096659961536 "POST /api/accounts/register/ HTTP/1.1" 400 117
 WARNING 2025-05-08 23:05:02,006 log 19278 126096659961536 Bad Request: /api/accounts/register/
 WARNING 2025-05-08 23:05:02,008 basehttp 19278 126096659961536 "POST /api/accounts/register/ HTTP/1.1" 400 117
+INFO 2025-05-08 23:06:14,431 autoreload 20223 132925027043136 Watching for file changes with StatReloader
+INFO 2025-05-08 23:06:26,007 autoreload 20226 126606448277312 Watching for file changes with StatReloader
+INFO 2025-05-08 23:06:55,724 autoreload 20524 127373891127104 Watching for file changes with StatReloader
+WARNING 2025-05-08 23:06:58,881 log 20524 127373811906240 Bad Request: /api/accounts/register/
+WARNING 2025-05-08 23:06:58,881 basehttp 20524 127373811906240 "POST /api/accounts/register/ HTTP/1.1" 400 117
+WARNING 2025-05-08 23:09:15,231 log 20524 127373811906240 Bad Request: /api/accounts/register/
+WARNING 2025-05-08 23:09:15,231 basehttp 20524 127373811906240 "POST /api/accounts/register/ HTTP/1.1" 400 117
+INFO 2025-05-08 23:09:49,665 serializers 20524 127373811906240 User 'rings9619@gmail.com' created successfully
+INFO 2025-05-08 23:09:53,723 utils 20524 127373811906240 Email sent: Verify Your Email Address to rings9619@gmail.com
+INFO 2025-05-08 23:09:53,723 views 20524 127373811906240 Verification email sent to rings9619@gmail.com
+INFO 2025-05-08 23:09:53,845 basehttp 20524 127373811906240 "POST /api/accounts/register/ HTTP/1.1" 201 138
+INFO 2025-05-08 23:10:22,805 basehttp 20524 127373811906240 "OPTIONS /api/accounts/verify-email/ HTTP/1.1" 200 0
+WARNING 2025-05-08 23:10:22,829 log 20524 127373811906240 Bad Request: /api/accounts/verify-email/
+WARNING 2025-05-08 23:10:22,830 basehttp 20524 127373811906240 "POST /api/accounts/verify-email/ HTTP/1.1" 400 107
+INFO 2025-05-08 23:10:27,127 views 20524 127373811906240 Email verification successful for user 2
+INFO 2025-05-08 23:10:27,153 basehttp 20524 127373811906240 "POST /api/accounts/verify-email/ HTTP/1.1" 200 1128
+INFO 2025-05-08 23:10:30,005 middleware 20524 127373811906240 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA...'
+INFO 2025-05-08 23:10:30,006 views 20524 127373811906240 Successful login for user: rings9619@gmail.com
+INFO 2025-05-08 23:10:30,013 basehttp 20524 127373811906240 "POST /api/accounts/login/ HTTP/1.1" 200 1088
+INFO 2025-05-08 23:10:31,796 basehttp 20524 127373800888000 "GET /api/properties/?page=1&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-05-08 23:10:38,767 basehttp 20524 127373811906240 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-08 23:10:38,963 basehttp 20524 127373800888000 "GET /api/properties/?page=1&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-05-08 23:10:54,303 basehttp 20524 127373792495296 "GET /admin/ HTTP/1.1" 200 13775
+INFO 2025-05-08 23:10:57,004 basehttp 20524 127373792495296 "GET /admin/accounts/customuser/ HTTP/1.1" 200 21243
+INFO 2025-05-08 23:10:57,112 basehttp 20524 127373792495296 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:11:01,460 basehttp 20524 127373792495296 "GET /admin/accounts/customuser/2/change/ HTTP/1.1" 200 63840
+INFO 2025-05-08 23:11:01,502 basehttp 20524 127373792495296 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:11:19,387 basehttp 20524 127373792495296 "POST /admin/accounts/customuser/2/change/ HTTP/1.1" 302 0
+INFO 2025-05-08 23:11:19,418 basehttp 20524 127373792495296 "GET /admin/accounts/customuser/ HTTP/1.1" 200 21482
+INFO 2025-05-08 23:11:19,499 basehttp 20524 127373792495296 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:11:22,526 basehttp 20524 127373811906240 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-08 23:11:22,615 basehttp 20524 127373800888000 "GET /api/properties/?page=1&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-05-08 23:11:26,492 basehttp 20524 127373811906240 "GET /api/accounts/profile/ HTTP/1.1" 200 595
+INFO 2025-05-08 23:11:26,664 basehttp 20524 127373800888000 "GET /api/properties/?page=1&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-05-08 23:11:30,006 basehttp 20524 127373792495296 "GET /admin/accounts/customuser/2/change/ HTTP/1.1" 200 63840
+INFO 2025-05-08 23:11:30,051 basehttp 20524 127373792495296 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:11:52,845 basehttp 20524 127373792495296 "POST /admin/accounts/customuser/2/change/ HTTP/1.1" 302 0
+INFO 2025-05-08 23:11:52,879 basehttp 20524 127373792495296 "GET /admin/accounts/customuser/ HTTP/1.1" 200 21475
+INFO 2025-05-08 23:11:52,954 basehttp 20524 127373792495296 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:11:58,162 basehttp 20524 127373811906240 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+ERROR 2025-05-08 23:13:24,110 log 20524 127373811906240 Internal Server Error: /api/properties/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py", line 119, in perform_create
+    serializer.save(owner=self.request.user)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/models.py", line 217, in save
+    prefix = self.property_type.code
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/fields/related_descriptors.py", line 268, in __get__
+    raise self.RelatedObjectDoesNotExist(
+base.models.Property.property_type.RelatedObjectDoesNotExist: Property has no property_type.. Did you mean: 'property_type_id'?
+ERROR 2025-05-08 23:13:24,118 basehttp 20524 127373811906240 "POST /api/properties/ HTTP/1.1" 500 168544
+INFO 2025-05-08 23:13:30,286 basehttp 20524 127373792495296 "GET /admin/base/property/ HTTP/1.1" 200 15254
+INFO 2025-05-08 23:13:30,322 basehttp 20524 127373792495296 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-08 23:15:30,173 autoreload 20524 127373891127104 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/models.py changed, reloading.
+INFO 2025-05-08 23:15:34,518 autoreload 21146 125598010124096 Watching for file changes with StatReloader
+INFO 2025-05-08 23:15:35,969 autoreload 21146 125598010124096 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/models.py changed, reloading.
+INFO 2025-05-08 23:15:36,663 autoreload 21152 129229582821184 Watching for file changes with StatReloader
+INFO 2025-05-08 23:21:45,072 autoreload 21152 129229582821184 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/models.py changed, reloading.
+INFO 2025-05-08 23:21:46,303 autoreload 21513 138807521470272 Watching for file changes with StatReloader
+WARNING 2025-05-08 23:22:02,451 log 21513 138807370315456 Bad Request: /api/properties/
+WARNING 2025-05-08 23:22:02,451 basehttp 21513 138807370315456 "POST /api/properties/ HTTP/1.1" 400 139
+INFO 2025-05-08 23:22:15,676 autoreload 21513 138807521470272 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/models.py changed, reloading.
+INFO 2025-05-08 23:22:16,377 autoreload 21547 126930816866112 Watching for file changes with StatReloader
+WARNING 2025-05-08 23:22:20,341 log 21547 126930736117440 Bad Request: /api/properties/
+WARNING 2025-05-08 23:22:20,342 basehttp 21547 126930736117440 "POST /api/properties/ HTTP/1.1" 400 139
+WARNING 2025-05-08 23:22:27,994 log 21547 126930736117440 Bad Request: /api/properties/
+WARNING 2025-05-08 23:22:27,995 basehttp 21547 126930736117440 "POST /api/properties/ HTTP/1.1" 400 139
+INFO 2025-05-08 23:22:38,341 autoreload 21547 126930816866112 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/models.py changed, reloading.
+INFO 2025-05-08 23:22:39,376 autoreload 21579 127416693958464 Watching for file changes with StatReloader
+INFO 2025-05-08 23:22:41,092 autoreload 21579 127416693958464 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/models.py changed, reloading.
+INFO 2025-05-08 23:22:41,660 autoreload 21585 123423744321344 Watching for file changes with StatReloader
+INFO 2025-05-08 23:30:03,734 autoreload 21585 123423744321344 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/models.py changed, reloading.
+INFO 2025-05-08 23:30:04,332 autoreload 22037 139628588013376 Watching for file changes with StatReloader
+WARNING 2025-05-08 23:32:46,496 log 22037 139628439926464 Bad Request: /api/properties/
+WARNING 2025-05-08 23:32:46,497 basehttp 22037 139628439926464 "POST /api/properties/ HTTP/1.1" 400 139
+INFO 2025-05-08 23:42:28,073 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+WARNING 2025-05-08 23:43:48,504 log 22037 139628439926464 Bad Request: /api/properties/
+WARNING 2025-05-08 23:43:48,505 basehttp 22037 139628439926464 "POST /api/properties/ HTTP/1.1" 400 139
+INFO 2025-05-08 23:46:45,825 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-08 23:53:25,474 basehttp 22037 139628439926464 "OPTIONS /api/locations/ HTTP/1.1" 200 0
+INFO 2025-05-08 23:53:25,599 basehttp 22037 139628439926464 "POST /api/locations/ HTTP/1.1" 201 178
+WARNING 2025-05-08 23:53:25,656 log 22037 139628439926464 Bad Request: /api/properties/
+WARNING 2025-05-08 23:53:25,656 basehttp 22037 139628439926464 "POST /api/properties/ HTTP/1.1" 400 63
+INFO 2025-05-08 23:58:13,453 basehttp 22037 139628439926464 "OPTIONS /api/property-types/ HTTP/1.1" 200 0
+WARNING 2025-05-08 23:58:13,644 log 22037 139628439926464 Not Found: /api/property-types/
+WARNING 2025-05-08 23:58:13,660 basehttp 22037 139628439926464 "GET /api/property-types/ HTTP/1.1" 404 8771
+INFO 2025-05-08 23:58:13,697 basehttp 22037 139628439926464 "OPTIONS /api/building-types/ HTTP/1.1" 200 0
+WARNING 2025-05-08 23:58:13,781 log 22037 139628439926464 Not Found: /api/building-types/
+WARNING 2025-05-08 23:58:13,782 basehttp 22037 139628439926464 "GET /api/building-types/ HTTP/1.1" 404 8771
+INFO 2025-05-08 23:58:47,101 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+WARNING 2025-05-08 23:58:47,197 log 22037 139628439926464 Not Found: /api/property-types/
+WARNING 2025-05-08 23:58:47,198 basehttp 22037 139628439926464 "GET /api/property-types/ HTTP/1.1" 404 8771
+WARNING 2025-05-08 23:58:47,229 log 22037 139628439926464 Not Found: /api/building-types/
+WARNING 2025-05-08 23:58:47,230 basehttp 22037 139628439926464 "GET /api/building-types/ HTTP/1.1" 404 8771
+INFO 2025-05-08 23:59:11,192 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+WARNING 2025-05-08 23:59:11,274 log 22037 139628439926464 Not Found: /api/property-types/
+WARNING 2025-05-08 23:59:11,275 basehttp 22037 139628439926464 "GET /api/property-types/ HTTP/1.1" 404 8771
+WARNING 2025-05-08 23:59:11,334 log 22037 139628439926464 Not Found: /api/building-types/
+WARNING 2025-05-08 23:59:11,339 basehttp 22037 139628439926464 "GET /api/building-types/ HTTP/1.1" 404 8771
+INFO 2025-05-09 00:00:07,317 basehttp 22037 139628439926464 "OPTIONS /api/types/property/ HTTP/1.1" 200 0
+INFO 2025-05-09 00:00:07,383 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 52
+INFO 2025-05-09 00:00:07,460 basehttp 22037 139628439926464 "OPTIONS /api/types/building/ HTTP/1.1" 200 0
+INFO 2025-05-09 00:00:07,518 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 52
+INFO 2025-05-09 00:01:51,478 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 52
+INFO 2025-05-09 00:01:51,605 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 52
+INFO 2025-05-09 00:03:25,551 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 52
+INFO 2025-05-09 00:03:25,640 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 52
+INFO 2025-05-09 00:05:06,353 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:05:06,436 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 52
+INFO 2025-05-09 00:05:06,472 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 52
+INFO 2025-05-09 00:05:11,948 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:05:12,064 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 52
+INFO 2025-05-09 00:05:12,096 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 52
+INFO 2025-05-09 00:06:00,656 basehttp 22037 139628431533760 "GET /admin/base/propertytype/ HTTP/1.1" 200 13519
+INFO 2025-05-09 00:06:00,706 basehttp 22037 139628431533760 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-09 00:06:03,638 basehttp 22037 139628431533760 "GET /admin/base/propertytype/add/ HTTP/1.1" 200 17771
+INFO 2025-05-09 00:06:03,681 basehttp 22037 139628431533760 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-09 00:06:29,642 basehttp 22037 139628431533760 "POST /admin/base/propertytype/add/ HTTP/1.1" 302 0
+INFO 2025-05-09 00:06:29,691 basehttp 22037 139628431533760 "GET /admin/base/propertytype/ HTTP/1.1" 200 15432
+INFO 2025-05-09 00:06:29,782 basehttp 22037 139628431533760 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-09 00:06:35,362 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:06:35,447 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 177
+INFO 2025-05-09 00:06:35,471 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 52
+INFO 2025-05-09 00:07:36,222 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 177
+INFO 2025-05-09 00:07:36,296 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 52
+INFO 2025-05-09 00:08:32,095 basehttp 22037 139628431533760 "GET /admin/base/buildingtype/ HTTP/1.1" 200 13515
+INFO 2025-05-09 00:08:32,132 basehttp 22037 139628431533760 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-09 00:08:34,871 basehttp 22037 139628431533760 "GET /admin/base/buildingtype/add/ HTTP/1.1" 200 17769
+INFO 2025-05-09 00:08:34,906 basehttp 22037 139628431533760 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-09 00:09:07,799 basehttp 22037 139628431533760 "POST /admin/base/buildingtype/add/ HTTP/1.1" 200 18041
+INFO 2025-05-09 00:09:07,834 basehttp 22037 139628431533760 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-05-09 00:09:19,165 basehttp 22037 139628431533760 "POST /admin/base/buildingtype/add/ HTTP/1.1" 302 0
+INFO 2025-05-09 00:09:19,193 basehttp 22037 139628431533760 "GET /admin/base/buildingtype/ HTTP/1.1" 200 15427
+INFO 2025-05-09 00:09:19,273 basehttp 22037 139628431533760 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-05-09 00:10:33,026 log 22037 139628439926464 Unauthorized: /api/accounts/profile/
+WARNING 2025-05-09 00:10:33,029 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 401 172
+INFO 2025-05-09 00:10:33,068 basehttp 22037 139628439926464 "POST /api/accounts/token/refresh/ HTTP/1.1" 200 269
+INFO 2025-05-09 00:10:33,126 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:10:33,239 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 177
+INFO 2025-05-09 00:10:33,280 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 180
+WARNING 2025-05-09 00:10:39,844 log 22037 139628439926464 Unauthorized: /api/accounts/logout/
+WARNING 2025-05-09 00:10:39,845 basehttp 22037 139628439926464 "POST /api/accounts/logout/ HTTP/1.1" 401 58
+WARNING 2025-05-09 00:10:40,588 log 22037 139628439926464 Unauthorized: /api/auctions/
+WARNING 2025-05-09 00:10:40,590 basehttp 22037 139628439926464 "GET /api/auctions/? HTTP/1.1" 401 58
+INFO 2025-05-09 00:10:44,283 middleware 22037 139628439926464 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA...'
+INFO 2025-05-09 00:10:44,285 views 22037 139628439926464 Successful login for user: rings9619@gmail.com
+INFO 2025-05-09 00:10:44,290 basehttp 22037 139628439926464 "POST /api/accounts/login/ HTTP/1.1" 200 1087
+INFO 2025-05-09 00:10:46,986 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:10:50,457 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:10:50,529 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 177
+INFO 2025-05-09 00:10:50,565 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 180
+INFO 2025-05-09 00:13:23,249 basehttp 22037 139628439926464 "OPTIONS /api/accounts/profile/ HTTP/1.1" 200 0
+INFO 2025-05-09 00:13:23,261 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:13:25,848 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:13:28,809 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:13:30,916 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:13:33,190 basehttp 22037 139628439926464 "OPTIONS /api/auctions/? HTTP/1.1" 200 0
+INFO 2025-05-09 00:13:33,205 basehttp 22037 139628439926464 "GET /api/auctions/? HTTP/1.1" 200 52
+INFO 2025-05-09 00:13:34,265 basehttp 22037 139628439926464 "OPTIONS /api/properties/?page=1&ordering=-created_at HTTP/1.1" 200 0
+INFO 2025-05-09 00:13:34,286 basehttp 22037 139628423141056 "GET /api/properties/?page=1&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-05-09 00:13:53,438 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:13:53,501 basehttp 22037 139628423141056 "GET /api/properties/?page=1&ordering=-created_at HTTP/1.1" 200 52
+WARNING 2025-05-09 00:14:11,913 log 22037 139628412651200 Unauthorized: /api/auctions/
+WARNING 2025-05-09 00:14:11,916 basehttp 22037 139628412651200 "GET /api/auctions/? HTTP/1.1" 401 58
+INFO 2025-05-09 00:14:21,901 basehttp 22037 139628412651200 "OPTIONS /api/accounts/login/ HTTP/1.1" 200 0
+INFO 2025-05-09 00:14:22,822 middleware 22037 139628412651200 Login: rings9619@gmail.com from IP: 127.0.0.1, UA: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36...'
+INFO 2025-05-09 00:14:22,822 views 22037 139628412651200 Successful login for user: rings9619@gmail.com
+INFO 2025-05-09 00:14:22,827 basehttp 22037 139628412651200 "POST /api/accounts/login/ HTTP/1.1" 200 1087
+INFO 2025-05-09 00:14:37,392 basehttp 22037 139628412651200 "OPTIONS /api/accounts/profile/ HTTP/1.1" 200 0
+INFO 2025-05-09 00:14:37,419 basehttp 22037 139628412651200 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:16:11,390 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:16:11,522 basehttp 22037 139628423141056 "GET /api/properties/?page=1&ordering=-created_at HTTP/1.1" 200 52
+INFO 2025-05-09 00:17:50,293 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:17:50,373 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 177
+INFO 2025-05-09 00:17:50,392 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 180
+INFO 2025-05-09 00:18:31,693 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:18:31,815 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 177
+INFO 2025-05-09 00:18:31,893 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 180
+INFO 2025-05-09 00:18:44,051 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:18:44,208 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 177
+INFO 2025-05-09 00:18:44,290 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 180
+INFO 2025-05-09 00:19:12,761 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:19:12,848 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 177
+INFO 2025-05-09 00:19:12,881 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 180
+INFO 2025-05-09 00:19:52,285 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:19:52,442 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 177
+INFO 2025-05-09 00:19:52,559 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 180
+INFO 2025-05-09 00:22:43,759 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:22:43,896 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 177
+INFO 2025-05-09 00:22:43,972 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 180
+INFO 2025-05-09 00:23:10,046 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:23:10,225 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 177
+INFO 2025-05-09 00:23:10,356 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 180
+INFO 2025-05-09 00:23:47,637 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:23:47,751 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 177
+INFO 2025-05-09 00:23:47,828 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 180
+INFO 2025-05-09 00:24:39,503 basehttp 22037 139628439926464 "GET /api/accounts/profile/ HTTP/1.1" 200 594
+INFO 2025-05-09 00:24:39,592 basehttp 22037 139628439926464 "GET /api/types/property/ HTTP/1.1" 200 177
+INFO 2025-05-09 00:24:39,624 basehttp 22037 139628439926464 "GET /api/types/building/ HTTP/1.1" 200 180
+INFO 2025-05-09 00:26:37,772 basehttp 22037 139628439926464 "OPTIONS /api/properties/ HTTP/1.1" 200 0
+ERROR 2025-05-09 00:26:38,426 log 22037 139628439926464 Internal Server Error: /api/properties/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py", line 119, in perform_create
+    serializer.save(owner=self.request.user)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/serializers.py", line 160, in create
+    return super().create(validated_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/models.py", line 242, in save
+    if not self.property_number and self.property_type: # Ensure property_type is set
+                                    ^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/fields/related_descriptors.py", line 268, in __get__
+    raise self.RelatedObjectDoesNotExist(
+base.models.Property.property_type.RelatedObjectDoesNotExist: Property has no property_type.. Did you mean: 'property_type_id'?
+ERROR 2025-05-09 00:26:38,485 basehttp 22037 139628439926464 "POST /api/properties/ HTTP/1.1" 500 177482
+INFO 2025-05-09 00:28:26,553 autoreload 22037 139628588013376 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/serializers.py changed, reloading.
+INFO 2025-05-09 00:28:32,715 autoreload 26823 136293321971520 Watching for file changes with StatReloader
+ERROR 2025-05-09 00:28:58,662 log 26823 136293242631872 Internal Server Error: /api/properties/
+Traceback (most recent call last):
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/mixins.py", line 19, in create
+    self.perform_create(serializer)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/views.py", line 119, in perform_create
+    serializer.save(owner=self.request.user)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/serializers.py", line 210, in save
+    self.instance = self.create(validated_data)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/serializers.py", line 163, in create
+    return super().create(validated_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/rest_framework/serializers.py", line 991, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/models.py", line 242, in save
+    if not self.property_number and self.property_type: # Ensure property_type is set
+                                    ^^^^^^^^^^^^^^^^^^
+  File "/home/ahmed/tech-Savvy-projects/2025/new_ones/newprojects/lib/python3.12/site-packages/django/db/models/fields/related_descriptors.py", line 268, in __get__
+    raise self.RelatedObjectDoesNotExist(
+base.models.Property.property_type.RelatedObjectDoesNotExist: Property has no property_type.. Did you mean: 'property_type_id'?
+ERROR 2025-05-09 00:28:58,680 basehttp 26823 136293242631872 "POST /api/properties/ HTTP/1.1" 500 177482
+INFO 2025-05-09 00:29:45,847 autoreload 26823 136293321971520 /home/ahmed/tech-Savvy-projects/2025/new_ones/auctions/back/base/serializers.py changed, reloading.
+INFO 2025-05-09 00:29:46,691 autoreload 26935 127371439433536 Watching for file changes with StatReloader
+WARNING 2025-05-09 00:30:16,613 log 26935 127371360335552 Bad Request: /api/properties/
+WARNING 2025-05-09 00:30:16,614 basehttp 26935 127371360335552 "POST /api/properties/ HTTP/1.1" 400 41

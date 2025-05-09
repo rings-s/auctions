@@ -5,16 +5,22 @@
   import { t } from '$lib/i18n/i18n';
   import { user } from '$lib/stores/user';
   import { createProperty, uploadPropertyMediaBatch } from '$lib/api/property';
+  import { API_BASE_URL } from '$lib/constants';
   
   import TagSelector from '$lib/components/TagSelector.svelte';
   import MediaUploader from '$lib/components/MediaUploader.svelte';
   import RoomManager from '$lib/components/RoomManager.svelte';
   import LocationPicker from '$lib/components/LocationPicker.svelte';
 
+  // Property Types and Building Types
+  let propertyTypes = [];
+  let buildingTypes = [];
+  let loadingTypes = true;
+  
   // Property Initial State
   let propertyData = {
     title: '',
-    property_type: 'residential',
+    property_type: null, // Will be set to the first available type ID
     building_type: null,
     status: 'available',
     deed_number: '',
@@ -50,25 +56,9 @@
   let success = '';
   let mediaFiles = [];
   let uploadingMedia = false;
+  let progress = 0;
 
-  // Form Options
-  const propertyTypes = [
-    { id: 'residential', name: 'سكني', label: 'property.types.residential' },
-    { id: 'commercial', name: 'تجاري', label: 'property.types.commercial' },
-    { id: 'land', name: 'أرض', label: 'property.types.land' },
-    { id: 'industrial', name: 'صناعي', label: 'property.types.industrial' },
-    { id: 'mixed_use', name: 'متعدد الاستخدامات', label: 'property.types.mixedUse' }
-  ];
-
-  const buildingTypes = [
-    { id: 'apartment', name: 'شقة', label: 'property.building.apartment' },
-    { id: 'villa', name: 'فيلا', label: 'property.building.villa' },
-    { id: 'building', name: 'مبنى', label: 'property.building.building' },
-    { id: 'farmhouse', name: 'مزرعة', label: 'property.building.farmhouse' },
-    { id: 'shop', name: 'محل تجاري', label: 'property.building.shop' },
-    { id: 'office', name: 'مكتب', label: 'property.building.office' }
-  ];
-
+  // Status Types (not fetched from API)
   const statusTypes = [
     { id: 'available', name: 'متاح', label: 'property.status.available' },
     { id: 'under_contract', name: 'تحت العقد', label: 'property.status.underContract' },
@@ -124,12 +114,8 @@
       { field: 'title', name: 'Title' },
       { field: 'property_type', name: 'Property Type' },
       { field: 'deed_number', name: 'Deed Number' },
-      { field: 'description', name: 'Description' },
       { field: 'size_sqm', name: 'Size' },
-      { field: 'market_value', name: 'Market Value' },
-      { field: 'address', name: 'Address' },
-      { field: 'city', name: 'City' },
-      { field: 'state', name: 'State' }
+      { field: 'market_value', name: 'Market Value' }
     ];
 
     for (const { field, name } of requiredFields) {
@@ -137,20 +123,17 @@
       if (error) errors.push(error);
     }
 
-    // Number Validations
-    if (propertyData.size_sqm) {
-      const error = validateNumber(propertyData.size_sqm, 'Size', 1);
-      if (error) errors.push(error);
-    }
+    // Numeric Fields
+    const numericFields = [
+      { field: 'size_sqm', name: 'Size', min: 1 },
+      { field: 'market_value', name: 'Market Value', min: 1 }
+    ];
 
-    if (propertyData.market_value) {
-      const error = validateNumber(propertyData.market_value, 'Market Value', 1);
-      if (error) errors.push(error);
-    }
-
-    if (propertyData.minimum_bid) {
-      const error = validateNumber(propertyData.minimum_bid, 'Minimum Bid', 1);
-      if (error) errors.push(error);
+    for (const { field, name, min, max } of numericFields) {
+      if (propertyData[field]) {
+        const error = validateNumber(propertyData[field], name, min, max);
+        if (error) errors.push(error);
+      }
     }
 
     // Deed Number Format
@@ -178,22 +161,21 @@
   }
 
   function handleFeaturesChange(event) {
-    propertyData.features = event.detail;
+    propertyData.features = event.detail.selectedTags;
   }
 
   function handleAmenitiesChange(event) {
-    propertyData.amenities = event.detail;
+    propertyData.amenities = event.detail.selectedTags;
   }
 
   function handleRoomsChange(event) {
-    propertyData.rooms = event.detail;
+    propertyData.rooms = event.detail.rooms;
   }
 
   function handleMediaChange(event) {
     mediaFiles = event.detail.files;
   }
 
-  // Navigation Functions
   function nextStep() {
     if (step < totalSteps) {
       step++;
@@ -230,38 +212,65 @@
         return;
       }
 
+      // Get property type ID - make sure it's a number
+      let propertyTypeId = null;
+      try {
+        if (propertyData.property_type) {
+          if (!isNaN(parseInt(propertyData.property_type))) {
+            propertyTypeId = parseInt(propertyData.property_type);
+          }
+        }
+      } catch (e) {
+        console.error('Error parsing property type:', e);
+      }
+      
+      // Get building type ID - make sure it's a number or null
+      let buildingTypeId = null;
+      try {
+        if (propertyData.building_type && propertyData.building_type !== 'null' && propertyData.building_type !== '') {
+          if (!isNaN(parseInt(propertyData.building_type))) {
+            buildingTypeId = parseInt(propertyData.building_type);
+          }
+        }
+      } catch (e) {
+        console.error('Error parsing building type:', e);
+      }
+      
       // Format data for submission
       const formattedData = {
-        ...propertyData,
-        // Ensure property_type is included and formatted correctly
-        property_type: propertyData.property_type || 'residential', // Default value
+        title: propertyData.title,
+        description: propertyData.description || '',
+        // Use the parsed property_type and building_type IDs
+        property_type: propertyTypeId,
+        building_type: buildingTypeId,
+        deed_number: propertyData.deed_number || '',
+        address: propertyData.address || '',
+        
+        // Include location data directly
+        city: propertyData.city || '',
+        state: propertyData.state || '',
+        country: propertyData.country || 'Saudi Arabia',
+        postal_code: propertyData.postal_code || '',
+        latitude: propertyData.latitude ? parseFloat(propertyData.latitude) : null,
+        longitude: propertyData.longitude ? parseFloat(propertyData.longitude) : null,
         
         // Format numeric fields
-        size_sqm: parseFloat(propertyData.size_sqm),
-        market_value: parseFloat(propertyData.market_value),
+        size_sqm: parseFloat(propertyData.size_sqm) || 0,
+        market_value: parseFloat(propertyData.market_value) || 0,
         minimum_bid: propertyData.minimum_bid ? parseFloat(propertyData.minimum_bid) : null,
         floors: propertyData.floors ? parseInt(propertyData.floors) : null,
         year_built: propertyData.year_built ? parseInt(propertyData.year_built) : null,
         
-        // Format location data
-        location: {
-          city: propertyData.city,
-          state: propertyData.state,
-          country: propertyData.country,
-          postal_code: propertyData.postal_code,
-          latitude: propertyData.latitude ? parseFloat(propertyData.latitude) : null,
-          longitude: propertyData.longitude ? parseFloat(propertyData.longitude) : null
-        },
-        
         // Ensure arrays are properly formatted
         features: Array.isArray(propertyData.features) ? propertyData.features : [],
         amenities: Array.isArray(propertyData.amenities) ? propertyData.amenities : [],
-        rooms: Array.isArray(propertyData.rooms) ? propertyData.rooms.map(room => ({
-          ...room,
-          area_sqm: parseFloat(room.area_sqm) || 0,
-          floor: parseInt(room.floor) || 1
-        })) : []
+        
+        // Set default status and flags
+        status: 'available',
+        is_published: true
       };
+      
+      console.log('Submitting property data:', formattedData);
 
       // Create property
       const response = await createProperty(formattedData);
@@ -301,12 +310,62 @@
     }
   }
 
-  // Authentication Check
-  onMount(() => {
+  // Authentication Check and Fetch Property Types
+  onMount(async () => {
+    // Authentication check
     if (!$user) {
       goto('/login?redirect=/properties/create');
+      return;
     } else if (!['owner', 'appraiser', 'data_entry'].includes($user.role) && !$user.is_staff) {
       goto('/properties');
+      return;
+    }
+    
+    // Fetch property types and building types
+    try {
+      loadingTypes = true;
+      
+      // Fetch property types
+      const propertyTypesResponse = await fetch(`${API_BASE_URL}/types/property/`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        }
+      });
+      
+      if (propertyTypesResponse.ok) {
+        const data = await propertyTypesResponse.json();
+        // Check if the response is an array or has a results property
+        propertyTypes = Array.isArray(data) ? data : (data.results || []);
+        console.log('Available property types:', propertyTypes);
+        
+        // Set default property type if available
+        if (propertyTypes.length > 0) {
+          propertyData.property_type = propertyTypes[0].id;
+          console.log('Set default property type:', propertyData.property_type);
+        }
+      } else {
+        console.error('Failed to fetch property types:', await propertyTypesResponse.text());
+      }
+      
+      // Fetch building types
+      const buildingTypesResponse = await fetch(`${API_BASE_URL}/types/building/`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        }
+      });
+      
+      if (buildingTypesResponse.ok) {
+        const data = await buildingTypesResponse.json();
+        // Check if the response is an array or has a results property
+        buildingTypes = Array.isArray(data) ? data : (data.results || []);
+        console.log('Available building types:', buildingTypes);
+      } else {
+        console.error('Failed to fetch building types:', await buildingTypesResponse.text());
+      }
+    } catch (error) {
+      console.error('Error fetching property types:', error);
+    } finally {
+      loadingTypes = false;
     }
   });
 </script>
@@ -388,11 +447,18 @@
               <select
                 id="property_type"
                 bind:value={propertyData.property_type}
-                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                disabled={loadingTypes}
               >
-                {#each propertyTypes as type}
-                  <option value={type.id}>{type.name}</option>
-                {/each}
+                {#if loadingTypes}
+                  <option value="">{$t('common.loading')}</option>
+                {:else if propertyTypes.length === 0}
+                  <option value="">{$t('common.noOptions')}</option>
+                {:else}
+                  {#each propertyTypes as type}
+                    <option value={type.id}>{type.name || type.label || type.id}</option>
+                  {/each}
+                {/if}
               </select>
             </div>
 
@@ -403,12 +469,15 @@
               <select
                 id="building_type"
                 bind:value={propertyData.building_type}
-                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md dark:bg-gray-800 dark:border-gray-700 dark:text-white"
+                disabled={loadingTypes}
               >
-                <option value="">{$t('property.select')}</option>
-                {#each buildingTypes as type}
-                  <option value={type.id}>{type.name}</option>
-                {/each}
+                <option value={null}>{$t('common.select')}</option>
+                {#if !loadingTypes && buildingTypes.length > 0}
+                  {#each buildingTypes as type}
+                    <option value={type.id}>{type.name || type.label || type.id}</option>
+                  {/each}
+                {/if}
               </select>
             </div>
 
@@ -426,30 +495,25 @@
 
             <div class="sm:col-span-6">
               <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                {$t('property.description')} *
+                {$t('property.description')}
               </label>
               <textarea
                 id="description"
                 bind:value={propertyData.description}
-                rows="4"
-                class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                rows="3"
+                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
               ></textarea>
             </div>
           </div>
         </div>
 
       {:else if step === 2}
-        <div class="p-6">
-          <LocationPicker
-            on:change={handleLocationChange}
-            bind:address={propertyData.address}
-            bind:city={propertyData.city}
-            bind:state={propertyData.state}
-            bind:postalCode={propertyData.postal_code}
-            bind:country={propertyData.country}
-            bind:latitude={propertyData.latitude}
-            bind:longitude={propertyData.longitude}
-          />
+        <div class="p-6 space-y-6">
+          <h2 class="text-lg font-medium text-gray-900 dark:text-white">
+            {$t('property.location')}
+          </h2>
+
+          <LocationPicker on:change={handleLocationChange} />
         </div>
 
       {:else if step === 3}

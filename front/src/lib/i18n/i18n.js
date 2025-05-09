@@ -451,6 +451,20 @@ const translations = {
   },
   
   ar: {
+    // Common elements
+    common: {
+      loading: 'جاري التحميل...',
+      select: 'اختر',
+      save: 'حفظ',
+      cancel: 'إلغاء',
+      edit: 'تعديل',
+      delete: 'حذف',
+      confirm: 'تأكيد',
+      back: 'رجوع',
+      next: 'التالي',
+      previous: 'السابق'
+    },
+    
     validation: {
       titleRequired: 'العنوان مطلوب',
       propertyTypeRequired: 'نوع العقار مطلوب',
@@ -853,6 +867,64 @@ const translations = {
       rights: 'جميع الحقوق محفوظة.'
     },
 
+    // Property
+    // Location picker translations
+    location: {
+      title: 'الموقع',
+      locationDesc: 'حدد موقع العقار على الخريطة',
+      address: 'العنوان',
+      city: 'المدينة',
+      state: 'المنطقة',
+      postalCode: 'الرمز البريدي',
+      country: 'الدولة',
+      latitude: 'خط العرض',
+      longitude: 'خط الطول',
+      detect: 'تحديد الموقع',
+      detectHelp: 'استخدم موقعك الحالي لتحديد موقع العقار',
+      detectButton: 'تحديد موقعي',
+      useMap: 'استخدم الخريطة',
+      enterManually: 'إدخال يدوي',
+      mapContainer: 'خريطة الموقع',
+      searchPlaceholder: 'ابحث عن موقع...',
+      mapInitFailed: 'فشل تهيئة الخريطة',
+      mapLoadFailed: 'فشل تحميل الخريطة',
+      geolocationNotSupported: 'تحديد الموقع غير مدعوم',
+      detectionSuccess: 'تم تحديد موقعك بنجاح',
+      detectionFailed: 'فشل تحديد الموقع',
+      searchFailed: 'فشل البحث',
+      geocodingFailed: 'فشل تحويل الإحداثيات إلى عنوان'
+    },
+
+    property: {
+      title: 'العقار',
+      featured: 'مميز',
+      rooms: 'الغرف',
+      viewDetails: 'عرض التفاصيل',
+      features: 'المميزات',
+      amenities: 'المرافق',
+      location: 'الموقع',
+      next: 'التالي',
+      previous: 'السابق',
+      size: 'المساحة',
+      floors: 'الطوابق',
+      yearBuilt: 'سنة البناء',
+      marketValue: 'القيمة السوقية',
+      
+      // Property creation form
+      createProperty: 'إنشاء عقار جديد',
+      createPropertyDesc: 'أدخل معلومات العقار الجديد',
+      basicInfo: 'المعلومات الأساسية',
+      propertyType: 'نوع العقار',
+      buildingType: 'نوع المبنى',
+      deedNumber: 'رقم الصك',
+      description: 'الوصف',
+      details: 'تفاصيل العقار',
+      detailsDesc: 'الحجم، البناء، والميزات الخاصة',
+      roomsDesc: 'تحديد الغرف داخل هذا العقار',
+      financial: 'المعلومات المالية',
+      financialDesc: 'القيمة السوقية ومعلومات المزايدة'
+    },
+
     // Properties
     properties: {
       title: 'العقارات',
@@ -888,47 +960,3 @@ export const t = derived(
 
 
 
-/*
-
-{
-  "validation": {
-    "titleRequired": "Title is required",
-    "propertyTypeRequired": "Property type is required",
-    "deedNumberRequired": "Deed number is required",
-    "descriptionRequired": "Description is required",
-    "sizeRequired": "Size is required",
-    "addressRequired": "Street address is required",
-    "cityRequired": "City is required",
-    "stateRequired": "State/Region is required",
-    "marketValueRequired": "Market value is required",
-    "invalidDeedNumberFormat": "Invalid deed number format",
-    "invalidSizeFormat": "Invalid size format",
-    "invalidMarketValueFormat": "Invalid market value format",
-    "invalidMinimumBidFormat": "Invalid minimum bid format",
-    "invalidLatitudeFormat": "Invalid latitude format",
-    "invalidLongitudeFormat": "Invalid longitude format",
-    "titleTooLong": "Title cannot exceed 255 characters",
-    "addressTooLong": "Address cannot exceed 255 characters",
-    "cityTooLong": "City cannot exceed 100 characters",
-    "stateTooLong": "State/Region cannot exceed 100 characters",
-    "postalCodeTooLong": "Postal code cannot exceed 20 characters",
-    "countryTooLong": "Country cannot exceed 100 characters",
-    "invalidSizeRange": "Size must be greater than 0",
-    "invalidMarketValueRange": "Market value must be greater than 0",
-    "invalidMinimumBidRange": "Minimum bid must be greater than 0"
-  }
-}
-
-
-
- dropZoneLabel: 'Drop zone for file upload',
-    selectedFilesList: 'Selected files',
-    uploading: 'Uploading...',
-    invalidType: 'Invalid file type',
-    fileTooLarge: 'File too large (max {size}MB)',
-    tooManyFiles: 'Too many files (max {max})',
-    removeFile: 'Remove file {name}'
-
-
-
-  */

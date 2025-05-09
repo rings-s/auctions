@@ -196,7 +196,6 @@ export async function fetchPropertyBySlug(slug) {
 /**
  * Create a new property
  */
-// src/lib/api/property.js
 
 // In the createProperty function:
 export async function createProperty(propertyData) {
@@ -204,6 +203,80 @@ export async function createProperty(propertyData) {
     const token = localStorage.getItem('accessToken');
     if (!token) throw new Error('Authentication required');
 
+    console.log('Creating property with data:', propertyData);
+    
+    // Extract location data to create a location first if needed
+    const locationData = {};
+    if (propertyData.city) {
+      locationData.city = propertyData.city;
+      delete propertyData.city;
+    }
+    if (propertyData.state) {
+      locationData.state = propertyData.state;
+      delete propertyData.state;
+    }
+    if (propertyData.country) {
+      locationData.country = propertyData.country;
+      delete propertyData.country;
+    }
+    if (propertyData.postal_code) {
+      locationData.postal_code = propertyData.postal_code;
+      delete propertyData.postal_code;
+    }
+    if (propertyData.latitude) {
+      locationData.latitude = propertyData.latitude;
+      delete propertyData.latitude;
+    }
+    if (propertyData.longitude) {
+      locationData.longitude = propertyData.longitude;
+      delete propertyData.longitude;
+    }
+    
+    // Create location if we have enough data
+    let locationId = null;
+    if (locationData.city && locationData.state) {
+      try {
+        const locationResponse = await fetch(`http://localhost:8000/api/locations/`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(locationData)
+        });
+        
+        if (locationResponse.ok) {
+          const locationResult = await locationResponse.json();
+          locationId = locationResult.id;
+          console.log('Created location with ID:', locationId);
+        }
+      } catch (locationError) {
+        console.error('Error creating location:', locationError);
+        // Continue with property creation anyway
+      }
+    }
+    
+    // If we have a location ID, use it
+    if (locationId) {
+      propertyData.location = locationId;
+    }
+    
+    // Make sure property_type is a number
+    if (propertyData.property_type && typeof propertyData.property_type === 'string') {
+      if (!isNaN(parseInt(propertyData.property_type))) {
+        propertyData.property_type = parseInt(propertyData.property_type);
+      }
+    }
+    
+    // Make sure building_type is a number if provided
+    if (propertyData.building_type && propertyData.building_type !== null) {
+      if (typeof propertyData.building_type === 'string' && !isNaN(parseInt(propertyData.building_type))) {
+        propertyData.building_type = parseInt(propertyData.building_type);
+      }
+    }
+    
+    console.log('Sending final property data:', propertyData);
+    
     let response = await fetch(`${ENDPOINTS.PROPERTIES}`, {
       method: 'POST',
       headers: {
@@ -213,6 +286,9 @@ export async function createProperty(propertyData) {
       body: JSON.stringify(propertyData)
     });
 
+    // Log the raw response for debugging
+    console.log('Server response status:', response.status);
+    
     // Handle non-JSON responses
     const contentType = response.headers.get('content-type');
     if (!contentType || !contentType.includes('application/json')) {
@@ -220,15 +296,41 @@ export async function createProperty(propertyData) {
         throw new Error('Server error occurred. Please try again.');
       }
       const text = await response.text();
+      console.error('Non-JSON response:', text);
       throw new Error(`Server error: ${text}`);
     }
 
     const data = await response.json();
+    console.log('Response data:', data);
 
     if (!response.ok) {
+      // Format validation errors in a user-friendly way
+      if (response.status === 400 && typeof data === 'object') {
+        const errorMessages = [];
+        for (const [field, errors] of Object.entries(data)) {
+          if (Array.isArray(errors)) {
+            errorMessages.push(`${field}: ${errors.join(', ')}`);
+          } else if (typeof errors === 'string') {
+            errorMessages.push(`${field}: ${errors}`);
+          } else if (typeof errors === 'object') {
+            // Handle nested errors
+            for (const [nestedField, nestedErrors] of Object.entries(errors)) {
+              errorMessages.push(`${field}.${nestedField}: ${nestedErrors}`);
+            }
+          }
+        }
+        
+        if (errorMessages.length > 0) {
+          throw new Error(`Validation errors: ${errorMessages.join('; ')}`);
+        }
+      }
+      
       if (response.status === 401) {
         // Try token refresh
+        console.log('Attempting token refresh...');
         const newToken = await refreshToken();
+        console.log('Token refreshed, retrying request...');
+        
         response = await fetch(`${ENDPOINTS.PROPERTIES}`, {
           method: 'POST',
           headers: {
@@ -237,12 +339,25 @@ export async function createProperty(propertyData) {
           },
           body: JSON.stringify(propertyData)
         });
+        
+        console.log('Retry response status:', response.status);
+        const retryData = await response.json();
+        console.log('Retry response data:', retryData);
 
         if (!response.ok) {
-          throw new Error(data.error?.message || data.detail || 'Failed to create property');
+          const errorMsg = retryData.detail || 
+                         (typeof retryData === 'string' ? retryData : 'Failed to create property');
+          throw new Error(errorMsg);
         }
+        
+        return {
+          data: retryData,
+          status: response.status
+        };
       } else {
-        throw new Error(data.error?.message || data.detail || 'Failed to create property');
+        const errorMsg = data.detail || 
+                       (typeof data === 'string' ? data : 'Failed to create property');
+        throw new Error(errorMsg);
       }
     }
 

@@ -10,7 +10,6 @@ from django.core.cache import cache
 import uuid
 import os
 import random
-from django.utils.translation import gettext_lazy as _
 
 # -------------------------------------------------------------------------
 # Base Model
@@ -67,23 +66,34 @@ class Media(BaseModel):
         if not self.name:
             self.name = os.path.basename(self.file.name)
         
-        if not self.pk:
-            self.file_size = self.file.size
+        if not self.pk: # Only set file_size on creation
+            if self.file:
+                 self.file_size = self.file.size
+            else:
+                self.file_size = 0 
             
-        if not self.mime_type:
-            self.mime_type = self.file.content_type
-            
-        if self.media_type == 'image' and not (self.width and self.height):
+        if self.file and not self.mime_type: # Check if file exists before accessing content_type
+            try:
+                self.mime_type = self.file.content_type
+            except AttributeError: # Handle cases where file might not have content_type
+                 self.mime_type = ''
+
+        if self.media_type == 'image' and self.file and not (self.width and self.height): # Check if file exists
             from PIL import Image
-            img = Image.open(self.file)
-            self.width, self.height = img.size
+            try:
+                self.file.open() # Ensure file is open
+                img = Image.open(self.file)
+                self.width, self.height = img.size
+                self.file.close()
+            except Exception: # Catch potential errors during image processing
+                pass # Or log the error
                 
         super().save(*args, **kwargs)
 
     def to_dict(self):
         return {
             'id': self.id,
-            'url': self.file.url,
+            'url': self.file.url if self.file else None,
             'name': self.name,
             'type': self.media_type,
             'size': self.file_size,
@@ -138,7 +148,6 @@ class Location(BaseModel):
             models.Index(fields=['city', 'state']),
         ]
         
-
     def __str__(self):
         return f"{self.city}, {self.state}, {self.country}"
 
@@ -155,8 +164,20 @@ class Property(BaseModel):
     property_number = models.CharField(_('رقم العقار'), max_length=50, unique=True, blank=True)
     title = models.CharField(_('العنوان'), max_length=255)
     slug = models.SlugField(_('الرابط المختصر'), max_length=255, unique=True, blank=True)
-    property_type = models.ForeignKey(PropertyType, on_delete=models.PROTECT, verbose_name=_('نوع العقار'))
-    building_type = models.ForeignKey(BuildingType, on_delete=models.PROTECT, null=True, blank=True, verbose_name=_('نوع المبنى'))
+    property_type = models.ForeignKey(
+        PropertyType, 
+        on_delete=models.PROTECT, 
+        verbose_name=_('نوع العقار'),
+        related_name='properties'  # Added related_name
+    )
+    building_type = models.ForeignKey(
+        BuildingType, 
+        on_delete=models.PROTECT, 
+        null=True, 
+        blank=True, 
+        verbose_name=_('نوع المبنى'),
+        related_name='properties'  # Added related_name
+    )
     status = models.CharField(_('الحالة'), max_length=20, choices=STATUS_CHOICES, default='available')
 
     # Deed Information
@@ -171,7 +192,12 @@ class Property(BaseModel):
     year_built = models.PositiveIntegerField(_('سنة البناء'), null=True, blank=True)
 
     # Location
-    location = models.ForeignKey(Location, on_delete=models.PROTECT, verbose_name=_('الموقع'))
+    location = models.ForeignKey(
+        Location, 
+        on_delete=models.PROTECT, 
+        verbose_name=_('الموقع'),
+        related_name='properties'  # Added related_name
+    )
     address = models.CharField(_('العنوان التفصيلي'), max_length=255)
 
     # Financial Information
@@ -203,7 +229,7 @@ class Property(BaseModel):
             models.Index(fields=['status']),
             models.Index(fields=['market_value']),
             models.Index(fields=['property_type']),
-            models.Index(fields=['location']),  # Add index for the location foreign key instead
+            models.Index(fields=['location']),
         ]
 
     def __str__(self):
@@ -213,7 +239,7 @@ class Property(BaseModel):
         return f'property_{self.id}'
 
     def save(self, *args, **kwargs):
-        if not self.property_number:
+        if not self.property_number and self.property_type: # Ensure property_type is set
             prefix = self.property_type.code
             random_num = random.randint(10000, 99999)
             self.property_number = f"{prefix}-{random_num}"
@@ -222,17 +248,26 @@ class Property(BaseModel):
             self.slug = slugify(self.title)
             original_slug = self.slug
             count = 1
+            # Ensure slug is unique
             while Property.objects.filter(slug=self.slug).exclude(pk=self.pk).exists():
                 self.slug = f"{original_slug}-{count}"
                 count += 1
-
+        
         super().save(*args, **kwargs)
         cache.delete(self.get_cache_key())
 
     def get_main_image(self):
-        return self.media.filter(media_type='image', is_primary=True).first() or self.media.filter(media_type='image').first()
+        primary_image = self.media.filter(media_type='image', is_primary=True).first()
+        if primary_image:
+            return primary_image
+        return self.media.filter(media_type='image').first()
 
     def to_dict(self):
+        main_image_data = None
+        main_image_obj = self.get_main_image()
+        if main_image_obj:
+            main_image_data = main_image_obj.to_dict()
+
         return {
             'id': self.id,
             'title': self.title,
@@ -241,7 +276,7 @@ class Property(BaseModel):
             'property_type': {
                 'id': self.property_type.id,
                 'name': self.property_type.name,
-            },
+            } if self.property_type else None,
             'building_type': {
                 'id': self.building_type.id,
                 'name': self.building_type.name,
@@ -249,19 +284,19 @@ class Property(BaseModel):
             'status': self.status,
             'status_display': self.get_status_display(),
             'description': self.description,
-            'size_sqm': float(self.size_sqm),
+            'size_sqm': float(self.size_sqm) if self.size_sqm is not None else None,
             'location': {
                 'address': self.address,
-                'city': self.location.city,
-                'state': self.location.state,
-                'country': self.location.country,
-            },
-            'market_value': float(self.market_value),
-            'main_image': self.get_main_image().to_dict() if self.get_main_image() else None,
-            'media': [media.to_dict() for media in self.media.all()],
+                'city': self.location.city if self.location else None,
+                'state': self.location.state if self.location else None,
+                'country': self.location.country if self.location else None,
+            } if self.location else None,
+            'market_value': float(self.market_value) if self.market_value is not None else None,
+            'main_image': main_image_data,
+            'media': [media_item.to_dict() for media_item in self.media.all()],
             'features': self.features,
             'amenities': self.amenities,
-            'created_at': self.created_at.isoformat(),
+            'created_at': self.created_at.isoformat() if self.created_at else None,
         }
 
 # -------------------------------------------------------------------------
@@ -284,7 +319,12 @@ class Room(BaseModel):
     """Enhanced room model"""
     property = models.ForeignKey(Property, on_delete=models.CASCADE, related_name='rooms', verbose_name=_('العقار'))
     name = models.CharField(_('اسم الغرفة'), max_length=100)
-    room_type = models.ForeignKey(RoomType, on_delete=models.PROTECT, verbose_name=_('نوع الغرفة'))
+    room_type = models.ForeignKey(
+        RoomType, 
+        on_delete=models.PROTECT, 
+        verbose_name=_('نوع الغرفة'),
+        related_name='rooms'  # Added related_name
+    )
     floor = models.PositiveSmallIntegerField(_('الطابق'), default=1)
     area_sqm = models.DecimalField(_('المساحة (متر مربع)'), max_digits=8, decimal_places=2, null=True, blank=True)
     description = models.TextField(_('الوصف'), blank=True)
@@ -306,7 +346,7 @@ class Room(BaseModel):
         ]
 
     def __str__(self):
-        return f"{self.room_type.name} - {self.name} ({self.property.title})"
+        return f"{self.room_type.name if self.room_type else 'N/A'} - {self.name} ({self.property.title if self.property else 'N/A'})"
 
     def to_dict(self):
         return {
@@ -315,12 +355,12 @@ class Room(BaseModel):
             'room_type': {
                 'id': self.room_type.id,
                 'name': self.room_type.name,
-            },
+            } if self.room_type else None,
             'floor': self.floor,
             'area_sqm': float(self.area_sqm) if self.area_sqm else None,
             'dimensions': self.dimensions,
             'features': self.features,
-            'media': [media.to_dict() for media in self.media.all()],
+            'media': [media_item.to_dict() for media_item in self.media.all()],
         }
 
 # -------------------------------------------------------------------------
@@ -352,7 +392,12 @@ class Auction(BaseModel):
 
     title = models.CharField(_('العنوان'), max_length=255)
     slug = models.SlugField(_('الرابط المختصر'), max_length=255, unique=True, blank=True)
-    auction_type = models.ForeignKey(AuctionType, on_delete=models.PROTECT, verbose_name=_('نوع المزاد'))
+    auction_type = models.ForeignKey(
+        AuctionType, 
+        on_delete=models.PROTECT, 
+        verbose_name=_('نوع المزاد'),
+        related_name='auctions'  # Added related_name
+    )
     status = models.CharField(_('الحالة'), max_length=20, choices=STATUS_CHOICES, default='draft')
     description = models.TextField(_('الوصف'))
 
@@ -405,7 +450,7 @@ class Auction(BaseModel):
                 self.slug = f"{original_slug}-{count}"
                 count += 1
 
-        if self.is_published and self.status in ['scheduled', 'live']:
+        if self.is_published and self.status in ['scheduled', 'live'] and self.related_property:
             self.related_property.status = 'auction'
             self.related_property.save(update_fields=['status'])
 
@@ -413,8 +458,8 @@ class Auction(BaseModel):
 
     @property
     def time_remaining(self):
-        if self.end_date <= timezone.now():
-            return {"days": 0, "hours": 0, "minutes": 0, "seconds": 0}
+        if not self.end_date or self.end_date <= timezone.now():
+            return {"days": 0, "hours": 0, "minutes": 0, "seconds": 0, "total_seconds": 0}
         
         time_left = self.end_date - timezone.now()
         days = time_left.days
@@ -437,24 +482,24 @@ class Auction(BaseModel):
             'auction_type': {
                 'id': self.auction_type.id,
                 'name': self.auction_type.name,
-            },
+            } if self.auction_type else None,
             'status': self.status,
             'status_display': self.get_status_display(),
             'description': self.description,
             'dates': {
-                'start': self.start_date.isoformat(),
-                'end': self.end_date.isoformat(),
+                'start': self.start_date.isoformat() if self.start_date else None,
+                'end': self.end_date.isoformat() if self.end_date else None,
                 'registration_deadline': self.registration_deadline.isoformat() if self.registration_deadline else None,
             },
-            'property': self.related_property.to_dict(),
+            'property': self.related_property.to_dict() if self.related_property else None,
             'bids': {
-                'starting': float(self.starting_bid),
-                'current': float(self.current_bid) if self.current_bid else None,
-                'minimum_increment': float(self.minimum_increment),
+                'starting': float(self.starting_bid) if self.starting_bid is not None else None,
+                'current': float(self.current_bid) if self.current_bid is not None else None,
+                'minimum_increment': float(self.minimum_increment) if self.minimum_increment is not None else None,
                 'count': self.bid_count,
             },
             'time_remaining': self.time_remaining,
-            'media': [media.to_dict() for media in self.media.all()],
+            'media': [media_item.to_dict() for media_item in self.media.all()],
         }
 
 class Bid(BaseModel):
@@ -491,41 +536,50 @@ class Bid(BaseModel):
         ]
 
     def __str__(self):
-        return f"{self.bidder} زايد بمبلغ {self.bid_amount} على {self.auction.title}"
+        bidder_name = f"{self.bidder.first_name} {self.bidder.last_name}".strip() or self.bidder.email if self.bidder else "N/A Bidder"
+        auction_title = self.auction.title if self.auction else "N/A Auction"
+        return f"{bidder_name} زايد بمبلغ {self.bid_amount} على {auction_title}"
 
     def save(self, *args, **kwargs):
         is_new = self.pk is None
-        super().save(*args, **kwargs)
+        super().save(*args, **kwargs) # Save first to get a PK if new
 
-        if is_new:
-            self.auction.bid_count += 1
+        if is_new and self.auction:
+            self.auction.bid_count = models.F('bid_count') + 1 # Use F expression for atomicity
 
             if not self.auction.current_bid or self.bid_amount > self.auction.current_bid:
                 self.auction.current_bid = self.bid_amount
 
-                if self.status == 'accepted':
+                # Atomically update previous winning bids to 'outbid'
+                if self.status == 'accepted' or self.status == 'winning': # Consider new winning bids directly
                     Bid.objects.filter(
                         auction=self.auction,
                         status='winning'
                     ).exclude(id=self.id).update(status='outbid')
+                    
+                    if self.status != 'winning': # If it was 'accepted', now make it 'winning'
+                        self.status = 'winning'
+                        super().save(update_fields=['status']) # Save just the status field
 
-                    self.status = 'winning'
-                    self.save(update_fields=['status'])
 
             self.auction.save(update_fields=['bid_count', 'current_bid'])
 
     def to_dict(self):
+        bidder_info = None
+        if self.bidder:
+            bidder_name = f"{self.bidder.first_name} {self.bidder.last_name}".strip()
+            bidder_info = {
+                'id': self.bidder.id,
+                'name': bidder_name or self.bidder.email,
+            }
         return {
             'id': self.id,
             'auction_id': self.auction_id,
-            'bidder': {
-                'id': self.bidder.id,
-                'name': f"{self.bidder.first_name} {self.bidder.last_name}".strip() or self.bidder.email,
-            },
-            'amount': float(self.bid_amount),
-            'max_amount': float(self.max_bid_amount) if self.max_bid_amount else None,
+            'bidder': bidder_info,
+            'amount': float(self.bid_amount) if self.bid_amount is not None else None,
+            'max_amount': float(self.max_bid_amount) if self.max_bid_amount is not None else None,
             'status': self.status,
             'status_display': self.get_status_display(),
-            'bid_time': self.bid_time.isoformat(),
+            'bid_time': self.bid_time.isoformat() if self.bid_time else None,
             'is_verified': self.is_verified,
         }

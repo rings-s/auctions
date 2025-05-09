@@ -111,8 +111,8 @@ class PropertySerializer(serializers.ModelSerializer):
    class Meta:
        model = Property
        fields = [
-           'id', 'title', 'property_number', 'type',
-           'building', 'status', 'status_display',
+           'id', 'title', 'property_number', 'type', 'property_type',
+           'building', 'building_type', 'status', 'status_display',
            'deed_number', 'description', 'size_sqm',
            'floors', 'year_built', 'location',
            'market_value', 'minimum_bid', 'features',
@@ -129,6 +129,9 @@ class PropertySerializer(serializers.ModelSerializer):
        return MediaSerializer(image).data if image else None
 
    def validate(self, data):
+       if 'property_type' not in data or not data['property_type']:
+           raise serializers.ValidationError({'property_type': _('Property type is required.')})
+
        if 'minimum_bid' in data and 'market_value' in data:
            if data['minimum_bid'] >= data['market_value']:
                raise serializers.ValidationError(
@@ -141,6 +144,31 @@ class PropertySerializer(serializers.ModelSerializer):
            )
 
        return data
+
+   def create(self, validated_data):
+       property_type_data = validated_data.pop('property_type', None)
+       if property_type_data is None:
+           raise serializers.ValidationError({'property_type': 'Property type is required.'})
+
+       property_type = None
+       if isinstance(property_type_data, int):
+           try:
+               property_type = PropertyType.objects.get(id=property_type_data)
+           except PropertyType.DoesNotExist:
+               raise serializers.ValidationError({'property_type': 'Invalid property type'})
+       elif isinstance(property_type_data, str):
+           try:
+               property_type = PropertyType.objects.get(code=property_type_data)
+           except PropertyType.DoesNotExist:
+               try:
+                   property_type = PropertyType.objects.get(id=property_type_data)
+               except (PropertyType.DoesNotExist, ValueError):
+                   raise serializers.ValidationError({'property_type': 'Invalid property type'})
+       else:
+           raise serializers.ValidationError({'property_type': 'Invalid property type'})
+
+       validated_data['property_type'] = property_type
+       return super().create(validated_data)
 
 class BidSerializer(serializers.ModelSerializer):
    bidder_info = serializers.SerializerMethodField()
